@@ -1,2 +1,2 @@
 # SnackTime
-Team SnackTIme for snulion
+Team SnackTime for snulion
