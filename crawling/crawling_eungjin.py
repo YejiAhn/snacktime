@@ -81,31 +81,22 @@ def printer(li):
 		print(i)
 
 
-def writer(li, num):
-	f = open('output'+str(num)+'.csv', 'w', encoding='utf-8', newline='')
+def writer(li):
+	f = open('output''.csv', 'w', encoding='utf-8', newline='')
 	wr = csv.writer(f)
 	wr.writerow(list(li[0].keys()))
 	for item in li:
 		wr.writerow(list(item.values()))
 	f.close()
 
+if __name__ == "__main__":
+	category_range = list(range(6001, 6008))
+	base_url =  'http://branch1.nowpick.co.kr/shop/list.php?cate=00'
 
-category_range = list(range(6001, 6008))
+	res = []
+	for num in category_range:
+		category_url = base_url + str(num)
+		start_page_number = 1
+		res += fetch_each_page_until_has_no_item(category_url, start_page_number)
 
-for num in category_range:
-	category_url = 'http://branch1.nowpick.co.kr/shop/list.php?cate=00' + str(num)
-
-	page_number = 1
-	res = fetch_each_page_until_has_no_item(category_url, page_number)
-	printer(res)
-
-	writer(res, num)
-
-
-
-# print(has_item(li))
-
-
-# Url to find list
-
-# choose right parser. (if lxml doesn't work, just leave it as a blank. Then bs will find the right one)
+	writer(res)
