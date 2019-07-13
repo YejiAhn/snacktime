@@ -5,5 +5,8 @@
     <a href="/reviews">home</a>
     <p>{{ review.title }}</p>
     <p>{{ review.content }}</p>
+    {% if review.photo %}
+        <img src="{{ review.photo.url }}" alt=""/>
+    {% endif %}
   </div>
 {% endblock content %}

@@ -9,9 +9,9 @@ def index(request):
         reviews = Review.objects.all()
         return render(request, 'reviewpage/index.html', {'reviews': reviews})
     elif request.method == 'POST': # create
-        title = request.POST['title']
         content = request.POST['content']
-        Review.objects.create(title=title, content=content, author = request.user)
+        photo = request.FILES.get('photo', False)
+        Review.objects.create(content=content, author = request.user, photo=photo)
         return redirect('/reviews')
 
 def new(request):
@@ -23,9 +23,7 @@ def show(request, id):
         return render(request, 'reviewpage/show.html', {'review': review})
     elif request.method == 'POST': # update
         review = Review.objects.get(id=id)
-        title = request.POST['title']
         content = request.POST['content']
-        review.title = title
         review.content = content
         review.save()
         return redirect('/reviews')

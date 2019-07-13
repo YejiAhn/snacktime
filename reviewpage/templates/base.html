@@ -1,11 +1,14 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>snacktime</title>
+    <link  rel="stylesheet"  href="{% static 'reviewpage/style.css' %}" />
   </head>
   <body>
-  <header style="width: 100%; background-color: mediumslateblue; color: white; text-align: left;">
+  <header>
     <div style="text-align: right;">
       {% if user.is_authenticated %}
         {{ user.get_username }}님, 안녕하세요
@@ -15,9 +18,12 @@
           <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
         {% endif %}
     </div>
-    Snack Time Review Page
+    간식타임
   </header>
   {% block content %}
   {% endblock %}
   </body>
+  <footer>
+    간식 리뷰 My
+  </footer>
 </html>

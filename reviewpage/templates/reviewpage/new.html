@@ -1,13 +1,16 @@
 {% extends 'base.html'%}
 
 {% block content %}
-  <h1>new review</h1>
-  <form action="/reviews/" method="POST">
+  <h1>리뷰 작성하기</h1>
+  <form action="/reviews/" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
-    <p>title</p>
-    <input name="title" /> <br />
-    <p>content</p>
-    <input name="content" /> <br />
-    <input type="submit" value="submit" />
+    <p>리뷰하실 제품을 선택해주세요</p>
+    <p>취소</p>
+    <p>꿀맛 맛나 그닥 노맛 우웩 </p>
+    <p>나만의 간단후기 쓰기</p>
+    <input name="content" value="제품의 맛, 식감, 가성비 등을 간단하게 표현해보아요!"/> <br />
+    <input name="photo" type="file"/>
+    </br>
+    <input type="submit" value="리뷰 작성 완료!" />
   </form>
 {% endblock content %}

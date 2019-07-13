@@ -1,0 +1,23 @@
+header {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background-color: #ff5d46;
+    color: white;
+    text-align: left;
+}
+
+body {
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background-color: #ff5d46;
+    color: white;
+    text-align: center;
+}
