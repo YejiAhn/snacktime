@@ -1,4 +1,4 @@
-id,category,subcategory,image,name,price
+id,category,image,name,price,PB
 1,간편식사,http://bgf-cu.xcache.kinxcdn.com/product/8809451524101.jpg,도)나쵸피자,"3,500원",cu
 2,간편식사,http://bgf-cu.xcache.kinxcdn.com/product/8809558841842.jpg,샐)스파이시치킨샐러드,"3,500원",cu
 3,간편식사,http://bgf-cu.xcache.kinxcdn.com/product/8809558841859.jpg,샐)리얼어니언햄샐러드,"3,500원",cu

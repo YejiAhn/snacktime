@@ -6,14 +6,12 @@ import csv
 from selenium import webdriver
 import time
 
-
 driver = webdriver.Firefox(executable_path='/Users/Sangwoo/Desktop/멋쟁이 사자처럼/snack time/geckodriver')
 base_url =  'https://www.emart24.co.kr/product/'
 img_url = 'https://www.emart24.co.kr'
 # group= ['간편식사', '즉석조리','과자류','아이스크림', '식품','음료']
 PB = 'emart24'
 group = ['간편식사','즉석조리','과자류','아이스크림', '식품']
-
 
 category_range = list(range(len(group)))
 end=False

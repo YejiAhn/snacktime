@@ -12,8 +12,8 @@
   {% for product in products %}
     <div class='product_list'>
       {% if user.is_authenticated %}
-        <a href="/products/{{ product.id }}/like">        <!--view-->
-          {% if product in user.products_liked.all %}
+        <a href="/products/{{ product.id }}/save">        <!--view-->
+          {% if product in user.products_saved.all %}
             <i class="material-icons">찜</i>        <!--material-icons-->
           {% else %}
             <i class="material-icons">노찜</i>

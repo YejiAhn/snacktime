@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Like
+from .models import Product, Save
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
@@ -30,7 +30,7 @@ def new(request):
     for i in range(len(all_product)):
         store_name=all_product.iloc[i,i_PB]
         PBstore=stores(store_name)
-        Product.objects.create(name=CU.iloc[i,i_name], price=CU.iloc[i,i_price], category=CU.iloc[i,i_category], photo=CU.iloc[i,i_image], PBstore=PBstore)
+        Product.objects.create(name=all_product.iloc[i,i_name], price=all_product.iloc[i,i_price], category=all_product.iloc[i,i_category], photo=all_product.iloc[i,i_image], PBstore=PBstore)
     return redirect('/products/')
 
 
@@ -41,13 +41,13 @@ def show(request, id):
 
     return render(request, 'productpage/show.html', {'product':product})
 
-def product_like(request, pk):
+def product_save(request, pk):
     product = Product.objects.get(id = pk)
-    like_list = product.like_set.filter(user_id = request.user.id)
-    if like_list.count() > 0:
-        product.like_set.get(user_id = request.user.id).delete()
+    save_list = product.save_set.filter(user_id = request.user.id)
+    if save_list.count() > 0:
+        product.save_set.get(user_id = request.user.id).delete()
     else:
-        Like.objects.create(user_id = request.user.id, product_id = product.id)
+        Save.objects.create(user_id = request.user.id, product_id = product.id)
     next = request.META['HTTP_REFERER']
     return redirect(next)
 
