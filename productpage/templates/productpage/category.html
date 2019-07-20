@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Product List</h1>
-  <a href='/products/new'>목록생성</a>                           <!--view-->
   <br/>
 
   {% for category in categories %} 
@@ -24,14 +23,14 @@
       <a href="/products/{{ product.id }}">             <!--view-->
         <i class="material-icons">상세보기</i>
       </a>
-
+      
       <br/>
 
       {% if product.photo %}
-        <img src="{{ product.photo }}" width = "280" alt="">
+        <img src="{{ product.photo }}" width = "150" alt="">
       {% endif %}
       {% if product.PBstore%}
-        <img src="{{ product.PBstore }}" width = "20" alt="">
+        <img src="{{ product.PBstore }}" width = "30" alt="">
       {% endif %}
       {% comment %} (임시)상품번호:{{ product.id }} {% endcomment %}
       <h4>상품명 : {{product.name}}</h2>

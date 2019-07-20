@@ -11,7 +11,7 @@ def index(request):
     elif request.method == 'POST': # create
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
-        Review.objects.create(content=content, author = request.user, photo=photo)
+        Review.objects.create(review_rating=1, content=content, author = request.user, photo=photo)
         return redirect('/reviews')
 
 def new(request):
