@@ -1,0 +1,50 @@
+
+.product-info{
+    padding: 50px 50px 20px 50px;
+    display: block;
+}
+
+.product-info__photo{
+    width: 40%;
+}
+
+.product-info__texts{
+    position: absolute;
+    top: 120px;
+    left: 45%;
+    width: 50%;
+}
+
+table{
+    font-size: 30px;
+}
+
+th{
+    text-align: right;
+}
+th,td{
+    padding: 10px;
+}
+
+.product-rating{
+    border: 1px solid lightgray;
+    display: block;
+    padding: 50px;
+}
+
+
+.product-total-rating{
+    text-align: center;
+    float: center;
+}
+
+.product-reviews{
+    margin: 50px;
+    display: block;
+}
+
+.tag{
+    background-color: rgb(255, 223, 206);
+    border-radius: 10px;
+    border: solid  rgb(255, 223, 206) 3px;
+}
