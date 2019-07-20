@@ -9,21 +9,22 @@ from django.dispatch import receiver
 class Product(models.Model):
     name = models.CharField(max_length=256)
     price = models.IntegerField()
-    rating = (
+    is_PB = models.BooleanField()
+    #category = 
+    rating = models.IntegerField()
+    saved_users = models.ManyToManyField(User, blank=True, related_name='products_saved', through='Save')
+
+class Review(models.Model):
+    # id는 자동 추가
+    product = models.ForeignKey(Product, null=True, on_delete=models.CASCADE)
+    content = models.TextField()
+    review_rating = (
         ('1', '우웩'),
         ('2', '노맛'),
         ('3', '그닥'),
         ('4', '맛나'),
         ('5', '꿀맛'),
     )
-    is_PB = models.BooleanField()
-    #category = 
-    saved_users = models.ManyToManyField(User, blank=True, related_name='products_liked', through='Save')
-
-class Review(models.Model):
-    # id는 자동 추가
-    product = models.ForeignKey(Product, null=True, on_delete=models.CASCADE)
-    content = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey(User, null=True, on_delete= models.CASCADE)
