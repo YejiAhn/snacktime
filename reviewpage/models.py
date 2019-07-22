@@ -63,10 +63,9 @@ class Product(models.Model):
     )
     pb_store_code = models.CharField(max_length=1, choices=PB_STORE_CODES)
 
-    emoticon = models.ImageField(blank=True, upload_to='products_photos',
-                                 default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
+    emoticon = models.ImageField(blank=True, upload_to='products_photos', default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
-    rating = models.FloatField(null=True, blank=True, default=0.0)
+    rating = 0.0
     num_rating = models.IntegerField(default=0)
 
     rank_point = models.FloatField(null=True, blank=True, default=0)
@@ -75,7 +74,10 @@ class Product(models.Model):
         User, blank=True, related_name='products_saved', through='Save')
 
     def update_emoticon(self):  # 나중에 수정할 때 씀
-        if self.rating >= 0.0 and self.rating <= 1.0:
+        if self.review_set.all().count() == 0:
+            self.emoticon = 'https://image.flaticon.com/icons/svg/1742/1742373.svg'
+            self.rating = "리뷰 없음"
+        elif self.rating > 0.0 and self.rating <= 1.0:
             self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742482.png'
         elif self.rating > 1.0 and self.rating <= 2.0:
             self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742328.png'
@@ -87,6 +89,18 @@ class Product(models.Model):
             self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742356.png'
 
         self.save()
+    
+    def get_rating(self):
+        review_list = self.review_set.all()
+        sum_rating = 0.0
+        if review_list.count()>0 :
+            for review in review_list:
+                sum_rating += review.review_rating
+            product_rating = sum_rating / review_list.count()
+        else : product_rating = 0.0
+        self.rating = product_rating
+        self.save()
+
 
     def update_date(self):  # 나중에 수정할 때 씀
         self.updated_at = timezone.now()
@@ -122,8 +136,8 @@ class Review(models.Model):
         self.updated_at = timezone.now()
         self.save()
 
-    def __str__(self):
-        return self.id
+    def __product__(self):
+        return self.product
 
 
 class Profile(models.Model):

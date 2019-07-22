@@ -8,16 +8,24 @@
     grid-row-gap: -20px;
 }
 
+.image-wrap{
+    position: relative;
+    top: -50px;
+}
+
 #product-img{
+    position: relative;
     width: 95%;
     margin: 2.5%;
     background-color: gray;
 }
 
+
 .product-list{
     margin-top: 20px;
     border: 1px solid rgb(193, 193, 193);
     border-radius: 10px;
+    height: 90%;
 }
 
 .filter__wrapper{
@@ -83,9 +91,13 @@ th img {
 }
 
 .bookmark{
-    z-index: 0;
+    z-index: 2;
     position: relative;
     width:25%;
     left: 75%;
-    top: -31vw;
+}
+
+.table-wrap{
+    position: relative;
+    top: -40px;
 }

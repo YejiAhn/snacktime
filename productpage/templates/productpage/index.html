@@ -16,7 +16,7 @@
 
   <div class = "filter__wrapper">
   {% for category in categories %} 
-    <a id = "filter" href="/products/category/{{ category }}">{{ category }}</a>  <!--view-->
+    <a id = "filter" href="/products/category/{{ category_id }}">{{ category }}</a>  <!--view-->
   {% endfor %}
   </div>
 
@@ -24,17 +24,10 @@
   <div class ="product-list__wrapper">
   {% for product in products %}
 
+     
     <div class="product-list">
-      {% if product.photo %}
-        <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo.url }}></a>
-        {% comment %} <img id = "product-img" src="{{ product.photo }}" href="/products/{{ product.id }}" alt=""> {% endcomment %}
-      {% endif %}
-      {% if product.PBstore%}
-        <img src="{{ product.PBstore }}" width = "20" alt="">
-      {% endif %}
-      {% comment %} (임시)상품번호:{{ product.id }} {% endcomment %}
 
-      {% if user.is_authenticated %}
+    
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
             <img class = "bookmark" src = {% static 'bookmark.png'%} style= "-webkit-filter: grayscale(100%); opacity:0.8;">
@@ -42,8 +35,19 @@
             <img class = "bookmark" src = {% static 'bookmark.png'%}>
           {% endif %}
         </a>
+   
+      
+      <div class = "image-wrap">
+      {% if product.photo %}
+        <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo.url }}></a>
       {% endif %}
+      {% if product.PBstore %}
+        <img src="{{ product.PBstore }}" width = "20" alt="">
+      {% endif %}
+      </div>
 
+
+      <div class = "table-wrap">
       <table>
         <tbody>
             <tr style = "font-size: 2.2vw;">
@@ -64,7 +68,7 @@
         </tbody>
       </table>
     </div>
-
+  </div>
   {% endfor %}
 
   

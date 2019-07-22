@@ -12,11 +12,10 @@ import collections
 def index(request):
     products = Product.objects.all()
     for product in products:
+        product.get_rating()
         product.update_emoticon()
     categories = ['전체','간편식사', '즉석조리','과자류','아이스크림', '식품','음료']
     return render(request, 'productpage/index.html', {'products': products, 'categories':categories})
-
-
 
 def new(request):
     CU = pd.read_csv('productpage/productlist/CU.csv') 
@@ -37,10 +36,23 @@ def new(request):
 def show(request, id):
     if request.method == 'GET':
         product= Product.objects.get(id=id)
-        return render(request, 'productpage/show.html', {'product':product})
+        product.get_rating()
+        product.update_emoticon()
+        reviews = product.review_set.all()
+        review_count = reviews.count()
+        rates_num = [
+            reviews.filter(review_rating = 5).count(),
+            reviews.filter(review_rating = 4).count(),
+            reviews.filter(review_rating = 3).count(),
+            reviews.filter(review_rating = 2).count(),
+            reviews.filter(review_rating = 1).count()
+        ]
+        return render(request, 'productpage/show.html', {'product':product, 'rates' : rates_num, 'count' : review_count})
 
     return render(request, 'productpage/show.html', {'product':product})
 
+
+    
 def product_save(request, pk):
     product = Product.objects.get(id = pk)
     save_list = product.save_set.filter(user_id = request.user.id)
@@ -58,8 +70,6 @@ def category(request, ct):
     products= Product.objects.all().filter(category = ct)[:10]
     return render(request, 'productpage/category.html', {'products': products, 'categories':categories})
 
-
-#########################################################################################
 def stores(val):
     return {
         'cu': 'https://membership.bgfretail.com/membership/pc/images/family_site_02.png',
@@ -75,3 +85,14 @@ def detail(request):
     return render(request, 'productpage/detail.html')
 
     
+# def get_product_rating(id):
+#     product = Product.objects.get(id=id)
+#     review_list = product.review_set.all()
+#     sum_rating = 0
+#     if review_list.count()>0 :
+#         for review in review_list:
+#             sum_rating += review.rating
+#         product_rating = sum_rating / review_list.count()
+#     else : product_rating = 0
+
+#     return product_rating
