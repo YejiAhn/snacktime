@@ -98,7 +98,7 @@ class Product(models.Model):
                 sum_rating += review.review_rating
             product_rating = sum_rating / review_list.count()
         else : product_rating = 0.0
-        self.rating = product_rating
+        self.rating = round(product_rating,2)
         self.save()
 
 
