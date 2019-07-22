@@ -17,7 +17,6 @@
 .product-list{
     margin-top: 20px;
     border: 1px solid rgb(193, 193, 193);
-    height: 90%;
     border-radius: 10px;
 }
 
@@ -70,7 +69,6 @@
 table{
     margin-left: 10px;
     position: relative;
-    top: -12%;
     border-collapse: separate;
     border-spacing: 5px 10px;
 }

@@ -73,3 +73,5 @@ def stores(val):
 
 def detail(request):
     return render(request, 'productpage/detail.html')
+
+    

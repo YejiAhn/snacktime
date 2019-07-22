@@ -1,1 +1,124 @@
-제품 상세보기 페이지
+{% load  staticfiles %}
+
+<head>
+    <title> 제품 상세 페이지 </title>
+    <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body><style>
+.gray-star{
+    display:inline-block;
+}
+.star{
+    position: relative;
+    top: -60px;
+    display: inline;
+    overflow: hidden;
+    display:block; 
+}
+</style>
+
+<section class = "product-info">
+    <img src = {{ product.photo.url }} class = "product-info__photo" >
+    <div class = "product-info__texts">
+        <table>
+        <tbody>
+            <tr style = "font-size: 3vw;">
+                <th>상품명</th>
+                <td> {{ product.name }}
+                </td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td> {{product.price}} 원 
+                </td>
+            </tr>
+            <tr>
+                <th>태그</th>
+                <td>
+                <a class = "tag">#tag</a>
+                <a class = "tag">#tag</a>
+                {% comment %} for문 사용해서 tag 불러오기 
+                {% for tag in product.tags %}
+                <a class = "tag"># tag.name </a>
+                {% endcomment %}
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</section>
+
+<section class = "product-rating">
+    
+    <div class = "product-total-rating"style="margin-bottom: 0px;">
+        <section style = "font-size: 35px; font-weight: bold;">4.15
+        {% comment %} product.rating {% endcomment %}
+        </section>
+        <div class = "gray-star" style=" height: 80px; margin-bottom: 0px;">
+        <img src = "{% static "graystar.gif" %}" style="height: 60px;">
+            <div class = "star" style="width: 83%;"> 
+            {% comment %} 여기서 width값 변경 => 평점 * 20 {% endcomment %}
+            <img src = "{% static "colorstar.gif" %}" style="height: 60px;">
+            </div> 
+        </div> 
+    </div>
+
+    <div class = "product-rating-detail">
+    <canvas id="myChart"></canvas>
+
+
+    </div>
+</section>
+
+<section class = "product-reviews">
+<h1 style = "font-size: 35px;">리뷰
+<a style ="font-size:16px;"> (111) </a>
+{% comment %} (review 개수) {% endcomment %}
+</h1> 
+{% comment %}  {% for review in reviews %} 어쩌구... {% endcomment %}
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+Chart.defaults.global.defaultFontStyle = 'Bold'
+var myBarChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['😍꿀맛', '🙂맛나', '😐그닥', '️🙁노맛', '🤮우웩'],
+        datasets: [{
+            backgroundColor: ['lightpink', 'SandyBrown', 'PaleGoldenRod', 'MistyRose','LightSalmon'],
+            data: [50,30,40,20,10]
+        }]
+    },
+    
+    options: {
+        tooltips: {enabled: false},
+        hover: {mode: null},
+        scales: {
+             xAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }],
+            yAxes: [{
+            
+            barPercentage: 0.7, 
+            categoryPercentage: 0.6,
+            ticks: {
+            
+                fontSize:24,
+            }
+            }]
+            
+        },
+
+        legend: {
+            display: false,
+        }
+        
+    }
+});
+</script>
+</body>
