@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import Review
+from .models import Review, Like, Save
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
 # Create your views here.
+
 def index(request):
     if request.method == 'GET': # index
         reviews = Review.objects.all()
@@ -36,3 +37,21 @@ def delete(request, id):
 def edit(request, id):
     review = Review.objects.get(id=id)
     return render(request, 'reviewpage/edit.html', {'review': review})
+
+def review_like(request, pk):
+    review = Review.objects.get(id = pk)
+    like_list = review.like_set.filter(user_id = request.user.id)
+    if like_list.count() > 0:
+        review.like_set.get(user_id = request.user.id).delete()
+    else:
+        Like.objects.create(user_id = request.user.id, review_id = review.id)
+    return redirect('/reviews')
+
+def review_save(request, pk):
+    review = Review.objects.get(id = pk)
+    save_list = review.save_set.filter(user_id = request.user.id)
+    if save_list.count() > 0:
+        review.save_set.get(user_id = request.user.id).delete()
+    else:
+        Save.objects.create(user_id = request.user.id, reiew_id = review.id)
+    return redirect('/reviews')
