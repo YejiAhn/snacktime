@@ -3,10 +3,15 @@
   <h1>Product List</h1>
   <br/>
 
-  {% for category in categories %} 
-    <a href="/products/category/{{ category }}">{{ category }}</a>  <!--view-->
+<!-- dictionary로 구현 -->
+  {% for key, value in categories.items %} 
+    <a href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
   {% endfor %}
+  <br/>
 
+  {% for key, value in sub_categories.items %} 
+    <a href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
+  {% endfor %}
   <br/>
 
   {% for product in products %}

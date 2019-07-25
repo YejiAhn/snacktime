@@ -14,9 +14,10 @@
   <a id = "conv-filter">편의점 필터 </a>
   </div>
 
+<!-- dictionary로 구현 -->
   <div class = "filter__wrapper">
-  {% for category in categories %} 
-    <a id = "filter" href="/products/category/{{ category_id }}">{{ category }}</a>  <!--view-->
+  {% for key, value in categories.items %} 
+    <a id = "filter" href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
   {% endfor %}
   </div>
 
@@ -39,19 +40,20 @@
       {% endif %}
    
       
-      <div class = "image-wrap">
-      {% if product.photo %}
-        <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo.url }}></a>
-      {% endif %}
-      {% if product.PBstore %}
-        <img src="{{ product.PBstore }}" width = "20" alt="">
-      {% endif %}
-      </div>
+
 
 
       <div class = "table-wrap">
       <table>
         <tbody>
+            <div class = "image-wrap">
+            {% if product.photo %}
+              <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+            {% endif %}
+            {% if product.pb_store_code %}
+              <img src="{{ product.pb_store_code }}" width = "20" alt="">
+            {% endif %}
+            </div> 
             <tr style = "font-size: 2.2vw;">
                 <th>상품명</th>
                 <td>{{product.name}}

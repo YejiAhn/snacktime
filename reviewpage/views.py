@@ -11,7 +11,10 @@ def index(request):
     elif request.method == 'POST': # create
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
-        Review.objects.create(review_rating=1, content=content, author = request.user, photo=photo)
+        ### 수정: 리뷰레이팅 추가
+        review_rating = request.POST['review_rating']
+        ###
+        Review.objects.create(review_rating=review_rating, content=content, author = request.user, photo=photo)
         return redirect('/reviews')
 
 def new(request):
@@ -26,6 +29,14 @@ def show(request, id):
         content = request.POST['content']
         review.content = content
         review.save()
+        ### 수정: 리뷰 점수도 수정받기
+        if review.review_rating != request.POST['review_rating']:
+            review.review_rating = request.POST['review_rating']
+            review.save()
+            product = review.product 
+            product.get_rating()  
+            product.calc_rank_point()
+
         return redirect('/reviews')
 
 def delete(request, id):

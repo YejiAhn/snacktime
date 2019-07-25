@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
-#from faker import Faker
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+import numpy as np
 # Create your models here.
-
+from faker import Faker
+from random import randint
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
@@ -65,13 +66,13 @@ class Product(models.Model):
 
     emoticon = models.ImageField(blank=True, upload_to='products_photos', default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
-    rating = 0.0
-    num_rating = models.IntegerField(default=0)
+    rating = models.FloatField(null=True, blank=True, default=0)
 
     rank_point = models.FloatField(null=True, blank=True, default=0)
 
     saved_users = models.ManyToManyField(
         User, blank=True, related_name='products_saved', through='Save')
+
 
     def update_emoticon(self):  # 나중에 수정할 때 씀
         if self.review_set.all().count() == 0:
@@ -87,7 +88,6 @@ class Product(models.Model):
             self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742324.png'
         elif self.rating > 4.0 and self.rating <= 5.0:
             self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742356.png'
-
         self.save()
     
     def get_rating(self):
@@ -101,14 +101,25 @@ class Product(models.Model):
         self.rating = round(product_rating,2)
         self.save()
 
+    ### 수정: 랭크포인트 정해주는 함수. activate function-sigmoid(임시)
+    def calc_rank_point(self):
+        threshold= 5 # 최소 댓글수에 해당하는 값. 임시로 5로 설정.
+        num_reviews = self.review_set.all().count()
+        self.rank_point = rating*(1/1+np.exp(-num_reviews+threshold))
+        self.save()
 
-    def update_date(self):  # 나중에 수정할 때 씀
-        self.updated_at = timezone.now()
+    def update_rate(self): 
+        ### 수정: 빼기로 했던 듯?
+        # self.updated_at = timezone.now()
+        self.get_rating()
+        self.update_emoticon()
+        self.calc_rank_point()
         self.save()
 
     def __str__(self):
         return self.name
 
+    ### 과제: 정렬하기 순서를 바꾸는 방법은? 편의점 필터 못 만듦.
     class Meta:
         ordering = ['-rank_point']
 
@@ -138,6 +149,38 @@ class Review(models.Model):
 
     def __product__(self):
         return self.product
+    
+    ### 수정: 랜덤 리뷰 생성 (개수, 상품id, ['good', 'soso', 'bad'])
+    def seed(count,id,taste):
+        product = Product.objects.get(id=id)
+        myfake = Faker('ko_KR')
+        if taste == 'good':
+            for i in range(count):
+                Review.objects.create(
+                    content=myfake.text()
+                    review_rating=randint(3,5) ### 과제: 이 부분이 막힘
+                    author='admin'
+                )
+        elif taste == 'soso':
+                        for i in range(count):
+                Review.objects.create(
+                    content=myfake.text()
+                    review_rating=randint(2,4)
+                    author='admin'
+                )
+        elif taste == 'bad':
+                    elif taste == 'soso':
+                        for i in range(count):
+                Review.objects.create(
+                    content=myfake.text()
+                    review_rating=randint(1,3)
+                    author='admin'
+                )
+
+    ### 수정3 : review 정렬하기. 일단은 임시로 updated_at 순으로 정했다.
+    class Meta:
+        ordering = ['-updated_at']
+    ###
 
 
 class Profile(models.Model):
