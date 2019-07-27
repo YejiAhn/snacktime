@@ -131,7 +131,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = "/reviews/"
 
-
 LOG_FILE = os.path.join(os.path.dirname(__file__), '..', 'myLog.log')
 LOGGING = {
     'version': 1,
