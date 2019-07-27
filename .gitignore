@@ -2,6 +2,8 @@
 *.pot
 *.pyc
 __pycache__/
+ENV/
+.python-version
 local_settings.py
 db.sqlite3
 media
