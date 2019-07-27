@@ -28,6 +28,7 @@ th,td{
 
 .product-rating{
     border: 1px solid lightgray;
+    border-radius: 30px;
     display: block;
     padding: 50px;
 }

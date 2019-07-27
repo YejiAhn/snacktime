@@ -1,15 +1,29 @@
-<h1>로그인</h1>
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {% comment %} <p>
-    사용자 이름:
-    <input type="text" name="username" value="">
-  </p>
-  <p>
-    비밀번호:
-	<input type="password" name="password" value="">
-  </p> {% endcomment %}
-  {{ form.as_p }}
-  <input type="hidden" name="next" value="{{next}}" />
-  <input type="submit" value="로그인" />
-</form>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 간식타임 로그인 </title>
+        <link rel="stylesheet"  href="{% static 'accounts/accounts-style.css' %}"/>
+    </head>
+
+    <body>
+        <br> <br>
+        <div class = "instruction">
+        <h1>로그인</h1>
+        </div>
+
+        <div class="input-blank">
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <p style="font-size:36px" id="input-instruction"> 사용자 이름 </p>
+        <input type="text" name="username" value="" class="formform">
+  
+        <p style="font-size:36px" id="input-instruction"> 비밀번호 </p>
+        <input type="password" name="password" value="" class="formform">
+        <input type="submit" value="확인" class="login-submit">
+        </form>
+        </div>
+    </body>
+</html>

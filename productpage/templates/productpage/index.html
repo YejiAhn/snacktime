@@ -1,43 +1,82 @@
-{% extends 'base.html' %}
-{% block content %}
-  <h1>Product List</h1>
+{% load  staticfiles %}
+
+<head>
+    <title> 제품 페이지 </title>
+    <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body>
   <a href='/products/new'>목록생성</a>                           <!--view-->
   <br/>
 
-  {% for category in categories %} 
-    <a href="/products/category/{{ category }}">{{ category }}</a>  <!--view-->
+  <div class = "conv-filter__wrapper">
+  <a id = "conv-filter">편의점 필터 </a>
+  </div>
+
+<!-- dictionary로 구현 -->
+  <div class = "filter__wrapper">
+  {% for key, value in categories.items %} 
+    <a id = "filter" href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
   {% endfor %}
+  </div>
 
   <br/>
-
+  <div class ="product-list__wrapper">
   {% for product in products %}
-    <div class='product_list'>
+
+     
+    <div class="product-list">
+
+    
       {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
-            <i class="material-icons">찜</i>        <!--material-icons-->
+            <img class = "bookmark" src = {% static 'bookmark.png'%} >
           {% else %}
-            <i class="material-icons">노찜</i>
+            <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} style= "opacity:0.8" >
           {% endif %}
         </a>
       {% endif %}
-      <a href="/products/{{ product.id }}">             <!--view-->
-        <i class="material-icons">상세보기</i>
-      </a>
-
-      <br/>
-
-      {% if product.photo %}
-        <img src="{{ product.photo }}" width = "280" alt="">
-      {% endif %}
-      {% if product.PBstore%}
-        <img src="{{ product.PBstore }}" width = "20" alt="">
-      {% endif %}
-      {% comment %} (임시)상품번호:{{ product.id }} {% endcomment %}
-      <h4>상품명 : {{product.name}}</h2>
-      <h4>가격 : {{product.price}}</h2>
+   
       
-      <h4><img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}</h2>  <!--choose emoticon-->
+
+
+
+      <div class = "table-wrap">
+      <table>
+        <tbody>
+            <div class = "image-wrap">
+            {% if product.photo %}
+              <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+            {% endif %}
+            {% if product.pb_store_code %}
+              <img src="{{ product.pb_store_code }}" width = "20" alt="">
+            {% endif %}
+            </div> 
+            <tr style = "font-size: 2.2vw;">
+                <th>상품명</th>
+                <td>{{product.name}}
+                </td>
+            </tr>
+            <tr style = "font-size: 2vw">
+                <th>가격</th>
+                <td>{{product.price}} 원 </td>
+            </tr>
+            <tr class = "rating">
+                <th><img src="{{ product.emoticon }}" width = "30" alt=""></th>
+                <td style = "font-size: 2vw; font-weight: bold;">
+                {{product.rating}}
+                </td>
+            </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
   {% endfor %}
-{% endblock %}
+
+  
+  </div>
+
+
+</body>

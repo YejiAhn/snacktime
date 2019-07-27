@@ -15,4 +15,8 @@ selenium==3.141.0
 six==1.12.0
 soupsieve==1.9.2
 text-unidecode==1.2
+<<<<<<< HEAD
 urllib3==1.25.3
+=======
+urllib3==1.25.3
+>>>>>>> d4b4587a0666af5d1ca69c2925f0ac8ec9be4518
