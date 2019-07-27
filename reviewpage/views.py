@@ -55,7 +55,7 @@ def show(request, id):
         return redirect('/reviews')
 
 def delete(request, id):
-    review = Review.objects.get(id=id
+    review = Review.objects.get(id=id)
     review.delete()
     return redirect('/reviews')
 
