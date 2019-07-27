@@ -10,7 +10,6 @@
 
 .image-wrap{
     position: relative;
-    top: -50px;
 }
 
 #product-img{
@@ -25,7 +24,7 @@
     margin-top: 20px;
     border: 1px solid rgb(193, 193, 193);
     border-radius: 10px;
-    height: 90%;
+    /* height: 90%; */
 }
 
 .filter__wrapper{
@@ -99,5 +98,5 @@ th img {
 
 .table-wrap{
     position: relative;
-    top: -40px;
+    
 }

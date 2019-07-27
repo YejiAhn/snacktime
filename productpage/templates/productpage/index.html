@@ -31,7 +31,7 @@
       {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
-            <img class = "bookmark" src = {% static 'bookmark.png'%} >
+            <img class = "bookmark" src = {% static 'bookmark.gif'%} >
           {% else %}
             <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} style= "opacity:0.8" >
           {% endif %}
