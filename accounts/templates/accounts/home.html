@@ -1,0 +1,24 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 간식타임 홈화면 </title>
+        <link rel="stylesheet"  href="{% static 'accounts/accounts-style.css' %}"/>
+    </head>
+
+    <body>
+        <img src="{% static 'accounts/img/간식타임 로고.png' %}" width = "50%">
+        <div class="home-button">
+            <p>회원가입</p>
+            <p>로그인</p>
+        </div>
+        <ul>
+            <li>아이디/비밀번호 찾기</li>
+            <li>개인정보정책</li>
+            <li>서비스이용약관</li>
+        </ul>
+
+    </body>
+</html>

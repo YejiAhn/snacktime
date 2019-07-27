@@ -1,0 +1,54 @@
+h1 {
+    font-size: 60px;
+    line-height: 60%;
+}
+.instruction {
+    text-align: left;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    margin-left: 60px;
+}
+
+.input-blank {
+    text-align: center;
+}
+
+#input-instruction {
+    text-align: left;
+    color:grey;
+    margin-left: 60px;
+}
+
+.formform {
+    height: 50px;
+    width: 92%;
+    margin-left: 60px;
+    border-top: white;
+    border-right: white;
+    border-left: white;
+    border-bottom: 3px solid grey;
+    margin-bottom: 20px;
+}
+
+.signup-submit {
+    color: white;
+    font-size: 60px;
+    margin-top: 300px;
+    height: 130px;
+    width: 80%;
+    background-color: #ff5d46;
+    border-radius: 140px;
+    font-weight:500;
+}
+
+/* *************************** */
+
+.home-button {
+    color: white;
+    font-size: 55px;
+    margin-top: 300px;
+    height: 130px;
+    width: 80%;
+    background-color: black;
+    border-radius: 140px;
+}
