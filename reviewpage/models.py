@@ -105,7 +105,7 @@ class Product(models.Model):
     def calc_rank_point(self):
         threshold= 5 # 최소 댓글수에 해당하는 값. 임시로 5로 설정.
         num_reviews = self.review_set.all().count()
-        self.rank_point = rating*(1/1+np.exp(-num_reviews+threshold))
+        self.rank_point = self.rating*(1/1+np.exp(-num_reviews+threshold))
         self.save()
 
     def update_rate(self): 
@@ -115,6 +115,35 @@ class Product(models.Model):
         self.update_emoticon()
         self.calc_rank_point()
         self.save()
+
+    def seed(self,count,taste):
+        myfake = Faker('ko_KR')
+        if taste == 'good':
+            for i in range(count):
+                Review.objects.create(
+                    product=self,
+                    content=myfake.text(),
+                    review_rating=randint(3,5), ### 과제: 이 부분이 막힘
+                    # author=User.objects.filter(username = 'test_user') 
+                )
+        elif taste == 'soso':
+            for i in range(count):
+                Review.objects.create(
+                    product=self,
+                    content=myfake.text(),
+                    review_rating=randint(2,4),
+                    # author=User.objects.filter(username = 'test_user')
+                )
+        elif taste == 'bad':
+            for i in range(count):
+                Review.objects.create(
+                    product=self,
+                    content=myfake.text(),
+                    review_rating=randint(1,3),
+                    # author=User.objects.filter(username = 'test_user')
+                )
+        self.update_rate()
+
 
     def __str__(self):
         return self.name
@@ -151,31 +180,6 @@ class Review(models.Model):
         return self.product
     
     ### 수정: 랜덤 리뷰 생성 (개수, 상품id, ['good', 'soso', 'bad'])
-    def seed(count,id,taste):
-        product = Product.objects.get(id=id)
-        myfake = Faker('ko_KR')
-        if taste == 'good':
-            for i in range(count):
-                Review.objects.create(
-                    content=myfake.text()
-                    review_rating=randint(3,5) ### 과제: 이 부분이 막힘
-                    author='admin'
-                )
-        elif taste == 'soso':
-                        for i in range(count):
-                Review.objects.create(
-                    content=myfake.text()
-                    review_rating=randint(2,4)
-                    author='admin'
-                )
-        elif taste == 'bad':
-                    elif taste == 'soso':
-                        for i in range(count):
-                Review.objects.create(
-                    content=myfake.text()
-                    review_rating=randint(1,3)
-                    author='admin'
-                )
 
     ### 수정3 : review 정렬하기. 일단은 임시로 updated_at 순으로 정했다.
     class Meta:
