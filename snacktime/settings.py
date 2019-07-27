@@ -125,7 +125,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
+<<<<<<< HEAD
     os.path.join(BASE_DIR, 'reviewpage', 'static'),
+=======
+	os.path.join(BASE_DIR, 'reviewpage', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+>>>>>>> Yeji
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

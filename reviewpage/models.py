@@ -64,7 +64,8 @@ class Product(models.Model):
     )
     pb_store_code = models.CharField(max_length=1, choices=PB_STORE_CODES)
 
-    emoticon = models.ImageField(blank=True, upload_to='products_photos', default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
+    emoticon = models.ImageField(blank=True, upload_to='products_photos',
+        default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
     rating = models.FloatField(null=True, blank=True, default=0)
 
