@@ -25,7 +25,7 @@ SECRET_KEY = '7v2=92yf9=*#xmme@-3alwnbc4dqmbxq)_(2%^0jeu3u%v2+98'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [snacktime-lion.herokuapp.com]
 
 
 # Application definition
