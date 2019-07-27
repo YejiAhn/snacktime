@@ -41,7 +41,7 @@ h1 {
     font-weight:500;
 }
 
-/* *************************** */
+/* ************ home화면 *************** */
 
 .home-button {
     color: white;
@@ -51,4 +51,16 @@ h1 {
     width: 80%;
     background-color: black;
     border-radius: 140px;
+}
+
+/********** 로그인 화면 ******************/
+.login-submit {
+    color: white;
+    font-size: 50px;
+    margin-top: 300px;
+    height: 130px;
+    width: 80%;
+    background-color: #ff5d46;
+    border-radius: 140px;
+    font-weight:400;
 }
