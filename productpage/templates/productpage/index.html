@@ -24,11 +24,8 @@
   <br/>
   <div class ="product-list__wrapper">
   {% for product in products %}
-
-     
     <div class="product-list">
 
-    
       {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
@@ -38,8 +35,6 @@
           {% endif %}
         </a>
       {% endif %}
-   
-      
 
 
 
@@ -54,11 +49,13 @@
               <img src="{{ product.pb_store_code }}" width = "20" alt="">
             {% endif %}
             </div> 
+
             <tr style = "font-size: 2.2vw;">
                 <th>상품명</th>
                 <td>{{product.name}}
                 </td>
             </tr>
+            
             <tr style = "font-size: 2vw">
                 <th>가격</th>
                 <td>{{product.price}} 원 </td>
