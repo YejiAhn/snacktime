@@ -32,15 +32,14 @@
       {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
-            <img class = "bookmark" src = {% static 'bookmark.gif'%} >
+            <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} >
           {% else %}
-            <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} style= "opacity:0.8" >
+            <img class = "bookmark" src = {% static 'bookmark.png'%} style= "opacity:0.8" >
           {% endif %}
         </a>
       {% endif %}
    
-      
-
+  
 
 
       <div class = "table-wrap">
@@ -51,6 +50,7 @@
               <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
             {% endif %}
             {% if product.pb_store_code %}
+            {{ product.pb_store_code }}
               <img src="{{ product.pb_store_code }}" width = "20" alt="">
             {% endif %}
             </div> 
@@ -61,7 +61,7 @@
             </tr>
             <tr style = "font-size: 2vw">
                 <th>가격</th>
-                <td>{{product.price}} 원 </td>
+                <td>{{product.price}} </td>
             </tr>
             <tr class = "rating">
                 <th><img src="{{ product.emoticon }}" width = "30" alt=""></th>

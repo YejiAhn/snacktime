@@ -61,6 +61,7 @@
     padding-left: 12px;
     border-radius: 30px;
     margin-right: 5px;
+    line-height: 200%;
 }
 
 #filter:active{
@@ -96,7 +97,7 @@ th img {
     left: 75%;
 }
 
-.table-wrap{
+/* .table-wrap{
     position: relative;
     
-}
+} */
