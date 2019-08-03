@@ -4,8 +4,13 @@
   <br/>
 
 <!-- dictionary로 구현 -->
+  {% for key, value in pb_stores.items %} 
+    <a href="/products/category/{{ct}}/{{ key }}">{{ value }}</a>  <!--view-->
+  {% endfor %}
+  <br/> 
+
   {% for key, value in categories.items %} 
-    <a href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
+    <a href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
   {% endfor %}
   <br/>
 
@@ -44,4 +49,4 @@
       <h4><img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}</h2>  <!--choose emoticon-->
     </div>
   {% endfor %}
-{% endblock %}
+{% endblock %} 
