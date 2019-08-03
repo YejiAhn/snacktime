@@ -12,9 +12,9 @@ import time
 
 driver = webdriver.Chrome(executable_path="C:\Workspace\chromedriver")
 driver.implicitly_wait(3)
-base_url= 'http://gs25.gsretail.com/gscvs/ko/products/youus-different-service'
+base_url= 'http://gs25.gsretail.com/gscvs/ko/products/youus-freshfood'
 
-group = ['음료/커피', '유제품', '과자/간식', '라면/가공제품', '생활용품']
+group = ['음료/커피', '유제품', '과자/간식', '라면/가공제품', '생활용품', '도시락', '김밥/주먹밥', '햄버거/샌드위치', '간편식']
 PB = 'GS'
 #category_range = list(range(len(group)))
 all_prod_list=[['id','category','image','name','price','PB']]
@@ -22,12 +22,12 @@ prod_id=1
 
 driver.get(base_url)
 time.sleep(3)
-element = driver.find_element_by_id('productCookie')
+element = driver.find_element_by_id('productSnack')
 element.click()
 
 time.sleep(3)
-for n in range(16):
-    category = '과자/간식'
+for n in range(4):
+    category = '간편식'
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     #divs = driver.find_elements_by_class_name('prod_box')
@@ -54,7 +54,7 @@ for n in range(16):
     time.sleep(3)
 
 
-f = open('gs_snack2''.csv', 'w', encoding='utf-8', newline='')
+f = open('gs_meal''.csv', 'w', encoding='utf-8', newline='')
 wr = csv.writer(f)
 for info in range(prod_id):
     wr.writerow(all_prod_list[info])
