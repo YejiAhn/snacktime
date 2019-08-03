@@ -4,9 +4,13 @@
   <h1>Edit Review</h1>
   <form action="/reviews/{{review.id}}/" method="POST">
     {% csrf_token %}
-    <p>title</p>
-    <input name="title" value="{{review.title}}"/> <br />
-    <p>content</p>
+    <div class="select-rate">
+      <input type="radio" name="review_rating" value="5" class="ranking">꿀맛😍</input>
+      <input type="radio" name="review_rating" value="4" class="ranking">맛나🙂</input>
+      <input type="radio" name="review_rating" value="3" class="ranking">그닥😐</input>
+      <input type="radio" name="review_rating" value="2" class="ranking">노맛🙁</input>
+      <input type="radio" name="review_rating" value="1" class="ranking">우웩🤮</input>
+      </div>
     <input name="content" value="{{review.content}}"/> <br />
     <input type="submit" value="submit" />
   </form>
