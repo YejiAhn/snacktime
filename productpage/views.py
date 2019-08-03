@@ -78,7 +78,7 @@ def new(request):
     i_PB = 5
     for i in range(len(all_product)):
         Product.objects.create(name=all_product.iloc[i,i_name], price=all_product.iloc[i,i_price], category_code=all_product.iloc[i,i_category], photo=all_product.iloc[i,i_image], pb_store_code=all_product.iloc[i,i_PB])
-    return redirect('/products/')
+    return redirect('/products')
 
 def seed(request, id):
     product = Product.objects.get(id=id)
@@ -136,8 +136,8 @@ def product_save(request, pk):
     return redirect(next)
 
 def category(request, ct, pb):
-    if ct==00:
-        return redirect('/products/')
+    # if ct==00:
+    #     return redirect('/products/category/00/0')
     CATEGORY_CODES = {
         00: 'undefined',
 
@@ -192,10 +192,19 @@ def category(request, ct, pb):
 
         elif key//10 == ct//10: 
             SUB_CATEGORY[key] = value   
-    if pb == 0:   
-        products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
-    else : 
-        products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
+    if ct == 0:
+        products = Product.objects.all()
+    else: 
+        products = Product.objects.all().filter(category_code = ct)
+    
+    if pb != 0: 
+        products = products.filter(pb_store_code = pb)
+
+    
+    # elif pb == 0:   
+    #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
+    # else : 
+    #     products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
     return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY,'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb})
 
 ### 수정: 모델에서 코드를 정했으니 삭제해도 될듯. 단 저장된 이미지 주소를 연동하는 건 고려해봐야 함.

@@ -1,27 +1,40 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load  staticfiles %}
+<head>
+    <title> 제품 페이지 </title>
+    <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body>
   <h1>Product List</h1>
   <br/>
 
 <!-- dictionary로 구현 -->
+ <div class = "conv-filter__wrapper">
   {% for key, value in pb_stores.items %} 
-    <a href="/products/category/{{ct}}/{{ key }}">{{ value }}</a>  <!--view-->
+    <a id = "conv-filter" href="/products/category/{{ct}}/{{ key }}">{{ value }}</a>  <!--view-->
   {% endfor %}
   <br/> 
+ </div>
 
+<div class = "filter__wrapper">
   {% for key, value in categories.items %} 
-    <a href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
+    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
   {% endfor %}
   <br/>
 
+  <div style="margin-top: 30px;">
   {% for key, value in sub_categories.items %} 
-    <a href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
+    <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}">{{ value }}</a>  <!--view-->
   {% endfor %}
+  </div>
   <br/>
+</div>
 
+<div class ="product-list__wrapper">
   {% for product in products %}
-    <div class='product_list'>
-      {% if user.is_authenticated %}
+    <div class="product-list">
+      {% comment %} {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
             <i class="material-icons">찜</i>        <!--material-icons-->
@@ -42,11 +55,58 @@
       {% if product.PBstore%}
         <img src="{{ product.PBstore }}" width = "30" alt="">
       {% endif %}
-      {% comment %} (임시)상품번호:{{ product.id }} {% endcomment %}
+      {% comment %} (임시)상품번호:{{ product.id }}
       <h4>상품명 : {{product.name}}</h2>
       <h4>가격 : {{product.price}}</h2>
       
-      <h4><img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}</h2>  <!--choose emoticon-->
+      <h4><img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}</h2>  <!--choose emoticon--> {% endcomment %}
+
+      {% if user.is_authenticated %}
+        <a href="/products/{{ product.id }}/save">        <!--view-->
+          {% if product in user.products_saved.all %}
+            <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} >
+          {% else %}
+            <img class = "bookmark" src = {% static 'bookmark.gif'%} style= "opacity:0.8" >
+          {% endif %}
+        </a>
+      {% endif %}
+   
+      
+
+
+
+        <div class = "table-wrap">
+        <table>
+          <tbody>
+              <div class = "image-wrap">
+              {% if product.photo %}
+                <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+              {% endif %}
+              {% if product.pb_store_code %}
+                <img src="{{ product.pb_store_code }}" width = "20" alt="">
+              {% endif %}
+              </div> 
+              <tr style = "font-size: 2.2vw;">
+                  <th></th>
+                  <td>{{product.name}}
+                  </td>
+              </tr>
+              <tr style = "font-size: 2vw">
+                  <th></th>
+                  <td>{{product.price}}</td>
+              </tr>
+              <tr class = "rating">
+                  <th></th>
+                  <td style = "font-size: 2vw; font-weight: bold;">
+                  <img src="{{ product.emoticon }}" width = "30" alt=""> 
+                  {{product.rating}} 
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   {% endfor %}
-{% endblock %} 
+</div>
+</body>
