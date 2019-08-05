@@ -19,6 +19,9 @@
     background-color: gray;
 }
 
+td {
+    text-align: center;
+}
 
 .product-list{
     margin-top: 20px;
@@ -51,7 +54,7 @@
     color: gray;
 }
 
-#filter{
+#filter, #sub-filter{
     color: #fc9084;
     text-decoration: none;
     border: 2px solid #ff9e93;
@@ -64,17 +67,20 @@
     line-height: 200%;
 }
 
-#filter:active{
+#filter:active, #sub-filter:active{
     background-color: #ff9e93;
     color: white;
     font-weight: bold;
 }
+
+
 
 .title{
     width: 100%;
 }
 
 table{
+    width: 90%;
     margin-left: 10px;
     position: relative;
     border-collapse: separate;

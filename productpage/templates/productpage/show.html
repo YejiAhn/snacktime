@@ -17,6 +17,17 @@
     display:block; 
 }
 </style>
+<div>
+<form action="/products/{{ product.id }}/seed" method='POST'>
+	{% csrf_token %}
+  <input name="count" value="20"/> 
+	<input type="radio" name="taste" value='good'/>good
+	<input type="radio" name="taste" value='soso'/>soso
+	<input type="radio" name="taste" value='bad'/>bad
+	<input type='submit'>
+</form>
+<br/><br/><br/>
+</div>
 
 <section class = "product-info">
     <img src = {{ product.photo }} class = "product-info__photo" >

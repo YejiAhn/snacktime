@@ -1,5 +1,11 @@
 {% load  staticfiles %}
+{% comment %} 
+todo: 
+편의점필터 접기펼치기
+PB 아이콘 
 
+
+ {% endcomment %}
 <head>
     <title> 제품 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
@@ -12,12 +18,16 @@
 
   <div class = "conv-filter__wrapper">
   <a id = "conv-filter">편의점 필터 </a>
+  {% for key, value in pb_stores.items %} 
+    <br/>
+    <a id = "conv-filter" href="/products/category/{{ct}}/{{key}}">{{ value }}</a>  <!--view-->
+  {% endfor %}
   </div>
 
 <!-- dictionary로 구현 -->
   <div class = "filter__wrapper">
   {% for key, value in categories.items %} 
-    <a id = "filter" href="/products/category/{{ key }}">{{ value }}</a>  <!--view-->
+    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
   {% endfor %}
   </div>
 
@@ -55,18 +65,19 @@
             {% endif %}
             </div> 
             <tr style = "font-size: 2.2vw;">
-                <th>상품명</th>
+                <th></th>
                 <td>{{product.name}}
                 </td>
             </tr>
             <tr style = "font-size: 2vw">
-                <th>가격</th>
-                <td>{{product.price}} </td>
+                <th></th>
+                <td>{{product.price}}</td>
             </tr>
             <tr class = "rating">
-                <th><img src="{{ product.emoticon }}" width = "30" alt=""></th>
+                <th></th>
                 <td style = "font-size: 2vw; font-weight: bold;">
-                {{product.rating}}
+                <img src="{{ product.emoticon }}" width = "30" alt=""> 
+                {{product.rating}} {{product.category_code}}
                 </td>
             </tr>
         </tbody>
