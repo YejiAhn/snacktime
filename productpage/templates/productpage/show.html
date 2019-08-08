@@ -17,6 +17,16 @@
     display:block; 
 }
 </style>
+<section>
+<form action="/products/{{ product.id }}/seed" method='POST'>
+	{% csrf_token %}
+  <input name="count" value="20"/> 
+	<input type="radio" name="taste" value='good'/>good
+	<input type="radio" name="taste" value='soso'/>soso
+	<input type="radio" name="taste" value='bad'/>bad
+	<input type='submit'>
+</form>
+</section>
 
 <section class = "product-info">
     <img src = {{ product.photo }} class = "product-info__photo" >
@@ -29,20 +39,20 @@
             </tr>
             <tr>
                 <th>가격</th>
-                <td> {{product.price}} 원 
+                <td> {{product.price}} 
                 </td>
             </tr>
-            <tr>
+            {% comment %} <tr>
                 <th>태그</th>
                 <td>
                 <a class = "tag">#tag</a>
                 <a class = "tag">#tag</a>
-                {% comment %} for문 사용해서 tag 불러오기 
+                for문 사용해서 tag 불러오기 
                 {% for tag in product.tags %}
                 <a class = "tag"># tag.name </a>
-                {% endcomment %}
+               
                 </td>
-            </tr>
+            </tr> {% endcomment %}
         </tbody>
         </table>
     </div>
@@ -72,10 +82,21 @@
 
 <section class = "product-reviews">
 <h1 style = "font-size: 35px;">리뷰
-<a style ="font-size:20px;"> ( {{ count }} ) </a>
-{% comment %} (review 개수) {% endcomment %}
+<a style ="font-size:20px;"> ( {{ product.review_set.count }} ) </a>
 </h1> 
-{% comment %}  {% for review in reviews %} 어쩌구... {% endcomment %}
+
+{% for review in product.review_set.all %}
+
+    <section style="margin-bottom: 30px; border: 1px solid gray;">
+    <div>{{ review.content }}</div>
+    {% if review.photo %}
+        <img src="{{ review.photo.url }}" alt=""/>
+    {% endif %}
+    <div> rate: {{ review.review_rating }} </div>
+    <div> author: {{review.author}} </div>
+    </section>
+
+{% endfor %}
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

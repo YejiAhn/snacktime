@@ -51,11 +51,19 @@ def index(request):
 
         90: 'etc'
     }
+    PB_STORE_CODES = {
+        0: 'is_not_pb',
+        1: 'cu',
+        2: 'gs25',
+        3: 'emart24',
+        4: 'seveneleven',
+        5: 'ministop',
+    }
     MAIN_CATEGORY = dict()
     for (key, value) in CATEGORY_CODES.items():
         if key%10 ==0 : 
             MAIN_CATEGORY[key] = value; 
-    return render(request, 'productpage/index.html', {'products': products, 'categories':MAIN_CATEGORY})
+    return render(request, 'productpage/index.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
 
 ### 수정: 바뀐 모델에 맞게 수정. 새로운 데이터 베이스를 입력해야 함.
 def new(request):
@@ -70,7 +78,15 @@ def new(request):
     i_PB = 5
     for i in range(len(all_product)):
         Product.objects.create(name=all_product.iloc[i,i_name], price=all_product.iloc[i,i_price], category_code=all_product.iloc[i,i_category], photo=all_product.iloc[i,i_image], pb_store_code=all_product.iloc[i,i_PB])
-    return redirect('/products/')
+    return redirect('/products')
+
+def seed(request, id):
+    product = Product.objects.get(id=id)
+    count = int(request.POST['count'])
+    taste = request.POST['taste']
+    product.seed(count, taste)
+    product.update_rate()
+    return redirect('/products/'+str(id))
 
 
 def show(request, id):
@@ -119,9 +135,9 @@ def product_save(request, pk):
     next = request.META['HTTP_REFERER']
     return redirect(next)
 
-def category(request, ct):
-    if ct==00:
-        return redirect('/products/')
+def category(request, ct, pb):
+    # if ct==00:
+    #     return redirect('/products/category/00/0')
     CATEGORY_CODES = {
         00: 'undefined',
 
@@ -159,16 +175,37 @@ def category(request, ct):
 
         90: 'etc'
     }
+    PB_STORE_CODES = {
+        0: 'is_not_pb',
+        1: 'cu',
+        2: 'gs25',
+        3: 'emart24',
+        4: 'seveneleven',
+        5: 'ministop',
+    }
     MAIN_CATEGORY = dict()
     SUB_CATEGORY = dict()
+
     for (key, value) in CATEGORY_CODES.items():
         if key%10 ==0 : 
-            MAIN_CATEGORY[key] = value; 
+            MAIN_CATEGORY[key] = value
 
         elif key//10 == ct//10: 
-            SUB_CATEGORY[key] = value; 
-    products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 순위 정하려면 추가
-    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY})
+            SUB_CATEGORY[key] = value   
+    if ct == 0:
+        products = Product.objects.all()
+    else: 
+        products = Product.objects.all().filter(category_code = ct)
+    
+    if pb != 0: 
+        products = products.filter(pb_store_code = pb)
+
+    
+    # elif pb == 0:   
+    #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
+    # else : 
+    #     products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
+    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY,'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb})
 
 ### 수정: 모델에서 코드를 정했으니 삭제해도 될듯. 단 저장된 이미지 주소를 연동하는 건 고려해봐야 함.
 # def stores(val):
