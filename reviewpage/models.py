@@ -76,7 +76,7 @@ class Product(models.Model):
 
 
     def update_emoticon(self):  # 나중에 수정할 때 씀
-        if self.review_set.all().count() == 0:
+        if self.review_set.count == 0.0:
             self.emoticon = 'https://image.flaticon.com/icons/svg/1742/1742373.svg'
             self.rating = "리뷰 없음"
         elif self.rating > 0.0 and self.rating <= 1.0:

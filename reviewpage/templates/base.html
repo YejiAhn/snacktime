@@ -4,6 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endcomment %}
     <title>snacktime</title>
     <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -12,7 +13,7 @@
   </head>
   <body>
   <header>
-    <div style="text-align: right;">
+    <div class="welcome" style="text-align: right;">
       {% if user.is_authenticated %}
         {{ user.get_username }}님, 안녕하세요
           <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
@@ -26,7 +27,11 @@
   {% block content %}
   {% endblock %}
   </body>
-  {% comment %} <footer>
-    간식 리뷰 My
-  </footer> {% endcomment %}
+  <footer>
+    <div class="navigator">
+      <a href="/products"><span class="nav-item" style="float:left;">간식</span></a>
+      <a href="/reviews"><span class="nav-item">리뷰</span></a>
+      <a href="/mypage"><span class="nav-item" style="float:right;">My</span></a>
+    </div>
+  </footer>
 </html>

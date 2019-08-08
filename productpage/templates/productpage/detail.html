@@ -31,20 +31,20 @@
             </tr>
             <tr>
                 <th>가격</th>
-                <td>1500 원 
+                <td>1500 
                 {% comment %} product.price 원 {% endcomment %}
                 </td>
             </tr>
             <tr>
-                <th>태그</th>
+                {% comment %} <th>태그</th>
                 <td>
                 <a class = "tag">#CU</a>
                 <a class = "tag">#과자</a>
-                {% comment %} for문 사용해서 tag 불러오기 
+                for문 사용해서 tag 불러오기 
                 {% for tag in product.tags %}
                 <a class = "tag"># tag.name </a>
-                {% endcomment %}
-                </td>
+    
+                </td> {% endcomment %}
             </tr>
         </tbody>
         </table>
@@ -54,6 +54,7 @@
 <section class = "product-rating">
     
     <div class = "product-total-rating"style="margin-bottom: 0px;">
+    
         <section style = "font-size: 35px; font-weight: bold;">4.15
         {% comment %} product.rating {% endcomment %}
         </section>
@@ -75,10 +76,18 @@
 
 <section class = "product-reviews">
 <h1 style = "font-size: 35px;">리뷰
-<a style ="font-size:16px;"> (111) </a>
+<a style ="font-size:16px;"> {{ product.review_set.count }} </a>
 {% comment %} (review 개수) {% endcomment %}
 </h1> 
-{% comment %}  {% for review in reviews %} 어쩌구... {% endcomment %}
+
+{% for review in product.review_set.all %}
+    <p>{{ review.title }}</p>
+    <p>{{ review.content }}</p>
+    {% if review.photo %}
+        <img src="{{ review.photo.url }}" alt=""/>
+    {% endif %}
+
+{% endfor %}
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
