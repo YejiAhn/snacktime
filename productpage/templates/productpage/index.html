@@ -1,5 +1,7 @@
+{% extends 'base.html' %}
 {% load  staticfiles %}
 
+{% block content %}
 <head>
     <title> 제품 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
@@ -25,7 +27,7 @@
   <div class ="product-list__wrapper">
   {% for product in products %}
 
-     
+
     <div class="product-list">
 
     
@@ -80,3 +82,4 @@
 
 
 </body>
+{% endblock%}
