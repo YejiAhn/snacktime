@@ -15,15 +15,25 @@ PB 아이콘
 
 <body>
   <a href='/products/new'>목록생성</a>                           <!--view-->
-  <br/>
 
+
+<div style="width: 100%;">
   <div class = "conv-filter__wrapper">
-  <a id = "conv-filter">편의점 필터 </a>
-  {% for key, value in pb_stores.items %} 
-    <br/>
-    <a id = "conv-filter" href="/products/category/{{ct}}/{{key}}">{{ value }}</a>  <!--view-->
-  {% endfor %}
+
+    <a class="collapsible">▾ 편의점 전체</a>
+    <div class = "pb-content">
+      <ul>
+      {% for key, value in pb_stores.items %} 
+        {% if key == 0 %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">편의점 전체</a></li> 
+        {% else %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">{{ value }}</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </div>
   </div>
+</div>
 
 <!-- dictionary로 구현 -->
   <div class = "filter__wrapper">
@@ -90,6 +100,22 @@ PB 아이콘
   
   </div>
 
+<script>
+  var coll = document.getElementsByClassName("collapsible")
+  var i;
 
+  for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  }
+  
+</script>
 </body>
 {% endblock%}

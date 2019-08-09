@@ -1,4 +1,5 @@
 {% load  staticfiles %}
+{% load custom_tags %}
 <head>
     <title> 제품 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
@@ -10,22 +11,51 @@
   <br/>
 
 <!-- dictionary로 구현 -->
+<div style="width: 100%;">
  <div class = "conv-filter__wrapper">
-  {% for key, value in pb_stores.items %} 
-    <a id = "conv-filter" href="/products/category/{{ct}}/{{ key }}">{{ value }}</a>  <!--view-->
-  {% endfor %}
-  <br/> 
- </div>
+  <a class="collapsible"> 
+    {% if pb == 0 %}
+    ▾ 편의점 전체
+    {% else %}
+    ▾ {{pb_stores|get_item:pb}}
+    {% endif %}
+  </a>
+
+    <div class = "pb-content">
+      <ul>
+      {% for key, value in pb_stores.items %} 
+        {% if key == 0 %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">편의점 전체</a></li> 
+        {% else %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">{{ value }}</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class = "filter__wrapper">
   {% for key, value in categories.items %} 
-    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
+    {% if ct == key %}
+    <a style="color:white; background-color: #fc9084; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
+    {% else %}
+    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>
+    {% endif %}
+
+  {% comment %} 근데 이렇게하면 subcategory 골랐을 때 ct != key 임. /10 값으로 어떻게 할 수 있는 방법 없나  {% endcomment %}
+  
   {% endfor %}
   <br/>
 
-  <div style="margin-top: 30px;">
+  <div>
   {% for key, value in sub_categories.items %} 
+    {% if ct == key %}
+     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #f2b3ac;">{{ value }}</a>  <!--view-->
+    {% else %}
     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}">{{ value }}</a>  <!--view-->
+    {% endif %}
+   
   {% endfor %}
   </div>
   <br/>
@@ -109,4 +139,22 @@
     </div>
   {% endfor %}
 </div>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible")
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  }
+  
+</script>
 </body>
