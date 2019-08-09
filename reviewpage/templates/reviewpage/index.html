@@ -9,25 +9,31 @@
 		{% endif %}
 		<select id="sort-select" onchange="location = this.value;">
     		<option class="sort-date" value="/">최신순</option>
-    		<option class="sort-likes" value="?sort=likes">좋아요순</option>
+    		<option class="sort-likes" value="/sort=likes">좋아요순</option>
 		</select>
 		<br>
 		{% for category in categories %} 
-		  <a href="../productpage/products/category/{{ category }}">{{ category }}</a> 
+		  <a href="../../products/category/{{ category }}">{{ category }}</a> <!--not viewed-->
 		{% endfor %}
 		<br>
 		{% for review in reviews %}
-		<!--{% if product.photo %}
+		{% if product.photo %}
+        	<img src="{{ product.photo }}" width = "280" alt="">
+      	{% endif %}
+     	 {% if product.PBstore%}
+       		<img src="{{ product.PBstore }}" width = "20" alt="">
+      	<!--{% endif %}
+		{% if product.photo %}
 		<div class="product_photo">
 			<div class="image-container">
 				<img src="{{ product.photo.url }}" alt=""/>
 			</div>
-		</div>
-		{% endif %}-->
-		<div class="arrow_box">
+		</div>-->
+		{% endif %}
+		<div class="review_box">
     		<div  class="button-wrapper">
 				<span>
-					<i class="material-icons">portrait</i> <!--icon change needed-->
+					<i class="material-icons">portrait</i> <!--icon change needed to donut-->
 					{{ review.author.username }}
 				</span>
           	<a  href="/reviews/{{ review.id }}/like"  class="material-icons mdl-badge mdl-badge--overlap"  data-badge="{{ review.liked_users.count }}">
@@ -40,13 +46,7 @@
           	<a  href="/reviews/{{ review.id }}">
             <i class="material-icons">description</i> <!--icon change needed-->
           	</a>
-          	<a href="/reviews/{{ review.id }}/save" class="material-icons mdl-badge mdl-badge--overlap" >
-            	{% if user in review.saved_users.all %}
-              	<i  class="material-icons">bookmark</i>
-            	{% else %}
-              	<i  class="material-icons">bookmark_border</i>
-            	{% endif %}
-          	</a> 
+
           	{% if request.user == review.author %}
           		<a  href="/reviews/{{ review.id }}/edit">
             	<i  class="material-icons">edit</i>
@@ -56,18 +56,20 @@
           		</a>
           	{% endif %}
 			</div>
-        <!--<div class="rankings">
-			<img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}
-        </div>-->
+        <div class="rankings">
+			<img src="{{ review.emoticon }}" width = "30"> {{ review.rating }} <!--not viewed-->
+        </div>
     	<div class="mdl-card__supporting-text">
         	{{ review.content }}
     	</div>
-		  {% if review.photo %}
+		{% if review.photo %}
 		  	<div class="container">
 				<div class="image-container">
 					<img src="{{ review.photo.url }}" alt=""/>
 				</div>
 			</div>​
+		{% else %} <!--not removed-->
+		<br>	
       	{% endif %}
     </div>
   {% endfor %}

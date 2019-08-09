@@ -10,10 +10,25 @@ def index(request):
         reviews = Review.objects.all()
         return render(request, 'reviewpage/index.html', {'reviews': reviews})
     elif request.method == 'POST': # create
-        content = request.POST['content']
+        content = request.POST['content']        
         photo = request.FILES.get('photo', False)
         Review.objects.create(review_rating=1, content=content, author = request.user, photo=photo)
         return redirect('/reviews')
+
+#def index(request):
+#    if request.method == 'GET':
+#        sort = request.GET.get('sort','')
+#        if sort == 'likes':
+#            reviews = Review.objects.annotate(like_count=Count('likes')).order_by('like_count','updated_at')
+#            return render(request, 'reviewpage/index.html', {'reviews': reviews})
+#        else:
+#            reviews = Review.objects.order_by('updated_at')
+#            return render(request, 'reviewpage/index.html', {'reviews': reviews})
+#    elif request.method == 'POST': # create
+#        content = request.POST['content']
+#        photo = request.FILES.get('photo', False)
+#        Review.objects.create(review_rating=1, content=content, author = request.user, photo=photo)
+#        return redirect('/reviews')
 
 def new(request):
     return render(request, 'reviewpage/new.html')
