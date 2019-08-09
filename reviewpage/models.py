@@ -125,6 +125,20 @@ class Review(models.Model):
     def __str__(self):
         return self.id
 
+    def __emoticion__(self):
+        if REVIEW_RATINGS >= 0.0 and REVIEW_RATINGS <= 1.0:
+            self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742482.png'
+        elif REVIEW_RATINGS > 1.0 and REVIEW_RATINGS <= 2.0:
+            self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742328.png'
+        elif REVIEW_RATINGS > 2.0 and REVIEW_RATINGS <= 3.0:
+            self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742373.png'
+        elif REVIEW_RATINGS > 3.0 and REVIEW_RATINGS <= 4.0:
+            self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742324.png'
+        elif REVIEW_RATINGS > 4.0 and REVIEW_RATINGS <= 5.0:
+            self.emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742356.png'
+
+        self.save()
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
