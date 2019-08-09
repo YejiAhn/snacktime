@@ -3,6 +3,7 @@
 *.pyc
 __pycache__/
 ENV/
+.vscode
 .python-version
 local_settings.py
 db.sqlite3
