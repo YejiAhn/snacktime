@@ -79,12 +79,24 @@
         <table>
           <tbody>
               <div class = "image-wrap">
-              {% if product.photo %}
-                <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
-              {% endif %}
-              {% if product.pb_store_code %}
-                <img src="{{ product.pb_store_code }}" width = "20" alt="">
-              {% endif %}
+                <div class = "pb-image">
+                  {% if product.pb_store_code == '1' %}
+                    <img id="pb-img" src="{% static 'cu.png' %}" width="100px"  alt="">
+                  {% elif product.pb_store_code == '2' %}
+                    <img id="pb-img" src="{% static 'gs25.gif' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '3' %}
+                    <img id="pb-img" src="{% static '7eleven.jpeg' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '4' %}
+                    <img id="pb-img" src="{% static 'emart24.png' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '5' %}
+                    <img id="pb-img" src="{% static 'ministop.jpeg' %}" width="100px" alt="">  
+                  {% endif %}
+                </div>
+                <div class='product-image'>
+                  {% if product.photo %}
+                    <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+                  {% endif %}
+                </div>
               </div> 
               <tr style = "font-size: 2.2vw;">
                   <th></th>

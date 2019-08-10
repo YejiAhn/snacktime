@@ -10,13 +10,32 @@
 
 .image-wrap{
     position: relative;
+
 }
 
+.product-image{
+    z-index: 0;
+}
 #product-img{
     position: relative;
     width: 95%;
     margin: 2.5%;
     background-color: gray;
+    z-index: inherit;
+
+}
+.pb-image{
+    text-align: right;
+    margin: 2.5%;
+    background-color: white;
+    height: 30px;
+    overflow: visible;
+    z-index:1;
+}
+
+#pb-img{
+    border:0;
+    
 }
 
 td {
