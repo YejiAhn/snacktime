@@ -200,9 +200,10 @@ class Review(models.Model):
     photo = models.ImageField(blank=True, upload_to='review_photos')
     liked_users = models.ManyToManyField(
         User, blank=True, related_name='reviews_liked', through='Like')
-
+    like_count = models.IntegerField(default= 0, null=True, blank=True)
     def update_date(self):
         self.updated_at = timezone.now()
+        self.like_count = self.liked_users.count()
         self.save()
 
     def __product__(self):
