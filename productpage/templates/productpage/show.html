@@ -21,7 +21,7 @@
     display:block; 
 }
 </style>
-{% comment %} <section>
+<section>
 <form action="/products/{{ product.id }}/seed" method='POST'>
 	{% csrf_token %}
   <input name="count" value="20"/> 
@@ -30,7 +30,7 @@
 	<input type="radio" name="taste" value='bad'/>bad
 	<input type='submit'>
 </form>
-</section> {% endcomment %}
+</section>
 
 <section class = "product-info">
     <img src = {{ product.photo }} class = "product-info__photo" >

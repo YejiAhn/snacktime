@@ -9,66 +9,78 @@
 		{% endif %}
 		<select id="sort-select" onchange="location = this.value;">
     		<option class="sort-date" value="/">최신순</option>
-    		<option class="sort-likes" value="?sort=likes">좋아요순</option>
+    		<option class="sort-likes" value="sort=likes">좋아요순</option>
+			{% if user.is_authenticated %}
+			<option class="sort-mypost" value="sort=mypost">내 리뷰</option>
+			{% endif %}
 		</select>
 		<br>
 		{% for category in categories %} 
-		  <a href="../productpage/products/category/{{ category }}">{{ category }}</a> 
+		  <a href="../../../products/category/{{ category }}">{{ category }}</a> <!--not viewed-->
 		{% endfor %}
 		<br>
 		{% for review in reviews %}
-		<!--{% if product.photo %}
-		<div class="product_photo">
-			<div class="image-container">
-				<img src="{{ product.photo.url }}" alt=""/>
+		<div class="review_row">
+			<div class="review_column">
+				<div class="product_image">
+					{% if review.product.photo %}
+						<a href="/products/{{ product.id }}"><img id ="product-image" src = {{ review.product.photo }}></a>
+					{% endif %}
+					<!--{% if review.product.PBstore%}
+						<img src="{{ product.PBstore }}" width = "20" alt="">
+					{% endif %}-->
+				</div>
+			</div>
+			<div class="review_column">
+				<div class="review_box">
+					<div class="rankings">
+						<img src="{{ review.emoticon }}" width = "30"> {{ review.review_rating }}
+					</div>
+					{% if review.photo %}
+					<div class="review_row">
+						<div class="review_column">
+							<div class="review_text">
+								{{ review.content|safe|truncatewords:"5"|linebreaks }}
+								<a href="/reviews/{{ review.id }}">더보기</a> <!--바로 보이게 수정하기-->
+							</div>
+						</div>
+						<div class="review_column">
+							<div class="review_image">
+								<img src="{{ review.photo.url }}" alt=""/>
+							</div>
+						</div>​
+					</div>
+					{% else %}
+					<div class="review_text">
+						{{ review.content }}
+					</div>	
+					{% endif %}
+				
+				<div  class="button-wrapper">
+						<span>
+							<i class="material-icons">portrait</i> <!--icon needed to change-->
+							{{ review.author.username }}
+						</span>
+					<a  href="/reviews/{{ review.id }}/like"> 
+						{% if  user in review.liked_users.all %}
+						<img class="like" src="https://image.flaticon.com/icons/svg/25/25423.svg">
+						{% else %}
+						<img class="like" src="https://image.flaticon.com/icons/svg/25/25297.svg">
+						{% endif %}
+						{{ review.liked_users.count }}
+					</a>
+
+					{% if request.user == review.author %}
+						<a  href="/reviews/{{ review.id }}/edit">
+						<i  class="material-icons">edit</i>
+						</a>
+						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
+						<i  class="material-icons">delete</i>
+						</a>
+					{% endif %}
+				</div>
 			</div>
 		</div>
-		{% endif %}-->
-		<div class="arrow_box">
-    		<div  class="button-wrapper">
-				<span>
-					<i class="material-icons">portrait</i> <!--icon change needed-->
-					{{ review.author.username }}
-				</span>
-          	<a  href="/reviews/{{ review.id }}/like"  class="material-icons mdl-badge mdl-badge--overlap"  data-badge="{{ review.liked_users.count }}">
-            	{% if  user in review.liked_users.all %}
-              	<i  class="material-icons">favorite</i>
-            	{% else %}
-              	<i  class="material-icons">favorite_border</i>
-            	{% endif %}
-          	</a>
-          	<a  href="/reviews/{{ review.id }}">
-            <i class="material-icons">description</i> <!--icon change needed-->
-          	</a>
-          	<a href="/reviews/{{ review.id }}/save" class="material-icons mdl-badge mdl-badge--overlap" >
-            	{% if user in review.saved_users.all %}
-              	<i  class="material-icons">bookmark</i>
-            	{% else %}
-              	<i  class="material-icons">bookmark_border</i>
-            	{% endif %}
-          	</a> 
-          	{% if request.user == review.author %}
-          		<a  href="/reviews/{{ review.id }}/edit">
-            	<i  class="material-icons">edit</i>
-          		</a>
-          		<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
-            	<i  class="material-icons">delete</i>
-          		</a>
-          	{% endif %}
-			</div>
-        <!--<div class="rankings">
-			<img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}
-        </div>-->
-    	<div class="mdl-card__supporting-text">
-        	{{ review.content }}
-    	</div>
-		  {% if review.photo %}
-		  	<div class="container">
-				<div class="image-container">
-					<img src="{{ review.photo.url }}" alt=""/>
-				</div>
-			</div>​
-      	{% endif %}
-    </div>
+	</div>
   {% endfor %}
 {% endblock content %}

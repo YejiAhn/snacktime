@@ -173,7 +173,27 @@ class Review(models.Model):
         (4, '맛나'),
         (5, '꿀맛'),
     )
-    review_rating = models.IntegerField(choices=REVIEW_RATINGS)
+    review_rating = models.IntegerField(choices=REVIEW_RATINGS)    
+    emoticon = models.ImageField(blank=True, upload_to='products_photos',
+        default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
+
+    @property
+    def emoticon(self):
+        if self.review_rating==1:
+            emoticon = '/static/reviewpage/img/005-vomit.png'
+        elif self.review_rating==2:
+            emoticon = '/static/reviewpage/img/001-shock.png'
+        elif self.review_rating==3:
+            emoticon = '/static/reviewpage/img/004-sad.png'
+        elif self.review_rating==4:
+            emoticon = '/static/reviewpage/img/002-smile.png'
+        else:
+            emoticon = '/static/reviewpage/img/003-in-love.png'
+        self.save()
+        # print()
+        return emoticon
+
+
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
