@@ -176,19 +176,6 @@ class Review(models.Model):
     review_rating = models.IntegerField(choices=REVIEW_RATINGS)    
     emoticon = models.ImageField(blank=True, upload_to='products_photos',
         default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
-    # def __emoticon__(self):
-    #     if float(review_rating) >= 0.0 and float(review_rating) <= 1.0:
-    #         emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742482.png'
-    #     elif float(review_rating) > 1.0 and float(review_rating) <= 2.0:
-    #         emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742328.png'
-    #     elif float(review_rating) > 2.0 and float(review_rating) <= 3.0:
-    #         emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742373.png'
-    #     elif float(review_rating) > 3.0 and float(review_rating) <= 4.0:
-    #         emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742324.png'
-    #     elif float(review_rating) > 4.0 and float(review_rating) <= 5.0:
-    #         emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742356.png'
-    #     self.save()
-    #     return self.emoticon
 
     @property
     def emoticon(self):
@@ -205,9 +192,6 @@ class Review(models.Model):
         self.save()
         # print()
         return emoticon
-
-    #emoticon = models.ImageField(blank=True,
-    #    default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
 
     created_at = models.DateTimeField(default=timezone.now)
