@@ -1,21 +1,38 @@
-<h1> Sign Up! </h1>
+{% load staticfiles %}
 
-<form method="POST" action="{%url 'signup'%}">
-    {% csrf_token %}
-    사용자 이름:
-    <br>
-    <input name="username" type="text" value="">
-    <br>
-    <br>
-    비밀번호:
-    <br>
-    <input name="password1" type="password" value="">
-    <br>
-    <br>
-    비밀번호 확인:
-    <br>
-    <input name="password2" type="password" value="">
-    <br>
-    <br>
-    <input type="submit" value="Sign Up!">
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title> 간식타임 회원가입 </title>
+        <link rel="stylesheet"  href="{% static 'accounts/accounts-style.css' %}"/>
+    </head>
+
+    <body>
+        <br> <br>
+        <div class = "instruction">
+            <h1> 아이디랑 비밀번호 </h1>
+            <h1> 작성해주세요 </h1>
+        </div>
+        
+        <div class="input-blank">
+        <form method="POST" action="{%url 'signup'%}">
+        {% csrf_token %}
+        <br>
+        <p style="font-size:36px" id="input-instruction">사용자 이름</p>
+        <br>
+        <input name="username" type="text" value="" class="formform">
+        <br> <br>
+        <p style="font-size:36px" id="input-instruction">비밀번호</p>
+        <br>
+        <input name="password1" type="password" value="" class="formform">
+        <br> <br>
+        <p style="font-size:36px" id="input-instruction">비밀번호 확인</p>
+        <br>
+        <input name="password2" type="password" value="" class="formform">
+
+        <input type="submit" value="가입완료! 간식 구경하기" class="signup-submit">
+        </form>
+        </div>
+    </body>
+</html>

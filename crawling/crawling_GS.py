@@ -21,6 +21,7 @@ all_prod_list=[['id','category','image','name','price','PB']]
 prod_id=1
 
 driver.get(base_url)
+<<<<<<< HEAD
 time.sleep(3)
 element = driver.find_element_by_id('productSnack')
 element.click()

@@ -2,7 +2,7 @@ header {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 140px;
+    height: 120px;
     font-size: 40px;
     background-color: #ff5d46;
     color: white;
@@ -21,14 +21,32 @@ body {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 150px;
     background-color: #ff5d46;
     color: white;
+}
+
+.navigator {
+    /* position: relative; */
+    padding: 10px;
+    /* width: 90%;
+    height: 80%; */
+    margin: 20px;
     text-align: center;
+}
+
+.nav-item {
+    display: inline-block;
+    padding: 15px;
+    margin: 20px;
+    cursor: pointer;
+    font-size: 40px;
+    text-decoration: none;
+    color: white;
 }
 
 .page_name {
@@ -43,7 +61,7 @@ footer {
 
 .rankings {
     font-size: 40px;
-    text-align: center;
+    text-align: left;
 }
 
 input[type=submit] {
@@ -62,10 +80,22 @@ input[name=content] {
     font-size: 30px;
 }
 
+.review_column {
+    width: 33.33%;
+    padding: 5px;
+    height: 150px;
+    display: inline-block;
+}
+
+.review_row {
+    display: inline-table;
+    text-align: left;
+}
+
 .review_box {
     display:  inline-block;
     position: relative;
-    height: 300px;
+    height: 200px;
 	width:  600px;
 	margin:  10px;
     vertical-align:  top;
@@ -97,57 +127,57 @@ input[name=content] {
 	margin-top: -36px;
 }
 
-.container {
-    width: 150px;
+#product-image {
+    position: absolute;
+    width: 50%;
+    margin: 2.5%;
+    background-color: gray;
+}
+
+.product_image {
+    position: absolute;
+    left: 0px;
+    bottom: 230px;
+    background-color: transparent;
+    margin: 2px;
+    display: inline;
+}
+
+.review_text {
+    width: 400px;
     height: 100px;
     margin: 10px;
-    display: table;
-    float: right;
-    background-color: white;         
-}
-
-.container .image-container {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-.container .image-container img {
-    max-width: 180px;
-    max-height: 150px;        
-}
-/*
-.product_photo {
-    width: 110px;
-    height: 110px;
-    margin: 10px;
-    display: table;
     float: left;
-    background-color: white; 
 }
 
-.product_photo .image-container {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
+.review_image {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    right: 0px;
+    background-color: transparent;
+    margin: 10px;
+    display: inline;
 }
 
-.container .image-container img {
-    width: 100px;
-    height: 100px;
+.review_image img {
+    max-width: 100px;
+    max-height: 100px;
+    float: right;        
 }
-*/
 
-.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored {
+.mdl-button.mdl-js-ripple-effect.mdl-button--colored {
     position:  fixed;
-    bottom:  20px;
+    bottom:  200px;
     right:  40px;
     z-index: 3px;
 }
 
 .button-wrapper {
-	padding: 16px;
-	text-align: right;
+	padding: 10px;
+    text-align: right;
+    position: absolute;
+    bottom: 0px;
 }
 
 .button-wrapper > a {
@@ -163,5 +193,11 @@ input[name=content] {
 }
 
 .mdl-textfield.mdl-js-textfield > button  {
-	margin-left:  200px;
+	margin-left:  10px;
+}
+
+.like{
+    z-index: 2;
+    position: relative;
+    width:4%;
 }
