@@ -8,7 +8,8 @@
     <title>snacktime</title>
     <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css"> 
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
   <body>
@@ -22,16 +23,23 @@
           <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
         {% endif %}
     </div> {% endcomment %}
+
+    
     <div style="width: 100%; text-align: center;">
-    <img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;">
+    <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
     </div>
+    <a href="#"><i class="fas fa-chevron-left fa-2x" style="position: relative; color:white; top:-85px; left: 30px; float: left;"></i></a>
+    <a href="#"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>
+    
+
   </header>
   {% block content %}
   {% endblock %}
   </body>
   <footer>
     <div class="navigator">
-      <a href="/products"><span class="nav-item" style="float:left;">간식</span></a>
+      <a href="/products">
+      <span class="nav-item" style="float:left;">간식</span></a>
       <a href="/reviews"><span class="nav-item">리뷰</span></a>
       <a href="#"><span class="nav-item" style="float:right;">My</span></a>
     </div>

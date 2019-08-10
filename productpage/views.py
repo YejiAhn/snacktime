@@ -15,7 +15,7 @@ def index(request):
     #     product.get_rating()
     #     product.update_emoticon()
     CATEGORY_CODES = {
-        00: 'undefined',
+        00: '전체',
 
         10: 'icecream',
         11: 'icecream_bar',
@@ -135,11 +135,13 @@ def product_save(request, pk):
     next = request.META['HTTP_REFERER']
     return redirect(next)
 
+
 def category(request, ct, pb):
     # if ct==00:
     #     return redirect('/products/category/00/0')
+
     CATEGORY_CODES = {
-        00: 'undefined',
+        00: '전체',
 
         10: 'icecream',
         11: 'icecream_bar',

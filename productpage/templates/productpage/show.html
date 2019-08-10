@@ -1,5 +1,9 @@
+
+{% extends 'base.html' %}
 {% load  staticfiles %}
 
+
+{% block content %}
 <head>
     <title> 제품 상세 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
@@ -17,7 +21,7 @@
     display:block; 
 }
 </style>
-<section>
+{% comment %} <section>
 <form action="/products/{{ product.id }}/seed" method='POST'>
 	{% csrf_token %}
   <input name="count" value="20"/> 
@@ -26,14 +30,14 @@
 	<input type="radio" name="taste" value='bad'/>bad
 	<input type='submit'>
 </form>
-</section>
+</section> {% endcomment %}
 
 <section class = "product-info">
     <img src = {{ product.photo }} class = "product-info__photo" >
     <div class = "product-info__texts">
         <table>
         <tbody>
-            <tr style = "font-size: 3.5vw;">
+            <tr style = "font-size: 45px; line-height: 200%;">
                 <th>상품명</th>
                 <td> {{ product.name }} </td>
             </tr>
@@ -143,3 +147,5 @@ var myBarChart = new Chart(ctx, {
 });
 </script>
 </body>
+
+{% endblock %}
