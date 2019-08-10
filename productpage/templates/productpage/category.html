@@ -1,4 +1,8 @@
+{% extends 'base.html' %}
 {% load  staticfiles %}
+{% load custom_tags %}
+
+ {% block content %}
 <head>
     <title> 제품 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
@@ -10,22 +14,51 @@
   <br/>
 
 <!-- dictionary로 구현 -->
+<div style="width: 100%;">
  <div class = "conv-filter__wrapper">
-  {% for key, value in pb_stores.items %} 
-    <a id = "conv-filter" href="/products/category/{{ct}}/{{ key }}">{{ value }}</a>  <!--view-->
-  {% endfor %}
-  <br/> 
- </div>
+  <a class="collapsible"> 
+    {% if pb == 0 %}
+    ▾ 편의점 전체
+    {% else %}
+    ▾ {{pb_stores|get_item:pb}}
+    {% endif %}
+  </a>
+
+    <div class = "pb-content">
+      <ul>
+      {% for key, value in pb_stores.items %} 
+        {% if key == 0 %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">편의점 전체</a></li> 
+        {% else %}
+        <li><a id = "pb-filter" href="/products/category/{{ct}}/{{key}}">{{ value }}</a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class = "filter__wrapper">
   {% for key, value in categories.items %} 
-    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>  <!--view-->
+    {% if ct == key %}
+    <a style="color:white; background-color: #18bfd9; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
+    {% else %}
+    <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>
+    {% endif %}
+
+  {% comment %} 근데 이렇게하면 subcategory 골랐을 때 ct != key 임. /10 값으로 어떻게 할 수 있는 방법 없나  {% endcomment %}
+  
   {% endfor %}
   <br/>
 
-  <div style="margin-top: 30px;">
+  <div>
   {% for key, value in sub_categories.items %} 
+    {% if ct == key %}
+     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #4c84c7;">{{ value }}</a>  <!--view-->
+    {% else %}
     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}">{{ value }}</a>  <!--view-->
+    {% endif %}
+   
   {% endfor %}
   </div>
   <br/>
@@ -79,25 +112,37 @@
         <table>
           <tbody>
               <div class = "image-wrap">
-              {% if product.photo %}
-                <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
-              {% endif %}
-              {% if product.pb_store_code %}
-                <img src="{{ product.pb_store_code }}" width = "20" alt="">
-              {% endif %}
+                <div class = "pb-image">
+                  {% if product.pb_store_code == '1' %}
+                    <img id="pb-img" src="{% static 'cu.png' %}" width="100px"  alt="">
+                  {% elif product.pb_store_code == '2' %}
+                    <img id="pb-img" src="{% static 'gs25.gif' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '3' %}
+                    <img id="pb-img" src="{% static '7eleven.jpeg' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '4' %}
+                    <img id="pb-img" src="{% static 'emart24.png' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '5' %}
+                    <img id="pb-img" src="{% static 'ministop.jpeg' %}" width="100px" alt="">  
+                  {% endif %}
+                </div>
+                <div class='product-image'>
+                  {% if product.photo %}
+                    <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+                  {% endif %}
+                </div>
               </div> 
-              <tr style = "font-size: 2.2vw;">
+              <tr style = "font-size: 3.5vw; line-height: 130%;">
                   <th></th>
                   <td>{{product.name}}
                   </td>
               </tr>
-              <tr style = "font-size: 2vw">
+              <tr style = "font-size: 3vw; line-height: 130%;">
                   <th></th>
                   <td>{{product.price}}</td>
               </tr>
               <tr class = "rating">
                   <th></th>
-                  <td style = "font-size: 2vw; font-weight: bold;">
+                  <td style = "font-size: 3vw; font-weight: bold;">
                   <img src="{{ product.emoticon }}" width = "30" alt=""> 
                   {{product.rating}} 
                   </td>
@@ -109,4 +154,24 @@
     </div>
   {% endfor %}
 </div>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible")
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+  }
+
+</script>
 </body>
+
+{% endblock %}

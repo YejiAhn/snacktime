@@ -8,3 +8,5 @@ ENV/
 local_settings.py
 db.sqlite3
 media
+.DS_Store
+./productpage/.Ds_Store
