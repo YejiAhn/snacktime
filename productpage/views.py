@@ -63,7 +63,7 @@ def index(request):
     for (key, value) in CATEGORY_CODES.items():
         if key%10 ==0 : 
             MAIN_CATEGORY[key] = value; 
-    return render(request, 'productpage/index.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
+    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
 
 ### 수정: 바뀐 모델에 맞게 수정. 새로운 데이터 베이스를 입력해야 함.
 def new(request):
