@@ -1,5 +1,8 @@
+{% extends 'base.html' %}
 {% load  staticfiles %}
 {% load custom_tags %}
+
+ {% block content %}
 <head>
     <title> 제품 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
@@ -128,18 +131,18 @@
                   {% endif %}
                 </div>
               </div> 
-              <tr style = "font-size: 2.2vw;">
+              <tr style = "font-size: 3.5vw; line-height: 130%;">
                   <th></th>
                   <td>{{product.name}}
                   </td>
               </tr>
-              <tr style = "font-size: 2vw">
+              <tr style = "font-size: 3vw; line-height: 130%;">
                   <th></th>
                   <td>{{product.price}}</td>
               </tr>
               <tr class = "rating">
                   <th></th>
-                  <td style = "font-size: 2vw; font-weight: bold;">
+                  <td style = "font-size: 3vw; font-weight: bold;">
                   <img src="{{ product.emoticon }}" width = "30" alt=""> 
                   {{product.rating}} 
                   </td>
@@ -167,6 +170,8 @@
     }
   });
   }
-  
+
 </script>
 </body>
+
+{% endblock %}

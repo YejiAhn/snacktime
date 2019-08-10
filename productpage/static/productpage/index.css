@@ -15,7 +15,7 @@
     width:30%;
     margin: 20px;
     margin-right: 40px;
-    font-size: 3vw;
+    font-size: 35px;
 }
 
 
@@ -48,7 +48,7 @@
 
 #pb-filter {
     text-decoration: none;
-    font-size: 3vw;
+    font-size: 35px;
     color: gray;
 }
 
@@ -69,6 +69,7 @@
 
 }
 .pb-image{
+    position:relative;
     text-align: right;
     margin: 2.5%;
     background-color: white;
@@ -116,7 +117,7 @@ td {
     color: #fc9084;
     text-decoration: none;
     border: 2px solid #ff9e93;
-    font-size: 35px;
+    font-size: 40px;
     padding: 7px;
     padding-right: 12px;
     padding-left: 12px;
@@ -148,7 +149,7 @@ table{
     margin-left: 10px;
     position: relative;
     border-collapse: separate;
-    border-spacing: 5px 10px;
+    border-spacing: 15px;
 }
 
 th img {
