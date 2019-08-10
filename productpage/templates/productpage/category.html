@@ -41,7 +41,7 @@
 <div class = "filter__wrapper">
   {% for key, value in categories.items %} 
     {% if ct == key %}
-    <a style="color:white; background-color: #fc9084; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
+    <a style="color:white; background-color: #18bfd9; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
     {% else %}
     <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>
     {% endif %}
@@ -54,7 +54,7 @@
   <div>
   {% for key, value in sub_categories.items %} 
     {% if ct == key %}
-     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #f2b3ac;">{{ value }}</a>  <!--view-->
+     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #4c84c7;">{{ value }}</a>  <!--view-->
     {% else %}
     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}">{{ value }}</a>  <!--view-->
     {% endif %}
