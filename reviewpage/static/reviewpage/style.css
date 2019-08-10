@@ -185,3 +185,34 @@ input[name=content] {
 .mdl-textfield.mdl-js-textfield > button  {
 	margin-left:  200px;
 }
+
+
+#footer { 
+    display: table; 
+    width: 100%; 
+    table-layout: fixed; 
+}
+
+#footer a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+
+}
+#footer > div { 
+    padding-top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    display: table-cell; 
+}
+
+
+#footer-text{
+    line-height: 130%;
+}
+
+.footer-review{
+    padding-left: 12px;
+}
+
