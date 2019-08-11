@@ -92,6 +92,8 @@ def review_like(request, pk):
     else:
         Like.objects.create(user_id = request.user.id, review_id = review.id)
     review.update_date()
+    print('log')
+    print(review.like_count)
     return redirect('/reviews')
 
 def review_save(request, pk):
