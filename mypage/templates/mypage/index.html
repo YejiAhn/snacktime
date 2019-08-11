@@ -1,1 +1,63 @@
-<h1> My Page </h1>
+{% extends 'base.html' %}
+{% load  staticfiles %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'mypage/index.css' %}">
+</head>
+
+<div class="user">
+  <div class="icon">
+    icon
+  </div>
+  <div class="user-info">
+    <div class="nickname">{{user.username}}</div>
+    <div class="reviewed">내가 쓴 리뷰: {{review_count}}개</div>
+    <div class="saved">내간 저장한 간식: {{like_count}}개</div>
+  </div>
+</div>
+
+<div class="tab">
+  <div id="reviewed-tab" onclick="showReviewed()" class="reviewed showed">
+    먹어본 간식 ({{review_count}})
+
+  </div>
+  <div id="saved-tab" onclick="showSaved()" class="saved">
+    먹어본 간식 ({{like_count}})
+  </div>
+</div>
+<div class="content">
+  <div id="reviewed-items">
+    review item
+  </div>
+  <div id="saved-items">
+    saved item
+  </div>
+</div>
+
+<script>
+  const saved_tab = document.getElementById("saved-tab")
+  const reviewed = document.getElementById("reviewed-tab")
+
+  const saved_items = document.getElementById("saved-items")
+  const reviewed_items = document.getElementById("reviewed-items")
+
+  function showSaved() {
+    saved_tab.classList.add('showed')
+    reviewed.classList.remove('showed')
+    saved_items.style.display = 'none'
+    reviewed_items.style.display = 'block'
+  }
+
+  function showReviewed() {
+    saved_tab.classList.remove('showed')
+    reviewed.classList.add('showed')
+    saved_items.style.display = 'block'
+    reviewed_items.style.display = 'none'
+  }
+
+  showReviewed()
+</script>
+
+
+{% endblock content %}
