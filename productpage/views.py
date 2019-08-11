@@ -15,7 +15,7 @@ def index(request):
     #     product.get_rating()
     #     product.update_emoticon()
     CATEGORY_CODES = {
-        00: 'undefined',
+        00: '전체',
 
         10: 'icecream',
         11: 'icecream_bar',
@@ -63,7 +63,7 @@ def index(request):
     for (key, value) in CATEGORY_CODES.items():
         if key%10 ==0 : 
             MAIN_CATEGORY[key] = value; 
-    return render(request, 'productpage/index.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
+    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
 
 ### 수정: 바뀐 모델에 맞게 수정. 새로운 데이터 베이스를 입력해야 함.
 def new(request):
@@ -135,11 +135,13 @@ def product_save(request, pk):
     next = request.META['HTTP_REFERER']
     return redirect(next)
 
+
 def category(request, ct, pb):
     # if ct==00:
     #     return redirect('/products/category/00/0')
+
     CATEGORY_CODES = {
-        00: 'undefined',
+        00: '전체',
 
         10: 'icecream',
         11: 'icecream_bar',

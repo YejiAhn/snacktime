@@ -19,9 +19,10 @@ import reviewpage.views
 import productpage.views
 import mypage.views
 import accounts.views
-from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url, include
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +34,11 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'

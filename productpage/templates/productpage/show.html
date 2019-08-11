@@ -1,5 +1,9 @@
+
+{% extends 'base.html' %}
 {% load  staticfiles %}
 
+
+{% block content %}
 <head>
     <title> 제품 상세 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
@@ -33,7 +37,7 @@
     <div class = "product-info__texts">
         <table>
         <tbody>
-            <tr style = "font-size: 3.5vw;">
+            <tr style = "font-size: 45px; line-height: 200%;">
                 <th>상품명</th>
                 <td> {{ product.name }} </td>
             </tr>
@@ -143,3 +147,5 @@ var myBarChart = new Chart(ctx, {
 });
 </script>
 </body>
+
+{% endblock %}

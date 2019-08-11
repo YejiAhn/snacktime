@@ -62,8 +62,16 @@ class Product(models.Model):
         ('4', 'seveneleven'),
         ('5', 'ministop'),
     )
+    #     PB_STORE_IMGS = (
+    #     ('0', ''),
+    #     ('1', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/cu.png'),
+    #     ('2', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/gs25.gif'),
+    #     ('3', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/7eleven.jpeg'),
+    #     ('4', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/emart24.png'),
+    #     ('5', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/ministop.jpeg'),
+    # )
     pb_store_code = models.CharField(max_length=1, choices=PB_STORE_CODES)
-
+    # pb_img = models.ImageField(blank=True, upload_to='products_photos')
     emoticon = models.ImageField(blank=True, upload_to='products_photos',
         default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
@@ -166,22 +174,24 @@ class Review(models.Model):
         (5, '꿀맛'),
     )
     review_rating = models.IntegerField(choices=REVIEW_RATINGS)    
+    emoticon = models.ImageField(blank=True, upload_to='products_photos',
+        default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
-    def __emoticon__(self):
-        if float(review_rating) >= 0.0 and float(review_rating) <= 1.0:
-            emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742482.png'
-        elif float(review_rating) > 1.0 and float(review_rating) <= 2.0:
-            emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742328.png'
-        elif float(review_rating) > 2.0 and float(review_rating) <= 3.0:
-            emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742373.png'
-        elif float(review_rating) > 3.0 and float(review_rating) <= 4.0:
-            emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742324.png'
-        elif float(review_rating) > 4.0 and float(review_rating) <= 5.0:
-            emoticon = 'https://image.flaticon.com/icons/png/128/1742/1742356.png'
-        return self.emoticon
-
-    #emoticon = models.ImageField(blank=True,
-    #    default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
+    @property
+    def emoticon(self):
+        if self.review_rating==1:
+            emoticon = '/static/reviewpage/img/005-vomit.png'
+        elif self.review_rating==2:
+            emoticon = '/static/reviewpage/img/001-shock.png'
+        elif self.review_rating==3:
+            emoticon = '/static/reviewpage/img/004-sad.png'
+        elif self.review_rating==4:
+            emoticon = '/static/reviewpage/img/002-smile.png'
+        else:
+            emoticon = '/static/reviewpage/img/003-in-love.png'
+        self.save()
+        # print()
+        return emoticon
 
 
     created_at = models.DateTimeField(default=timezone.now)
