@@ -70,7 +70,7 @@ def new(request):
     # CU = pd.read_csv('productpage/productlist/CU.csv') 
     # emart24 = pd.read_csv('productpage/productlist/emart24.csv') 
     # all_product = pd.merge(CU, emart24)
-    all_product = pd.read_csv('productpage/productlist/curie.csv')
+    all_product = pd.read_csv('productpage/productlist/numbering_cu.csv')
     i_category = 1
     i_image = 2
     i_name = 3

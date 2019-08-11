@@ -6,16 +6,36 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
-def index(request):
-    if request.method == 'GET': # index
-        reviews = Review.objects.all()
-        return render(request, 'reviewpage/index.html', {'reviews': reviews})
+# def index(request):
+#    if request.method == 'GET': # index
+#        reviews = Review.objects.all()
+#        return render(request, 'reviewpage/index.html', {'reviews': reviews})
 
+#    elif request.method == 'POST': # create
+#        content = request.POST['content']        
+#        photo = request.FILES.get('photo', False)
+        
+#         ## 수정: 리뷰레이팅 추가
+#        review_rating = request.POST['review_rating']
+#        Review.objects.create(review_rating=review_rating, content=content, author = request.user, photo=photo)
+#        return redirect('/reviews')
+
+def index(request):
+    if request.method == 'GET':
+        sort = request.GET.get('sort','')
+        if sort == 'likes':
+            reviews = Review.objects.annotate(like_count= reviews.liked_users.count ).order_by('-like_count','-updated_at')
+            return render(request, 'reviewpage/index.html', {'reviews': reviews})
+        elif sort == 'mypost':
+            user = request.user
+            reviews = Review.objects.filter(name_id = user).ordered_by('-update_date')
+            return render(request, 'reviewpage/index.html', {'reviews': reviews})
+        else:
+            reviews = Review.objects.order_by('-updated_at')
+            return render(request, 'reviewpage/index.html', {'reviews': reviews})
     elif request.method == 'POST': # create
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
-        
-        ### 수정: 리뷰레이팅 추가
         review_rating = request.POST['review_rating']
         Review.objects.create(review_rating=review_rating, content=content, author = request.user, photo=photo)
         return redirect('/reviews')

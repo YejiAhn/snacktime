@@ -13,7 +13,7 @@
         <div class = "instruction">
         <h1>로그인</h1>
         </div>
-
+        <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
         <div class="input-blank">
         <form method="post" action="{% url 'login' %}">
         {% csrf_token %}

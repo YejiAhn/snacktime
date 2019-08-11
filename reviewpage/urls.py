@@ -3,6 +3,8 @@ from reviewpage import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('sort=like', views.index, name="index_sort=like"),
+    path('sort=mypost', views.index, name="index_sort=mypost"),
     path('new/', views.new, name='new'),
     path('<int:id>/', views.show, name='show'),
     path('<int:id>/delete', views.delete, name='delete'),
