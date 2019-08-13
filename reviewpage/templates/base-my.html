@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+    <title>snacktime</title>
+    <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </head>
+  <body>
+  <header>
+    {% comment %} <div class="welcome" style="float: right; text-align: right; width: 50%;">
+      {% if user.is_authenticated %}
+        {{ user.get_username }}님, 안녕하세요
+          <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+        {% else %}
+          <a href="{% url 'signup' %}">회원가입</a>
+          <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+        {% endif %}
+    </div> {% endcomment %}
+
+    
+    <div style="width: 100%; text-align: center;">
+    <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+    </div>
+    {% comment %} <a href="#"><i class="fas fa-chevron-left fa-2x" style="position: relative; color: white; top:-85px; left: 30px; float: left;"></i></a> {% endcomment %}
+    <a href="#"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>
+    
+
+  </header>
+  {% block content %}
+  {% endblock %}
+  </body>
+  <footer>
+    <div id="footer">
+      <div><a href="/products"><div><i class="fas fa-cookie-bite fa-2x"></i></div><div id="footer-text">간식</div></a></div>
+      <div><a href="/reviews"><div class="footer-review"><i class="fas fa-edit fa-2x"></i></div><div id="footer-text">리뷰</div></a></div>
+      <div class="selected-menu"><a href="#"><div><i class="fas fa-user-circle fa-2x"></i></div><div id="footer-text">MY</div></a></div>
+    </div>
+  </footer>
+</html>
