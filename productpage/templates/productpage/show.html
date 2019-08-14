@@ -1,5 +1,4 @@
-
-{% extends 'base.html' %}
+{% extends 'base-product.html' %}
 {% load  staticfiles %}
 
 
@@ -9,18 +8,7 @@
     <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
-<body><style>
-.gray-star{
-    display:inline-block;
-}
-.star{
-    position: relative;
-    top: -60px;
-    display: inline;
-    overflow: hidden;
-    display:block; 
-}
-</style>
+<body>
 <section>
 <form action="/products/{{ product.id }}/seed" method='POST'>
 	{% csrf_token %}

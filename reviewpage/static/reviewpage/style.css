@@ -213,8 +213,37 @@ input[name=content] {
 	margin-left:  10px;
 }
 
-.like{
-    z-index: 2;
-    position: relative;
-    width:4%;
+
+#footer { 
+    display: table; 
+    width: 100%; 
+    table-layout: fixed; 
+}
+
+#footer a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+
+}
+#footer > div { 
+    padding-top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    display: table-cell; 
+}
+
+
+#footer-text{
+    line-height: 130%;
+}
+
+.footer-review{
+    padding-left: 12px;
+}
+
+.selected-menu{
+    background-color: #009eb7;
+    box-shadow: inset 0 1px 5px rgb(125, 125, 125);
 }

@@ -1,0 +1,51 @@
+.user {
+  margin-top: 100px;
+  margin-left:50px;
+  margin-right: 50px;
+  font-size: 50px;
+  line-height: 70px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.user .icon{
+  background: red;
+}
+.user .user-info{
+  padding-left: 50px;
+}
+
+.tab{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 50px;
+  font-size: 50px;
+  line-height: 150px;
+  height: 150px;
+  text-align: center;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  color:#18bfd9;
+}
+
+.tab .showed{
+  background-color: #18bfd9;
+  color:white;
+
+}
+
+.tab .reviewed{
+  border: 5px solid #18bfd9;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+.tab .saved{
+  border: 5px solid #18bfd9;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.content{
+  font-size: 50px;
+  line-height: 150px;
+}
+

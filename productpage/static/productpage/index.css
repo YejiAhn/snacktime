@@ -28,7 +28,7 @@
     padding: 3%;
     border: 1px solid gray;
     border-radius: 10px;
-    line-height: 250%;
+    line-height: 150%;
 
 }
 
@@ -45,7 +45,7 @@
     padding: 3%;
     line-height: 200%;
     list-style: none;
-    margin-block-start: 2vw;
+    margin-block-start: 0px;
     margin-block-end: 10px;
 }
 
@@ -119,6 +119,7 @@ td {
 }
 
 #filter{
+    word-break: keep-all;
     color: #18bfd9;
     text-decoration: none;
     border: 2px solid #18bfd9;
