@@ -56,10 +56,10 @@
 					{% endif %}
 				
 				<div  class="button-wrapper">
-						<span>
-							<i class="material-icons">portrait</i> <!--icon needed to change-->
-							{{ review.author.username }}
-						</span>
+					<span>
+						<i class="material-icons">portrait</i> <!--icon needed to change-->
+						{{ review.author.username }}
+					</span>
 					<a  href="/reviews/{{ review.id }}/like"> 
 						{% if  user in review.liked_users.all %}
 						<img class="like" src="https://image.flaticon.com/icons/svg/25/25423.svg">

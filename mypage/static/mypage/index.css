@@ -49,3 +49,11 @@
   line-height: 150px;
 }
 
+.mdl-button.mdl-button--colored {
+  position:  fixed;
+  bottom:  200px;
+  right:  40px;
+  z-index: 4;
+  height: 100px;
+  width: 100px;
+}

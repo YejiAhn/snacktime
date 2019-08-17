@@ -53,16 +53,23 @@ footer {
 }
 
 .page_name {
-    font-size: 38px;
-    text-align: center;
+    height: 60px;
+    /* margin:20px; */
+    /* padding:10px; */
+}
+
+.selecting-product {
+    height: 150px;
 }
 
 .select_reviewproduct {
     font-size: 40px;
     text-align: center;
+    margin: 0 auto;
+
 }
 
-.rankings {
+.ranking {
     font-size: 40px;
     text-align: left;
 }
@@ -79,8 +86,10 @@ input[type=submit] {
 input[name=content] {
     height: 200px;
     width: 90%;
-    background-color: #D6DBDF;
+    /* background-color: #D6DBDF; */
+    background-color: whitesmoke;
     font-size: 30px;
+    box-shadow: none;
 }
 
 .review_bigcolumn {
@@ -143,8 +152,8 @@ input[name=content] {
 }
 
 .like {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
 }
 
 #product-image {
@@ -192,7 +201,9 @@ input[name=content] {
     position:  fixed;
     bottom:  200px;
     right:  40px;
-    z-index: 3px;
+    z-index: 4;
+    height: 100px;
+    width: 100px;
 }
 
 .button-wrapper {
@@ -251,4 +262,8 @@ input[name=content] {
 .selected-menu{
     background-color: #009eb7;
     box-shadow: inset 0 1px 5px rgb(125, 125, 125);
+}
+
+.select-rate {
+    height: 200px;
 }
