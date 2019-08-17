@@ -12,31 +12,32 @@
     {% csrf_token %}
     <div class="selecting-product">
       <div class="select_reviewproduct">
-        <button class="mdl-button mdl-js-button mdl-button--fab">
-          <a href="/reviews/new/newProduct">
-            <i class="material-icons">add</i>
+        
+          <a style = "margin-right: 20px; text-decoration: none; background-color: whitesmoke; border-radius: 50px; padding: 5px; text-align: center;" href="/reviews/new/newProduct">
+            <span style="padding-left: 10px;"> + </span>
           </a>
-        </button> 
-        <a class="my-button" href="/reviews/new">
-        <span>+</span>
-        </a>
+       
+      
 
         <span style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</span>
+             
       </div>
     </div>
-
+      
     <div class="select-rate">
-      <input type="radio" name="review_rating" value="5" class="rating"></input>
+     <input type="text" style="display:none;" name="review_rating" id = "rated"></input>
+      {% comment %} <input type="radio" name="review_rating" value="5" class="rating"></input>
       <input type="radio" name="review_rating" value="4" class="rating"></input>
       <input type="radio" name="review_rating" value="3" class="rating"></input>
       <input type="radio" name="review_rating" value="2" class="rating"></input>
-      <input type="radio" name="review_rating" value="1" class="rating"></input>
+      <input type="radio" name="review_rating" value="1" class="rating"></input> {% endcomment %}
 
-      <div class="ranking" value="5"> <div> <img src="/static/reviewpage/img/003-in-love.png"> </div> <span id="ranking-text"> 꿀맛 </span></div>
-      <div class="ranking" value="4"> <div> <img src="/static/reviewpage/img/002-smile.png"> </div> <div id="ranking-text"> 맛나 </div> </div>
-      <div class="ranking" value="3"> <div> <img src="/static/reviewpage/img/001-shock.png"> </div> <div id="ranking-text"> 그닥 </div> </div>
-      <div class="ranking" value="2"> <div> <img src="/static/reviewpage/img/004-sad.png"> </div> <div id="ranking-text"> 노맛 </div> </div>
-      <div class="ranking" value="1"> <div> <img src="/static/reviewpage/img/005-vomit.png"> </div> <div id="ranking-text"> 우웩 </div></div>
+
+      <div class="ranking"> <div> <img id = "5" src="/static/reviewpage/img/003-in-love.png" value="5"> </div> <span id="ranking-text"> 꿀맛 </span></div>
+      <div class="ranking"> <div> <img id = "4" src="/static/reviewpage/img/002-smile.png"> </div> <div id="ranking-text"> 맛나 </div> </div>
+      <div class="ranking"> <div> <img id = "3" src="/static/reviewpage/img/001-shock.png"> </div> <div id="ranking-text"> 그닥 </div> </div>
+      <div class="ranking"> <div> <img id = "2" src="/static/reviewpage/img/004-sad.png"> </div> <div id="ranking-text"> 노맛 </div> </div>
+      <div class="ranking"> <div> <img id = "1" src="/static/reviewpage/img/005-vomit.png"> </div> <div id="ranking-text"> 우웩 </div></div>
       
     </div>
 
@@ -60,8 +61,8 @@
       if (selectedRating) selectedRanking.classList.remove('selected')
 
       event.target.classList.add('selected')
-      const temp  = document.querySelector(`.rating[value=${event.target.value}]`)
-      alert(temp)
+    
+      document.getElementById('rated').value = event.target.id;
       event.target.classList.add('selected')
     }
     rankings.forEach(ranking => ranking.addEventListener('click', selectRanking))
