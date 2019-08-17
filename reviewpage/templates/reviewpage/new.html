@@ -1,6 +1,8 @@
 {% extends 'base-review.html'%}
 
 {% block content %}
+
+
   <div class="page_name">
     <div>
       <h1 style="font-size:60px;">&nbsp; &nbsp; &nbsp; 리뷰 작성하기</h1>
@@ -8,7 +10,7 @@
   </div> 
   </br> </br>
   
-  <form class="form-box" action="/reviews/" enctype="multipart/form-data" method="POST">
+  <form class="form-box" action="/products/{{product.id}}/" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     <div class="selecting-product">
 
@@ -34,7 +36,6 @@
             <span style="padding-left: 10px;"> + </span>
           </a>
         <span style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</span>
-             
       </div>
       {% endif%}
     </div>
@@ -48,11 +49,11 @@
       <input type="radio" name="review_rating" value="1" class="rating"></input> {% endcomment %}
 
 
-      <div class="ranking"> <div> <img id = "5" src="/static/reviewpage/img/003-in-love.png" value="5"> </div> <span id="ranking-text"> 꿀맛 </span></div>
-      <div class="ranking"> <div> <img id = "4" src="/static/reviewpage/img/002-smile.png"> </div> <div id="ranking-text"> 맛나 </div> </div>
-      <div class="ranking"> <div> <img id = "3" src="/static/reviewpage/img/001-shock.png"> </div> <div id="ranking-text"> 그닥 </div> </div>
-      <div class="ranking"> <div> <img id = "2" src="/static/reviewpage/img/004-sad.png"> </div> <div id="ranking-text"> 노맛 </div> </div>
-      <div class="ranking"> <div> <img id = "1" src="/static/reviewpage/img/005-vomit.png"> </div> <div id="ranking-text"> 우웩 </div></div>
+      <div> <div> <img class="ranking"id = "5" src="/static/reviewpage/img/003-in-love.png" value="5"> </div> <div id="ranking-text"> 꿀맛 </div></div>
+      <div> <div> <img class="ranking"id = "4" src="/static/reviewpage/img/002-smile.png"> </div> <div id="ranking-text"> 맛나 </div> </div>
+      <div> <div> <img class="ranking"id = "3" src="/static/reviewpage/img/001-shock.png"> </div> <div id="ranking-text"> 그닥 </div> </div>
+      <div> <div> <img class="ranking"id = "2" src="/static/reviewpage/img/004-sad.png"> </div> <div id="ranking-text"> 노맛 </div> </div>
+      <div> <div> <img class="ranking"id = "1" src="/static/reviewpage/img/005-vomit.png"> </div> <div id="ranking-text"> 우웩 </div></div>
       
     </div>
 

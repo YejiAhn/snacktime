@@ -197,7 +197,7 @@ class Review(models.Model):
 
 
     created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(default=timezome.now)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     photo = models.ImageField(blank=True, upload_to='review_photos')
     liked_users = models.ManyToManyField(
@@ -211,12 +211,9 @@ class Review(models.Model):
     def __product__(self):
         return self.product
     
-    ### 수정: 랜덤 리뷰 생성 (개수, 상품id, ['good', 'soso', 'bad'])
-
-    ### 수정3 : review 정렬하기. 일단은 임시로 updated_at 순으로 정했다.
     class Meta:
         ordering = ['-updated_at']
-    ###
+    
 
 
 class Profile(models.Model):

@@ -115,15 +115,14 @@ footer {
 } */
 
 .ranking {
-    font-size: 40px;
-    width: 15%;
+    margin-left: 15px;
+    width: 80%;
     height: auto;
     display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: space-around;
     padding-bottom: 40px;
-    
     opacity: 0.4;
     cursor: pointer;
 }
@@ -140,7 +139,8 @@ footer {
     height: auto;
 }
 
-.ranking-text {
+#ranking-text {
+    font-size: 35px;
     text-align:center;
 }
 
@@ -177,6 +177,7 @@ input[name=content] {
 }
 
 .review-text {
+    width: 500px;
     color: rgb(43, 43, 43);
     overflow: auto;
     height: 70%;
@@ -184,7 +185,6 @@ input[name=content] {
 
 
 .review_column {
-    width: 33.33%;
     padding: 5px;
     display: inline-block;
 }
@@ -258,6 +258,7 @@ input[name=content] {
     margin: 10px;
     padding: 10px;
     float: left;
+    width: 95%;
 }
 
 .review_image {
@@ -301,7 +302,7 @@ input[name=content] {
     position: relative;
     background: #c6ecf9;
     padding: 10px;
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .button-wrapper{
@@ -381,7 +382,6 @@ input[name=content] {
 .search-show {
     display: none;
 }
-<<<<<<< HEAD
 
 .my-button {
     position:  fixed;
@@ -420,5 +420,3 @@ input[name=content] {
     height: 120px;
 
 }
-=======
->>>>>>> sangwoo

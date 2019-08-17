@@ -6,20 +6,6 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
-# def index(request):
-#    if request.method == 'GET': # index
-#        reviews = Review.objects.all()
-#        return render(request, 'reviewpage/index.html', {'reviews': reviews})
-
-#    elif request.method == 'POST': # create
-#        content = request.POST['content']        
-#        photo = request.FILES.get('photo', False)
-        
-#         ## 수정: 리뷰레이팅 추가
-#        review_rating = request.POST['review_rating']
-#        Review.objects.create(review_rating=review_rating, content=content, author = request.user, photo=photo)
-#        return redirect('/reviews')
-
 def index(request):
     if request.method == 'GET':
         sort = request.GET.get('sort','')
@@ -38,10 +24,15 @@ def index(request):
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
         review_rating = request.POST['review_rating']
+
+        id = request.GET.get('product_id', None)
+        product = Product.objects.get(id=id)
         # review_rating = request.POST.get('review_rating','')
         print(review_rating)
-        Review.objects.create(review_rating=review_rating, content=content, author=request.user, photo=photo)
-        return redirect('/reviews')
+        review = Review.objects.create(product=product, review_rating=review_rating, content=content, author=request.user, photo=photo)
+        review.save()
+        print(review)
+        return redirect('/products/{{product.id}}')
 
 def new(request):
     id = request.GET.get('product_id', None)
@@ -67,7 +58,7 @@ def show(request, id):
         return render(request, 'reviewpage/show.html', {'review': review})
 
     elif request.method == 'POST': # update
-        review = Review.objects.get(id=id)
+        
         # Need to implement these data.
         # product, author, liked_users
 
@@ -75,8 +66,11 @@ def show(request, id):
         review_rating = request.POST['review_rating']
         # photo = request.FILES['photo']:
 
+    
         review.content = content
         review.review_rating = review_rating
+
+        
 
         review.save()
         ### 수정: 리뷰 점수도 수정받기
@@ -89,6 +83,7 @@ def show(request, id):
         #     product.calc_rank_point()
 
         return redirect('/reviews')
+
 
 def delete(request, id):
     review = Review.objects.get(id=id)
