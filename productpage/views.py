@@ -106,13 +106,6 @@ def seed(request, id):
 def show(request, id):
     ### 수정 : 리뷰 작성시 여기로 올듯. GET->POST
     if request.method == 'POST':
-<<<<<<< HEAD
-        content = request.POST['content']
-        photo = request.FILES.get('photo', False)
-        review_rating = request.POST['review_rating']
-        product= Product.objects.get(id=id)
-        Review.objects.create(product=product, review_rating=review_rating, content=content, author=request.user, photo=photo)
-=======
     
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
@@ -122,7 +115,6 @@ def show(request, id):
      
         review = Review.objects.create(product=product, review_rating=review_rating, content=content, author=request.user, photo=photo)
         review.save()
->>>>>>> ef9f6eb91a4c52bb427ec535c43aa79459c85e5f
         product.update_rate()
         reviews = product.review_set.all()
         review_count = reviews.count()

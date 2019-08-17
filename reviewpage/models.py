@@ -209,18 +209,10 @@ class Review(models.Model):
 
     def __product__(self):
         return self.product
-<<<<<<< HEAD
 
     class Meta:
         ordering = ['-updated_at']
     
-=======
-    
-    class Meta:
-        ordering = ['-updated_at']
-    
-
->>>>>>> ef9f6eb91a4c52bb427ec535c43aa79459c85e5f
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
