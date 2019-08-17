@@ -3,7 +3,7 @@ header {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 120px;
+    height: 220px;
     font-size: 40px;
     background-color: #18bfd9;
     color: white;
@@ -316,3 +316,27 @@ input[name=content] {
     box-shadow: inset 0 1px 5px rgb(125, 125, 125);
 }
 
+<<<<<<< HEAD
+=======
+.search-box{
+    text-align: center;
+}
+
+#search{
+    height: 50px;
+	width:  75%;
+    margin:  10px;
+    margin-top: 30px;
+    margin-right : 100px;
+    vertical-align:  top;
+	background: white;
+    border: 4px solid #f5f3f0;
+    text-align: center;
+    font-size: 30px;
+    color: #4e4e4e;
+}
+
+.search-show {
+    display: none;
+}
+>>>>>>> sangwoo

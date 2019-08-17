@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 import pandas as pd
 import numpy as np
+import time
 
 # Create your views here.
 
@@ -76,14 +77,15 @@ def new(request):
     # CU = pd.read_csv('productpage/productlist/CU.csv') 
     # emart24 = pd.read_csv('productpage/productlist/emart24.csv') 
     # all_product = pd.merge(CU, emart24)
-    all_product = pd.read_csv('productpage/productlist/numbering_cu.csv')
+    all_product = pd.read_csv('productpage/productlist/CU.csv')
     i_category = 1
     i_image = 2
     i_name = 3
     i_price = 4
     i_PB = 5
     for i in range(len(all_product)):
-        Product.objects.create(name=all_product.iloc[i,i_name], price=all_product.iloc[i,i_price], category_code=all_product.iloc[i,i_category], photo=all_product.iloc[i,i_image], pb_store_code=all_product.iloc[i,i_PB])
+        Product.objects.create(name=all_product.iloc[i,i_name], price=all_product.iloc[i,i_price], category_code=all_product.iloc[i,i_category], photo=all_product.iloc[i,i_image], pb_store_code=str(all_product.iloc[i,i_PB]))
+        time.sleep(0.1)
     return redirect('/products')
 
 def seed(request, id):
@@ -149,39 +151,45 @@ def category(request, ct, pb):
     CATEGORY_CODES = {
         00: '전체',
 
-        10: '아이스크림',
+        1: '아이스크림',
+        10: '기타',
         11: '바',
         12: '콘',
 
-        20: '음료',
+        2: '음료',
+        20: '기타',
         21: '커피',
         22: '유제품',
         23: '탄산',
 
-        30: '과자',
+        3: '과자',
 
-        40: '달다구리',
+        4: '달다구리',
+        40: '기타',
         41: '초콜렛',
         42: '캔디',
         43: '껌',
         44: '젤리',
 
-        50: '간편식사',
+        5: '간편식사',
+        50: '기타',
         51: '김밥',
         52: '샌드위치',
         53: '도시락',
 
-        60: '라면',
+        6: '라면',
 
-        70: '주류',
+        7: '주류',
+        70: '기타',
         71: '맥주',
         72: '소주',
 
-        80: '빵/디저트',
+        8: '빵/디저트',
+        80: '기타',
         81: '빵',
         82: '케이크',
 
-        90: '기타'
+        9: '기타'
     }
     PB_STORE_CODES = {
         0: 'is_not_pb',
@@ -195,6 +203,8 @@ def category(request, ct, pb):
 
     MAIN_CATEGORY = dict()
     SUB_CATEGORY = dict()
+
+    search = request.GET.get('search', '')
 
     for (key, value) in CATEGORY_CODES.items():
         if key%10 ==0 : 
@@ -211,8 +221,10 @@ def category(request, ct, pb):
     
     if pb != 0: 
         products = products.filter(pb_store_code = pb)
+    print(search)
+    if search: 
+        products = products.filter(name__icontains=search)
 
-    
     # elif pb == 0:   
     #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
     # else : 
@@ -233,4 +245,3 @@ def category(request, ct, pb):
 
 def detail(request):
     return render(request, 'productpage/detail.html')
-
