@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'reviewpage.apps.ReviewpageConfig',
     'productpage.apps.ProductpageConfig',
     'mypage.apps.MypageConfig',
+<<<<<<< HEAD
     # 'social_django',
+=======
+>>>>>>> temp
     'accounts.apps.AccountsConfig',
 ]
 
@@ -108,6 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -166,3 +173,7 @@ AUTHENTICATION_BACKENDS = (
 # For heroku Static file and host settings
 import django_heroku
 django_heroku.settings(locals())
+
+AUTHENTICATION_BACKENDS = (
+   'django.contrib.auth.backends.ModelBackend',
+   )

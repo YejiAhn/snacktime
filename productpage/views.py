@@ -9,61 +9,67 @@ import numpy as np
 # Create your views here.
 
 def index(request):
-    products = Product.objects.all()
-    ### 수정: Product model의 업데이트는 리뷰 작성시에 하는걸로!
-    # for product in products:
-    #     product.get_rating()
-    #     product.update_emoticon()
-    CATEGORY_CODES = {
-        00: '전체',
 
-        10: '아이스크림',
-        11: '바',
-        12: '콘',
+    if request.user.is_authenticated:
 
-        20: '음료',
-        21: '커피',
-        22: '유제품',
-        23: '탄산',
+        products = Product.objects.all()
+        ### 수정: Product model의 업데이트는 리뷰 작성시에 하는걸로!
+        # for product in products:
+        #     product.get_rating()
+        #     product.update_emoticon()
+        CATEGORY_CODES = {
+            00: '전체',
 
-        30: '과자',
+            10: '아이스크림',
+            11: '바',
+            12: '콘',
 
-        40: '달다구리',
-        41: '초콜렛',
-        42: '캔디',
-        43: '껌',
-        44: '젤리',
+            20: '음료',
+            21: '커피',
+            22: '유제품',
+            23: '탄산',
 
-        50: '간편식사',
-        51: '김밥',
-        52: '샌드위치',
-        53: '도시락',
+            30: '과자',
 
-        60: '라면',
+            40: '달다구리',
+            41: '초콜렛',
+            42: '캔디',
+            43: '껌',
+            44: '젤리',
 
-        70: '주류',
-        71: '맥주',
-        72: '소주',
+            50: '간편식사',
+            51: '김밥',
+            52: '샌드위치',
+            53: '도시락',
 
-        80: '빵/디저트',
-        81: '빵',
-        82: '케이크',
+            60: '라면',
 
-        90: '기타'
-    }
-    PB_STORE_CODES = {
-        0: 'is_not_pb',
-        1: 'CU',
-        2: 'GS25',
-        3: 'emart24',
-        4: '세븐일레븐',
-        5: '미니스톱',
-    }
-    MAIN_CATEGORY = dict()
-    for (key, value) in CATEGORY_CODES.items():
-        if key%10 ==0 : 
-            MAIN_CATEGORY[key] = value; 
-    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
+            70: '주류',
+            71: '맥주',
+            72: '소주',
+
+            80: '빵/디저트',
+            81: '빵',
+            82: '케이크',
+
+            90: '기타'
+        }
+        PB_STORE_CODES = {
+            0: 'is_not_pb',
+            1: 'CU',
+            2: 'GS25',
+            3: 'emart24',
+            4: '세븐일레븐',
+            5: '미니스톱',
+        }
+        MAIN_CATEGORY = dict()
+        for (key, value) in CATEGORY_CODES.items():
+            if key%10 ==0 : 
+                MAIN_CATEGORY[key] = value; 
+        return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'pb_stores':PB_STORE_CODES,'ct':0, 'pb':0})
+    
+    else:
+        return render(request, 'accounts/home.html')
 
 ### 수정: 바뀐 모델에 맞게 수정. 새로운 데이터 베이스를 입력해야 함.
 def new(request):

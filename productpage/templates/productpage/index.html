@@ -15,6 +15,7 @@ PB 아이콘
 
 <body>
   <a href='/products/new'>목록생성</a>                           <!--view-->
+  
 
 
 <div style="width: 100%;">
@@ -34,6 +35,9 @@ PB 아이콘
     </div>
   </div>
 </div>
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+    <i class="material-icons">add</i>
+  </button>
 
 <!-- dictionary로 구현 -->
   <div class = "filter__wrapper">
@@ -49,7 +53,7 @@ PB 아이콘
 
     <div class="product-list">
 
-    
+    <div class="top-icons">
       {% if user.is_authenticated %}
         <a href="/products/{{ product.id }}/save">        <!--view-->
           {% if product in user.products_saved.all %}
@@ -59,8 +63,12 @@ PB 아이콘
           {% endif %}
         </a>
       {% endif %}
-   
-  
+
+       {% if product.pb_store_code %}
+            {{ product.pb_store_code }}
+              <img src="{{ product.pb_store_code }}" width = "20" alt="">
+       {% endif %}
+    </div>
 
 
       <div class = "table-wrap">
@@ -70,10 +78,7 @@ PB 아이콘
             {% if product.photo %}
               <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
             {% endif %}
-            {% if product.pb_store_code %}
-            {{ product.pb_store_code }}
-              <img src="{{ product.pb_store_code }}" width = "20" alt="">
-            {% endif %}
+
             </div> 
             <tr style = "font-size: 2.2vw;">
                 <th></th>
