@@ -32,15 +32,19 @@
   <div id="reviewed-items">
     {% for review in eaten %}
 
-		<div class="review_bigrow">
 		
-			<div class="review_bigcolumn">
 				<a href="/products/{{ review.product.id }}">
 
 
-				<div class="review_box" style="width:100%;" href="/products/{{ review.product.id }}">
+				<div class="review_box" href="/products/{{ review.product.id }}">
+
+        	<div class="product_image"  style="float:right;">
+					{% if review.product.photo %}
+						<a href="/products/{{ review.product.id }}"><img style="float:right;" id ="product-image" src = {{ review.product.photo }}></a>
+					{% endif %}
+					</div>				
 		
-				<div class ="text-box-product" style="margin: 20px; width:93%;">
+				<div class ="text-box" style="margin-top: 30px; width: 580px;">
 					<div class="rankings">
 						<img src="{{ review.emoticon }}" width = "30"> <span style="text-decoration: none;">{{ review.get_review_rating_display }} </span>
 					</div>
@@ -67,11 +71,11 @@
 					{% endif %}
 					</a>
 				
-				<div class="button-wrapper">
+				<div class="button-wrapper" style="text-align: right; margin-right: 10px; font-size: 35px;">
 					<span>
 						<i class="fas fa-user-circle"></i>
 						{{ review.author.username }}
-					</span>
+					
 					<a href="/reviews/{{ review.id }}/like" style="color: black;"> 
 						{% if  user in review.liked_users.all %}
 						<i class="fas fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
@@ -80,20 +84,19 @@
 						{% endif %}
 						{{ review.liked_users.count }}
 					</a>
+          </span>
 
 					{% comment %} {% if request.user == review.author %}
 						<a  href="/reviews/{{ review.id }}/edit">
-						<i  class="material-icons">edit</i>
+						<i  class="far fa-edit"></i>
 						</a>
 						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
-						<i  class="material-icons">delete</i>
+						<i  class="far fa-trash-alt"></i>
 						</a>
 					{% endif %} {% endcomment %}
 				</div>
 			</div>
 		</div>
-		</div>
-	</div>
 
     {% endfor %}
   </div>

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django import forms
-
 import numpy as np
 # Create your models here.
 from faker import Faker
@@ -204,11 +203,18 @@ class Review(models.Model):
 
     def __product__(self):
         return self.product
+<<<<<<< HEAD
+
+    class Meta:
+        ordering = ['-updated_at']
+    
+=======
     
     class Meta:
         ordering = ['-updated_at']
     
 
+>>>>>>> ef9f6eb91a4c52bb427ec535c43aa79459c85e5f
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
