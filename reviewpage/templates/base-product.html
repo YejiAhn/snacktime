@@ -11,16 +11,35 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'reviewpage/myjs.js' %}"></script>
   </head>
   <body>
   <header>
-    
-    <div style="width: 100%; text-align: center;">
-    <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+    <div class="search-hide">
+      <div style="width: 100%; text-align: center;">
+      <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+      </div>
+      <button class="button-show" style="position: relative; color:white; top:-85px; left: -30px; float: right;">
+      <i class="fas fa-search fa-2x" >검색</i>
+      버튼누르기
+      </button>
+    </div> 
+    <div class="search-show">
+      <div style="width: 100%; text-align: center;">
+      <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+      </div>
+      
+      <form action="/products/category/{{ct}}/{{pb}}" method="get" id="searching">
+        <div class="search-box">
+          
+          <input id="search" type="text" name="search" value="{{search}}" placeholder="먹고싶은 간식을 검색해보세요.">
+        </div>
+          {% comment %} <input type="submit" value="검색"> {% endcomment %}
+        <a href="#" onclick="document.getElementById('searching').submit()"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>
+      </form>
     </div>
-    {% comment %} <a href="#"><i class="fas fa-chevron-left fa-2x" style="position: relative; color: white; top:-85px; left: 30px; float: left;"></i></a> {% endcomment %}
-    <a href="#"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>
-    
+    {% comment %} <a href="#"><i class="fas fa-chevron-left fa-2x" style="position: relative; color: white; top:-85px; left: 30px; float: left;"></i></a> {% endcomment %}    
 
   </header>
   {% block content %}

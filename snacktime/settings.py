@@ -40,10 +40,6 @@ INSTALLED_APPS = [
     'reviewpage.apps.ReviewpageConfig',
     'productpage.apps.ProductpageConfig',
     'mypage.apps.MypageConfig',
-<<<<<<< HEAD
-    # 'social_django',
-=======
->>>>>>> temp
     'accounts.apps.AccountsConfig',
 ]
 
