@@ -266,4 +266,5 @@ input[name=content] {
 
 .select-rate {
     height: 200px;
+    display: relative;
 }
