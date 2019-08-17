@@ -10,7 +10,7 @@ header {
     text-align: left;
 }
 
-body {
+body a {
     margin: 0px;
     background-color:  rgb(255, 255, 255);
 }
