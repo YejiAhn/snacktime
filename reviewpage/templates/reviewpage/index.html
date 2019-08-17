@@ -7,21 +7,19 @@
       		<i  class="material-icons">add</i>
 			</a>
 		{% endif %}
+
 		<select id="sort-select" onchange="location = this.value;">
     		<option class="sort-date" value="/">최신순</option>
-    		<option class="sort-likes" value="sort=likes">좋아요순</option>
+    		<option class="sort-likes" value="?sort=likes">좋아요순</option>
 			{% if user.is_authenticated %}
-			<option class="sort-mypost" value="sort=mypost">내 리뷰</option>
+			<option class="sort-mypost" value="?sort=mypost">내 리뷰</option>
 			{% endif %}
 		</select>
 		<br>
-		{% for category in categories %} 
-		  <a href="../../../products/category/{{ category }}">{{ category }}</a> <!--not viewed-->
-		{% endfor %}
-		<br>
+		
 		{% for review in reviews %}
-		<div class="review_row">
-			<div class="review_column">
+		<div class="review_bigrow">
+			<div class="review_bigcolumn">
 				<div class="product_image">
 					{% if review.product.photo %}
 						<a href="/products/{{ product.id }}"><img id ="product-image" src = {{ review.product.photo }}></a>
@@ -31,7 +29,7 @@
 					{% endif %}-->
 				</div>
 			</div>
-			<div class="review_column">
+			<div class="review_bigcolumn">
 				<div class="review_box">
 					<div class="rankings">
 						<img src="{{ review.emoticon }}" width = "30"> {{ review.review_rating }}
@@ -40,8 +38,9 @@
 					<div class="review_row">
 						<div class="review_column">
 							<div class="review_text">
-								{{ review.content|safe|truncatewords:"5"|linebreaks }}
-								<a href="/reviews/{{ review.id }}">더보기</a> <!--바로 보이게 수정하기-->
+								{{ review.content }}
+								<!--{{ review.content|safe|truncatewords:"1"|linebreaks }}
+								<a href="/reviews/{{ review.id }}">더보기</a>--> <!--바로 보이게 수정하기-->
 							</div>
 						</div>
 						<div class="review_column">

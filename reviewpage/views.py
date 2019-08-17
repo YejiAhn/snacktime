@@ -24,11 +24,13 @@ def index(request):
     if request.method == 'GET':
         sort = request.GET.get('sort','')
         if sort == 'likes':
-            reviews = Review.objects.annotate(like_count= reviews.liked_users.count ).order_by('-like_count','-updated_at')
+            reviews = Review.objects.all()
+            
+            reviews.order_by('-like_count','-updated_at')
             return render(request, 'reviewpage/index.html', {'reviews': reviews})
         elif sort == 'mypost':
             user = request.user
-            reviews = Review.objects.filter(name_id = user).ordered_by('-update_date')
+            reviews = Review.objects.filter(name_id = user).ordered_by('-updated_at')
             return render(request, 'reviewpage/index.html', {'reviews': reviews})
         else:
             reviews = Review.objects.order_by('-updated_at')
@@ -46,6 +48,7 @@ def new(request):
 def show(request, id):
     if request.method == 'GET': # show
         review = Review.objects.get(id=id)
+
         return render(request, 'reviewpage/show.html', {'review': review})
 
     elif request.method == 'POST': # update
@@ -88,6 +91,7 @@ def review_like(request, pk):
         review.like_set.get(user_id = request.user.id).delete()
     else:
         Like.objects.create(user_id = request.user.id, review_id = review.id)
+    review.update_date()
     return redirect('/reviews')
 
 def review_save(request, pk):
