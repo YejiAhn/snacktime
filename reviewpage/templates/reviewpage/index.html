@@ -70,9 +70,9 @@
 					</span>
 					<a href="/reviews/{{ review.id }}/like" style="color: black;"> 
 						{% if  user in review.liked_users.all %}
-						<i class="fas fa-thumbs-up"></i>
+						<i class="fas fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
 						{% else %}
-						<i class="far fa-thumbs-up"></i>
+						<i class="far fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
 						{% endif %}
 						{{ review.liked_users.count }}
 					</a>
