@@ -238,6 +238,8 @@ input[name=content] {
 }
 
 #product-image {
+    max-height: 270px;
+    max-width: 270px;
     width: 300px;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -287,12 +289,13 @@ input[name=content] {
 }
 
 .text-box{
+    min-height: 250px;
+    margin-top: 30px;
     border-radius: 30px;
     position: relative;
     left: 330px;
     background: #c6ecf9;
     padding: 10px;
-    min-height: 300px;
    
 }
 .text-box-product{
@@ -411,7 +414,8 @@ input[name=content] {
     margin-left: 20px;
     font-weight: bold;
     text-decoration: none;
-    text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
+    color: black;
+    /* text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white; */
 }
 
 .search-bar {

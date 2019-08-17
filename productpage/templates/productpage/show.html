@@ -6,7 +6,7 @@
 <head>
     <title> 제품 상세 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
-    <link rel="stylesheet" href="{% static 'reviewpage/index.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'reviewpage/index.css' %}"> {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
@@ -86,7 +86,7 @@
 
 
 				<div class="review_box" style="width:100%;" href="/products/{{ review.product.id }}">
-				    
+
 		
 				<div class ="text-box-product" style="width:95%;">
 					<div class="rankings">
@@ -164,7 +164,7 @@ var myBarChart = new Chart(ctx, {
         tooltips: {enabled: false},
         hover: {mode: null},
         scales: {
-             xAxes: [{
+            xAxes: [{
                 ticks: {
                 callback: function (value) { if (Number.isInteger(value)) { return value; } },
                 beginAtZero: true

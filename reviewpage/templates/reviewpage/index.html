@@ -1,7 +1,7 @@
 
 {% extends 'base-review.html' %}
 {% load staticfiles %}
-  <link rel="stylesheet" href="{% static 'reviewpage/index.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'reviewpage/index.css' %}"> {% endcomment %}
  <script src="https://kit.fontawesome.com/e2620f3315.js"></script>
  
 {% block content %}
@@ -29,13 +29,14 @@
 				    
 					<div class="product_image">
 					{% if review.product.photo %}
-						<a href="/products/{{ review.product.id }}"><img id ="product-image" src = {{ review.product.photo }}></a>
+						<a href="/products/{{ review.product.id }}"><img style="margin-top: 15px;" id ="product-image" src = {{ review.product.photo }}></a>
 					{% endif %}
 					</div>				
 
-				<div class ="text-box">
+				<div class ="text-box" style = "width: 590px;">
 					<div class="rankings">
-						<img src="{{ review.emoticon }}" width = "30"> {{ review.review_rating }}
+						<img src="{{ review.emoticon }}" width = "30"> {{review.get_review_rating_display}}
+						{% comment %} {{ review.review_rating }} {% endcomment %}
 					</div>
 
 					{% if review.photo %}
@@ -65,6 +66,8 @@
 						<i class="fas fa-user-circle"></i>
 						{{ review.author.username }}
 					</span>
+
+
 					<a href="/reviews/{{ review.id }}/like" style="color: black;"> 
 						{% if  user in review.liked_users.all %}
 						<i class="fas fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
@@ -73,15 +76,19 @@
 						{% endif %}
 						{{ review.liked_users.count }}
 					</a>
-
+					
+					<span style="float: right;">
 					{% if request.user == review.author %}
 						<a  href="/reviews/{{ review.id }}/edit">
-						<i  class="material-icons">edit</i>
+						<i  class="far fa-edit"></i>
 						</a>
 						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
-						<i  class="material-icons">delete</i>
+						<i  class="far fa-trash-alt"></i>
 						</a>
 					{% endif %}
+					</span> 
+
+			
 				</div>
 			</div>
 		</div>
