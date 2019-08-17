@@ -15,16 +15,12 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-$(document).ready(() => {
-    var search = getUrlParameter('search');
-    if(search != undefined && search != ""){
-        $('.search-hide').hide();
-        $('.search-show').hide();
-        $('.search-result').show();
+$(document).ready(function(){
+    var sort = getUrlParameter('sort');
+    if(sort == 'likes'){
+      $('.sort-likes').prop('selected', 'selected')
+    }else{
+      $('.sort-date').prop('selected', 'selected')
     }
-    $('.button-show').on('click', () => {
-        $('.search-hide').hide();
-        $('.search-show').show();
-    })
-})
+  });
   

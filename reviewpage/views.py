@@ -10,12 +10,7 @@ def index(request):
     if request.method == 'GET':
         sort = request.GET.get('sort','')
         if sort == 'likes':
-            reviews = Review.objects.all()
-            reviews.order_by('-like_count','-updated_at')
-            return render(request, 'reviewpage/index.html', {'reviews': reviews})
-        elif sort == 'mypost':
-            user = request.user
-            reviews = Review.objects.filter(name_id = user).ordered_by('-updated_at')
+            reviews = Review.objects.order_by('-like_count', '-update_date')
             return render(request, 'reviewpage/index.html', {'reviews': reviews})
         else:
             reviews = Review.objects.order_by('-updated_at')
@@ -102,7 +97,9 @@ def review_like(request, pk):
     else:
         Like.objects.create(user_id = request.user.id, review_id = review.id)
     review.update_date()
-    return redirect('/reviews')
+    print(review.like_count)
+    next = request.META['HTTP_REFERER']
+    return redirect(next)
 
 def review_save(request, pk):
     review = Review.objects.get(id = pk)
