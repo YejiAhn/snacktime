@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Edit Review</h1>
-  <form action="/reviews/{{review.id}}/" method="POST">
+  <form action={{next}} method="POST">
     {% csrf_token %}
     <div class="select-rate">
       <input type="radio" name="review_rating" value="5" class="ranking">꿀맛😍</input>
