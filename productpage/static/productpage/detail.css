@@ -42,8 +42,13 @@ th,td{
 }
 
 .product-reviews{
+    color: rgb(43, 43, 43);
     margin: 50px;
     display: block;
+}
+
+.product-reviews a {
+    color: rgb(43, 43, 43);
 }
 
 .tag{

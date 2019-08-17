@@ -9,6 +9,10 @@ header {
     text-align: left;
 }
 
+* {
+    text-decoration: none;
+}
+
 
 
 .search-result{
@@ -173,9 +177,11 @@ input[name=content] {
 }
 
 .review-text {
+    color: rgb(43, 43, 43);
     overflow: auto;
     height: 70%;
 }
+
 
 .review_column {
     width: 33.33%;
@@ -289,9 +295,16 @@ input[name=content] {
     min-height: 300px;
    
 }
+.text-box-product{
+    width: 100%;
+    border-radius: 30px;
+    position: relative;
+    background: #c6ecf9;
+    padding: 10px;
+    min-height: 300px;
+}
 
 .button-wrapper{
-    position: absolute;
     bottom: 0px;
     margin-left: 20px;
     padding-bottom: 10px;
@@ -397,6 +410,7 @@ input[name=content] {
 .rankings {
     margin-left: 20px;
     font-weight: bold;
-
+    text-decoration: none;
     text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
 }
+
