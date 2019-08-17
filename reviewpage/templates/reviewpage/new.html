@@ -61,7 +61,6 @@
 
       event.target.classList.add('selected')
       const temp  = document.querySelector(`.rating[value=${event.target.value}]`)
-      alert(temp)
       event.target.classList.add('selected')
     }
     rankings.forEach(ranking => ranking.addEventListener('click', selectRanking))
