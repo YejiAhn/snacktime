@@ -21,15 +21,18 @@
 			<div class="review_bigcolumn">
 				<div class="product_image">
 					{% if review.product.photo %}
-						<a href="/products/{{ product.id }}"><img id ="product-image" src = {{ review.product.photo }}></a>
+						<a href="/products/{{ review.product.id }}"><img id ="product-image" src = {{ review.product.photo }}></a>
 					{% endif %}
+
 					<!--{% if review.product.PBstore%}
 						<img src="{{ product.PBstore }}" width = "20" alt="">
 					{% endif %}-->
 				</div>
 			</div>
 			<div class="review_bigcolumn">
-				<div class="review_box">
+				<a href="/products/{{ review.product.id }}">
+				<div class="review_box" href="/products/{{ review.product.id }}">
+				    
 					<div class="rankings">
 						<img src="{{ review.emoticon }}" width = "30"> {{ review.review_rating }}
 					</div>
@@ -53,6 +56,7 @@
 						{{ review.content }}
 					</div>	
 					{% endif %}
+					</a>
 				
 				<div  class="button-wrapper">
 					<span>
