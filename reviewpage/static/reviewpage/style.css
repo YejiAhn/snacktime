@@ -54,8 +54,8 @@ footer {
 
 .page_name {
     height: 60px;
-    /* margin:20px; */
-    /* padding:10px; */
+    width: 100%;
+    text-align: center;
 }
 
 .selecting-product {
@@ -63,11 +63,11 @@ footer {
 }
 
 .select_reviewproduct {
+    width: 100%;
     font-size: 40px;
     text-align: center;
     margin: 0 auto;
-
-}
+} 
 
 .ranking {
     font-size: 40px;

@@ -2,7 +2,9 @@
 
 {% block content %}
   <div class="page_name">
-    <h1 style="text-align:center; font-size:60px;">리뷰 작성하기</h1>
+  <div>
+    <h1 style="font-size:60px;">리뷰 작성하기</h1>
+    </div>
   </div> </br> </br>
 
   <form class="form-box" action="/reviews/" enctype="multipart/form-data" method="POST">
@@ -12,22 +14,33 @@
         <button class="mdl-button mdl-js-button mdl-button--fab">
           <i class="material-icons">add</i>
         </button>
-        <p style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</p>
+        <span style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</span>
       </div>
     </div>
 
     <div class="select-rate">
-      <input type="radio" name="review_rating" value="5" class="ranking">꿀맛😍</input>
+      {% comment %} <input type="radio" name="review_rating" value="5" class="ranking">꿀맛😍</input>
       <input type="radio" name="review_rating" value="4" class="ranking">맛나🙂</input>
       <input type="radio" name="review_rating" value="3" class="ranking">그닥😐</input>
       <input type="radio" name="review_rating" value="2" class="ranking">노맛🙁</input>
-      <input type="radio" name="review_rating" value="1" class="ranking">우웩🤮</input>
-    </div>
-    <h1>나만의 간단후기 쓰기</h1>
+      <input type="radio" name="review_rating" value="1" class="ranking">우웩🤮</input> {% endcomment %}
+      <span class="ggulmat">
+        <div> <img src="/static/reviewpage/img/003-in-love.png"> </div>
+        <div id="ranking-text"> 꿀맛 </div>
+      </span>
+      <span class="matna">
+        <div> <img src="/static/reviewpage/img/002-smile.png" style="height:60opx;"> </div>
+        <div id="ranking-text"> 맛나 </div>
+      </span>
+      <div class="kdak">
+        <div> <img src="/static/reviewpage/img/001-shock.png" style="height:60opx;"> </div>
+        <div id="ranking-text"> 그닥 </div>
+      </div>
+
+    <p style="font-size:40px;">나만의 간단후기 쓰기</p>
     <input name="content" value="제품의 맛, 식감, 가성비 등을 간단하게 표현해보아요!"/> <br />
     </br>
-    </br>
-    <input name="photo" type="file"/>
+    <input name="photo" type="file" style="height:40px;"/>
     </br>
     <input type="submit" value="리뷰 작성 완료!" />
   </form>
