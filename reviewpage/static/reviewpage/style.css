@@ -271,6 +271,7 @@ input[name=content] {
     z-index: 4;
     height: 100px;
     width: 100px;
+    cursor: pointer;
 }
 
 .text-box{

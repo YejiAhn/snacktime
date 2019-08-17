@@ -6,6 +6,7 @@ urlpatterns = [
     path('sort=likes', views.index, name="index_sort=like"),
     path('sort=mypost', views.index, name="index_sort=mypost"),
     path('new/', views.new, name='new'),
+    path('new/newProduct', views.newProduct, name='newProduct'),
     path('<int:id>/', views.show, name='show'),
     path('<int:id>/delete', views.delete, name='delete'),
     path('<int:id>/edit', views.edit, name='edit'),
