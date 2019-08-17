@@ -1,4 +1,6 @@
-
+.mycontent {
+    color: rgb(48,48,48);
+}
 .product-list__wrapper{
     padding-bottom: 200px;
     display: grid;

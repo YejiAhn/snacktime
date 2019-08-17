@@ -3,8 +3,8 @@
 {% block content %}
 
 <head>
-
-  <link rel="stylesheet" href="{% static 'mypage/index.css' %}">
+<link rel="stylesheet" href="{% static 'reviewpage/index.css' %}">
+ <link rel="stylesheet" href="{% static 'mypage/index.css' %}">
  <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
 </head>
 
@@ -31,8 +31,70 @@
 <div class="mycontent">
   <div id="reviewed-items">
     {% for review in eaten %}
-    {{ review.product}}
-    {{ review.content }}
+
+		<div class="review_bigrow">
+		
+			<div class="review_bigcolumn">
+				<a href="/products/{{ review.product.id }}">
+
+
+				<div class="review_box" style="width:100%;" href="/products/{{ review.product.id }}">
+		
+				<div class ="text-box-product" style="margin: 20px; width:93%;">
+					<div class="rankings">
+						<img src="{{ review.emoticon }}" width = "30"> <span style="text-decoration: none;">{{ review.review_rating }} </span>
+					</div>
+
+					{% if review.photo %}
+					<div class="review_row">
+						<div class="review_column">
+							<div class="review_text" style="width: 95%;">
+								{{ review.content }}
+								<!--{{ review.content|safe|truncatewords:"1"|linebreaks }}
+								<a href="/reviews/{{ review.id }}">더보기</a>--> <!--바로 보이게 수정하기-->
+							</div>
+						</div>
+						<div class="review_column">
+							<div class="review_image">
+								<img src="{{ review.photo.url }}" alt=""/>
+							</div>
+						</div>​
+					</div>
+					{% else %}
+					<div class="review_text">
+						{{ review.content }}
+					</div>	
+					{% endif %}
+					</a>
+				
+				<div class="button-wrapper">
+					<span>
+						<i class="fas fa-user-circle"></i>
+						{{ review.author.username }}
+					</span>
+					<a href="/reviews/{{ review.id }}/like" style="color: black;"> 
+						{% if  user in review.liked_users.all %}
+						<i class="fas fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
+						{% else %}
+						<i class="far fa-thumbs-up" href="reviews/{{review.id}}/like"></i>
+						{% endif %}
+						{{ review.liked_users.count }}
+					</a>
+
+					{% if request.user == review.author %}
+						<a  href="/reviews/{{ review.id }}/edit">
+						<i  class="material-icons">edit</i>
+						</a>
+						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
+						<i  class="material-icons">delete</i>
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+
     {% endfor %}
   </div>
 
@@ -86,13 +148,6 @@
                   <th></th>
                   <td>{{product.price}}</td>
               </tr>
-              {% comment %} <tr class = "rating">
-                  <th></th>
-                  <td style = "font-size: 3vw; font-weight: bold;">
-                  <img src="{{ product.emoticon }}" width = "30" alt=""> 
-                  {{product.rating}} 
-                  </td>
-              </tr> {% endcomment %}
           </tbody>
         </table>
       </div>

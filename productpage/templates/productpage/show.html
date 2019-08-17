@@ -83,13 +83,12 @@
 		<div class="review_bigrow">
 		
 			<div class="review_bigcolumn">
-				<a href="/products/{{ review.product.id }}">
 
 
 				<div class="review_box" style="width:100%;" href="/products/{{ review.product.id }}">
 				    
 		
-				<div class ="text-box-product" style="width:100%;">
+				<div class ="text-box-product" style="width:95%;">
 					<div class="rankings">
 						<img src="{{ review.emoticon }}" width = "30"> <span style="text-decoration: none;">{{ review.review_rating }} </span>
 					</div>
@@ -97,7 +96,7 @@
 					{% if review.photo %}
 					<div class="review_row">
 						<div class="review_column">
-							<div class="review_text">
+							<div class="review_text" style="width: 100%;">
 								{{ review.content }}
 								<!--{{ review.content|safe|truncatewords:"1"|linebreaks }}
 								<a href="/reviews/{{ review.id }}">더보기</a>--> <!--바로 보이게 수정하기-->
@@ -114,7 +113,7 @@
 						{{ review.content }}
 					</div>	
 					{% endif %}
-					</a>
+			
 				
 				<div class="button-wrapper">
 					<span>
