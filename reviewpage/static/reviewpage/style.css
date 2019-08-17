@@ -239,6 +239,8 @@ input[name=content] {
 }
 
 #product-image {
+    max-height: 270px;
+    max-width: 270px;
     width: 300px;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -288,12 +290,12 @@ input[name=content] {
 }
 
 .text-box{
+    margin-top: 30px;
     border-radius: 30px;
     position: relative;
     left: 330px;
     background: #c6ecf9;
     padding: 10px;
-    min-height: 300px;
    
 }
 .text-box-product{
