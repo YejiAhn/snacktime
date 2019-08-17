@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Review, Like, Save
+from .models import Product, Review, Like, Save
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
@@ -44,10 +44,21 @@ def index(request):
         return redirect('/reviews')
 
 def new(request):
-    return render(request, 'reviewpage/new.html')
-
+    id = request.GET.get('product_id', None)
+    if id:
+        product = Product.objects.get(id=id)
+        return render(request, 'reviewpage/new.html', {'product': product })
+    else:
+        return render(request, 'reviewpage/new.html')
+        
 def newProduct(request):
-    return render(request, 'reviewpage/newProduct.html')
+    search = request.GET.get('search', '')
+    if search: 
+        products = Product.objects.all()
+        products = products.filter(name__icontains=search)
+        return render(request, 'reviewpage/newProduct.html', {'products':products})
+    else:
+        return render(request, 'reviewpage/newProduct.html')
 
 def show(request, id):
     if request.method == 'GET': # show

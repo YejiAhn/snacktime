@@ -400,3 +400,9 @@ input[name=content] {
 
     text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
 }
+
+.search-bar {
+    background-color: #18bfd9;
+    height: 120px;
+
+}

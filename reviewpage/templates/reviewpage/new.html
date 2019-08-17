@@ -7,23 +7,38 @@
     </div>
   </div> 
   </br> </br>
-
+  
   <form class="form-box" action="/reviews/" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     <div class="selecting-product">
+
+    {% if product %} 
+      <section class = "product-info">
+        <img src = {{ product.photo }} class = "product-info__photo" >
+        <div class = "product-info__texts">
+            <table>
+            <tbody>
+                <tr style = "font-size: 45px; line-height: 200%;">
+                    <th>상품명</th>
+                    <td> {{ product.name }} </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+      </section>
+      
+    {% else %}
       <div class="select_reviewproduct">
         
           <a style = "margin-right: 20px; text-decoration: none; background-color: whitesmoke; border-radius: 50px; padding: 5px; text-align: center;" href="/reviews/new/newProduct">
             <span style="padding-left: 10px;"> + </span>
           </a>
-       
-      
-
         <span style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</span>
              
       </div>
+      {% endif%}
     </div>
-      
+
     <div class="select-rate">
      <input type="text" style="display:none;" name="review_rating" id = "rated"></input>
       {% comment %} <input type="radio" name="review_rating" value="5" class="rating"></input>

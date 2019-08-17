@@ -1,17 +1,87 @@
-<!DOCTYPE html>
-{% extends 'base-my.html' %}
 {% load staticfiles %}
 
-{% block content%}
+<!DOCTYPE html>
+{% comment %} {% extends 'base-my.html' %}
+
+{% block content%} {% endcomment %}
 <html>
   <head>
     <meta charset="utf-8">
     <title>snacktime</title>
-    <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}"/>
+    <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </head>
   <body>
-    <p>상품 검색 </p>
+    
+  <div class="search-bar">
+    <form action="/reviews/new/newProduct" method="get" id="searching2">
+      <div class="search-box">
+        <input id="search" type="text" name="search" value="{{search}}" placeholder="제품을 검색해보세요.">
+      </div>
+      <a href="#" onclick="document.getElementById('searching2').submit()">
+        <i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i>
+      </a>
+    </form>
+  </div>
+
+  <div class ="product-list__wrapper">
+  {% for product in products %}
+    <div class="product-list">
+
+        <div class = "table-wrap">
+        <table>
+          <tbody>
+              <div class = "image-wrap">
+                <div class = "pb-image">
+
+                  {% if product.pb_store_code == '1' %}
+                    <img id="pb-img" src="{% static 'cu.png' %}" width="100px"  alt="">
+                  {% elif product.pb_store_code == '2' %}
+                    <img id="pb-img" src="{% static 'gs25.gif' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '3' %}
+                    <img id="pb-img" src="{% static '7eleven.jpeg' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '4' %}
+                    <img id="pb-img" src="{% static 'emart24.png' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '5' %}
+                    <img id="pb-img" src="{% static 'ministop.jpeg' %}" width="100px" alt="">  
+                  {% endif %}
+                </div>
+                <div class='product-image'>
+                  {% if product.photo %}
+                    <a href="/reviews/new?product_id={{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+                  {% endif %}
+                </div>
+              </div> 
+              <tr style = "font-size: 3.5vw; line-height: 130%;">
+                  <th></th>
+                  <td>{{product.name}}
+                  </td>
+              </tr>
+              <tr style = "font-size: 3vw; line-height: 130%;">
+                  <th></th>
+                  <td>{{product.price}}</td>
+              </tr>
+              {% comment %} <tr class = "rating">
+                  <th></th>
+                  <td style = "font-size: 3vw; font-weight: bold;">
+                  <img src="{{ product.emoticon }}" width = "30" alt=""> 
+                  {{product.rating}} 
+                  </td>
+              </tr> {% endcomment %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  {% endfor %}
+</div>
+
   </body>
 </html>
 
-{% endblock %}
+{% comment %} {% endblock %} {% endcomment %}
