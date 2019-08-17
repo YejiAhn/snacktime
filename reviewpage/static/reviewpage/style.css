@@ -381,6 +381,7 @@ input[name=content] {
 .search-show {
     display: none;
 }
+<<<<<<< HEAD
 
 .my-button {
     position:  fixed;
@@ -419,3 +420,5 @@ input[name=content] {
     height: 120px;
 
 }
+=======
+>>>>>>> sangwoo

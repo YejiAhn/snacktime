@@ -177,7 +177,11 @@ th img {
     width: 100%;
 }
 
+<<<<<<< HEAD
 .my-button {
+=======
+.mdl-button.mdl-button--colored {
+>>>>>>> sangwoo
     position:  fixed;
     bottom:  200px;
     right:  40px;
@@ -206,5 +210,8 @@ th img {
     position: relative;
     
 } */
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> sangwoo
