@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django import forms
-
 import numpy as np
 # Create your models here.
 from faker import Faker
@@ -197,7 +196,7 @@ class Review(models.Model):
 
 
     created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezome.now)
+    updated_at = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     photo = models.ImageField(blank=True, upload_to='review_photos')
     liked_users = models.ManyToManyField(
