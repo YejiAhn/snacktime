@@ -1,4 +1,6 @@
+
 .product-list__wrapper{
+    padding-bottom: 200px;
     display: grid;
     padding-left: 20px;
     padding-right: 20px;
@@ -8,6 +10,9 @@
     grid-row-gap: -20px;
 }
 
+.top-icons{
+    display: block;
+}
 .conv-filter__wrapper  {
     position: relative;
     left: 65%;
@@ -75,15 +80,14 @@
 }
 .pb-image{
     position:relative;
-    text-align: right;
     margin: 2.5%;
     background-color: white;
-    height: 30px;
     overflow: visible;
     z-index:1;
 }
 
 #pb-img{
+    margin: 20px;
     border:0;
     
 }
@@ -170,8 +174,7 @@ th img {
 .bookmark{
     z-index: 2;
     position: relative;
-    width:25%;
-    left: 75%;
+    width: 100%;
 }
 
 /* .table-wrap{
