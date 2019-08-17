@@ -34,7 +34,7 @@ urlpatterns = [
     path('mypage/', include('mypage.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', accounts.views.signup, name='signup'),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
+    # url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
