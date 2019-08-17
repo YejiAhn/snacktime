@@ -199,7 +199,6 @@ input[name=content] {
     width:  570px;
     margin-bottom: 20px;
 
-    padding: 10px;
     vertical-align:  top;
   
     line-height: 130%;
@@ -414,7 +413,8 @@ input[name=content] {
     margin-left: 20px;
     font-weight: bold;
     text-decoration: none;
-    text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
+    color: black;
+    /* text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white; */
 }
 
 .search-bar {

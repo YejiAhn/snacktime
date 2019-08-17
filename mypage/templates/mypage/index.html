@@ -3,13 +3,13 @@
 {% block content %}
 
 <head>
-<link rel="stylesheet" href="{% static 'reviewpage/index.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static 'reviewpage/index.css' %}"> {% endcomment %}
  <link rel="stylesheet" href="{% static 'mypage/index.css' %}">
  <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
 </head>
 
 <div class="user">
-  <div class="icon">
+  <div class="icon" style="width:50px; height:auto;">
     <img src = {% static 'donut.gif'%}/>
   </div>
   <div class="user-info">
@@ -46,7 +46,7 @@
 		
 				<div class ="text-box" style="margin-top: 30px; width: 580px;">
 					<div class="rankings">
-						<img src="{{ review.emoticon }}" width = "30"> <span style="text-decoration: none;">{{ review.review_rating }} </span>
+						<img src="{{ review.emoticon }}" width = "30"> <span style="text-decoration: none;">{{ review.get_review_rating_display }} </span>
 					</div>
 
 					{% if review.photo %}
@@ -86,14 +86,14 @@
 					</a>
           </span>
 
-					{% if request.user == review.author %}
+					{% comment %} {% if request.user == review.author %}
 						<a  href="/reviews/{{ review.id }}/edit">
 						<i  class="far fa-edit"></i>
 						</a>
 						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
 						<i  class="far fa-trash-alt"></i>
 						</a>
-					{% endif %}
+					{% endif %} {% endcomment %}
 				</div>
 			</div>
 		</div>

@@ -61,7 +61,6 @@ def show(request, id):
         
         # Need to implement these data.
         # product, author, liked_users
-
         content = request.POST['content']
         review_rating = request.POST['review_rating']
         # photo = request.FILES['photo']:
