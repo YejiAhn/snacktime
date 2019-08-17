@@ -1,0 +1,38 @@
+.info{
+
+    text-align: center;
+    margin: 50px;
+    margin-top: 400px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+* {
+    text-decoration: none;
+}
+.signup-button {
+    margin: 30px;
+    font-size: 70px;
+    color: white;
+    font-weight: 600;
+    background-color:  #18bfd9;
+    padding: 40px;
+    border-radius: 130px;
+}
+
+.login-button {
+    margin: 30px;
+    font-size: 70px;
+    color: white;
+    font-weight: 600;
+    background-color: black;
+    padding: 40px;
+    border-radius: 130px;
+
+}
+
+
+.user-button-wrapper{
+    text-align: center;
+    margin-top: 150px;
+}

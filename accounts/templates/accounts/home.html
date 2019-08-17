@@ -2,23 +2,47 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset = "utf-8">
-        <title> 간식타임 홈화면 </title>
-        <link rel="stylesheet"  href="{% static 'accounts/accounts-style.css' %}"/>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+    <title>snacktime</title>
+    <link rel="stylesheet" href="{% static 'reviewpage/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'accounts/home.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-pink.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </head>
+  <body>
+  <header>
+    {% comment %} <div class="welcome" style="float: right; text-align: right; width: 50%;">
+      {% if user.is_authenticated %}
+        {{ user.get_username }}님, 안녕하세요
+          <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+        {% else %}
+          <a href="{% url 'signup' %}">회원가입</a>
+          <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
+        {% endif %}
+    </div> {% endcomment %}
 
-    <body>
-        <img src="{% static 'accounts/img/간식타임 로고.png' %}" width = "50%">
-        <div class="home-button">
-            <p>회원가입</p>
-            <p>로그인</p>
-        </div>
-        <ul>
-            <li>아이디/비밀번호 찾기</li>
-            <li>개인정보정책</li>
-            <li>서비스이용약관</li>
-        </ul>
+    
+    <div style="width: 100%; text-align: center;">
+    <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+    </div>
+    {% comment %} <a href="#"><i class="fas fa-chevron-left fa-2x" style="position: relative; color: white; top:-85px; left: 30px; float: left;"></i></a> {% endcomment %}
+   
+    
 
-    </body>
-</html>
+  </header>
+
+  <body>
+    <div class = "info"> 간식타임 이용을 위해 로그인 해주세요! </div>
+
+    <div class = "user-button-wrapper">
+        <a class = "signup-button" href = "/accounts/signup"> 회원가입 </a>
+        <a class = "login-button" href = "/accounts/login"> 로그인 </a> 
+    </div>
+
+
+
+  </body>

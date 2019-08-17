@@ -170,3 +170,7 @@ AUTHENTICATION_BACKENDS = (
 # For heroku Static file and host settings
 import django_heroku
 django_heroku.settings(locals())
+
+AUTHENTICATION_BACKENDS = (
+   'django.contrib.auth.backends.ModelBackend',
+   )
