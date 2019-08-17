@@ -51,7 +51,9 @@
 
   <script>
     const rankings = document.querySelectorAll('.ranking')
+   
     function selectRanking(event) {
+     
       const selectedRanking = document.querySelector('.ranking.selected')
       const selectedRating = document.querySelector('.rating.selected')
       if (selectedRanking) selectedRanking.classList.remove('selected')
@@ -59,6 +61,7 @@
 
       event.target.classList.add('selected')
       const temp  = document.querySelector(`.rating[value=${event.target.value}]`)
+      alert(temp)
       event.target.classList.add('selected')
     }
     rankings.forEach(ranking => ranking.addEventListener('click', selectRanking))

@@ -37,8 +37,9 @@ def index(request):
     elif request.method == 'POST': # create
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
-        # review_rating = request.POST['review_rating']
-        review_rating = request.POST.get('review_rating','').value()
+        review_rating = request.POST['review_rating']
+        # review_rating = request.POST.get('review_rating','')
+        print(review_rating)
         Review.objects.create(review_rating=review_rating, content=content, author=request.user, photo=photo)
         return redirect('/reviews')
 
