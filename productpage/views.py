@@ -212,19 +212,9 @@ def category(request, ct, pb):
     search = request.GET.get('search', '')
 
     for (key, value) in CATEGORY_CODES.items():
-<<<<<<< HEAD
-
-=======
->>>>>>> sangwoo
         if key < 10 : 
             MAIN_CATEGORY[key] = value
-        else:
-            if ct<10 and key//10==ct: 
-                SUB_CATEGORY[key] = value
-            elif ct>=10 and key//10==ct//10: 
-                SUB_CATEGORY[key] = value
 
-<<<<<<< HEAD
         elif key//10 == ct or key//10 == ct//10: 
             SUB_CATEGORY[key] = value
     
@@ -244,31 +234,6 @@ def category(request, ct, pb):
         key_ct = int(ct / 10)
         products = Product.objects.all().filter(category_code = ct)
     
-=======
-    print(MAIN_CATEGORY)
-    print(SUB_CATEGORY)
-
-    if ct == 0:
-        products = Product.objects.all()
-    elif ct < 10: 
-        products = Product.objects.all()
-        count=0
-        del SUB_CATEGORY[10*ct]
-        SUB_CATEGORY[10*ct]= '기타'
-        
-        for key in SUB_CATEGORY.keys():
-            if count==0:
-                products = products.filter(category_code=key)
-                count=1
-                print(count)
-            else:
-                products = products or Product.objects.all().filter(category_code=key)
-    else:
-        products = Product.objects.all().filter(category_code= ct)
-        del SUB_CATEGORY[10*(ct//10)]
-        SUB_CATEGORY[10*(ct//10)]= '기타'
-
->>>>>>> sangwoo
     if pb != 0: 
         products = products.filter(pb_store_code = pb)
     print(search)
@@ -280,13 +245,8 @@ def category(request, ct, pb):
     #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
     # else : 
     #     products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
-<<<<<<< HEAD
     return render(request, 'productpage/category.html', {'search' : search, 'products': products, 'categories':MAIN_CATEGORY, 'sub_categories': dict(sorted_sub), 'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb, 'key_ct': key_ct})
 
-=======
-    # SUB_CATEGORY=dict(SUB_CATEGORY)
-    return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY,'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb})
->>>>>>> sangwoo
 
 
 
