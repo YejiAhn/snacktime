@@ -15,9 +15,27 @@
 			<option class="sort-mypost" value="?sort=mypost">내 리뷰</option>
 			{% endif %}
 		</select>
-		<br>
 		
+		<div class = "review_filter__wrapper">
+			{% for key, value in review_category.CATEGIRY_CODES %} 
+			  <a id = "review_filter" href="/reviews/category/{{ key }}/{{pb}}">{{ value }}</a>
+			{% endfor %}
+		</div>
+
 		{% for review in reviews %}
+
+		{% comment %}
+		{% if user.is_authenticated %}
+        <a href="/products/{{ product.id }}/save">
+          {% if product in user.products_saved.all %}
+            <img class = "bookmark" src = {% static 'bookmark_cancel.png' %} >
+          {% else %}
+            <img class = "bookmark" src = {% static 'bookmark.png' %} style= "opacity:0.8" >
+          {% endif %}
+        </a>
+		{% endif %}
+		{% endcomment %}
+
 		<div class="review_bigrow">
 			<div class="review_bigcolumn">
 				<div class="product_image">
@@ -32,15 +50,14 @@
 			<div class="review_bigcolumn">
 				<div class="review_box">
 					<div class="rankings">
-						<img src="{{ review.emoticon }}" width = "30"> {{ review.review_rating }}
+						<img src="{{ review.emoticon }}" width = "30"> <p style="font-size: 25px; display: inline; font-weight: bold;"> {{ review.review_comment }} </p>
 					</div>
 					{% if review.photo %}
 					<div class="review_row">
 						<div class="review_column">
 							<div class="review_text">
-								{{ review.content }}
-								<!--{{ review.content|safe|truncatewords:"1"|linebreaks }}
-								<a href="/reviews/{{ review.id }}">더보기</a>--> <!--바로 보이게 수정하기-->
+								{{ review.content|truncatewords_html:1|linebreaks }}
+								<a href="/reviews/{{ review.id }}">더보기</a>
 							</div>
 						</div>
 						<div class="review_column">
@@ -56,15 +73,15 @@
 					{% endif %}
 				
 				<div  class="button-wrapper">
-						<span>
-							<i class="material-icons">portrait</i> <!--icon needed to change-->
-							{{ review.author.username }}
-						</span>
+					<span>
+						<i class="material-icons">portrait</i> <!--icon needed to change-->
+						{{ review.author.username }}
+					</span>
 					<a  href="/reviews/{{ review.id }}/like"> 
 						{% if  user in review.liked_users.all %}
-						<img class="like" src="https://image.flaticon.com/icons/svg/25/25423.svg">
+							<img class="like" src="https://image.flaticon.com/icons/svg/25/25423.svg" width="25px", height="25px">
 						{% else %}
-						<img class="like" src="https://image.flaticon.com/icons/svg/25/25297.svg">
+							<img class="like" src="https://image.flaticon.com/icons/svg/25/25297.svg" width="25px", height="25px">
 						{% endif %}
 						{{ review.liked_users.count }}
 					</a>

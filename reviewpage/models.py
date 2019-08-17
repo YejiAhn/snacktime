@@ -193,6 +193,20 @@ class Review(models.Model):
         # print()
         return emoticon
 
+    @property
+    def review_comment(self):
+        if self.review_rating==1:
+            review_comment = "우웩"
+        elif self.review_rating==2:
+            review_comment = "노맛"
+        elif self.review_rating==3:
+            review_comment = "그닥"
+        elif self.review_rating==4:
+            review_comment = "맛나"
+        else:
+            review_comment = "꿀맛"
+        self.save()
+        return review_comment
 
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)

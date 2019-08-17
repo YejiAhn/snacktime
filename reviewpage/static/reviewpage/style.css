@@ -191,14 +191,16 @@ input[name=content] {
 }
 
 .button-wrapper {
+    width: 580px;
 	padding: 10px;
     text-align: right;
     position: absolute;
-    bottom: 0px;
+    bottom: 5px;
 }
 
 .button-wrapper > a {
     text-decoration: none;
+    right: 30px;
 }
 
 .button-wrapper > span {
@@ -210,7 +212,8 @@ input[name=content] {
 }
 
 .mdl-textfield.mdl-js-textfield > button  {
-	margin-left:  10px;
+    margin-left:  10px;
+    z-index: 3px;
 }
 
 
@@ -243,3 +246,8 @@ input[name=content] {
     padding-left: 12px;
 }
 
+.review_filter__wrapper{
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+}
