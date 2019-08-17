@@ -1,1 +1,143 @@
-<h1> My Page </h1>
+{% extends 'base-my.html' %}
+{% load  staticfiles %}
+{% block content %}
+
+<head>
+
+  <link rel="stylesheet" href="{% static 'mypage/index.css' %}">
+ <link  rel="stylesheet"  href="{% static 'productpage/index.css' %}" />
+</head>
+
+<div class="user">
+  <div class="icon">
+    <img src = {% static 'donut.gif'%}/>
+  </div>
+  <div class="user-info">
+    <div class="nickname">{{user.username}}</div>
+    <div class="reviewed">내가 쓴 리뷰: {{ eaten.count }}개</div>
+    <div class="saved">내가 저장한 간식: {{ wish.count }}개</div>
+  </div>
+</div>
+
+<div class="tab">
+  <div id="reviewed-tab" onclick="showReviewed()" class="reviewed showed">
+    먹어본 간식 ({{eaten.count}})
+
+  </div>
+  <div id="saved-tab" onclick="showSaved()" class="saved">
+    먹어볼 간식 ({{wish.count}})
+  </div>
+</div>
+<div class="mycontent">
+  <div id="reviewed-items">
+    {% for review in eaten %}
+    {{ review.product}}
+    {{ review.content }}
+    {% endfor %}
+  </div>
+
+  <div id="saved-items">
+
+  <div class ="product-list__wrapper">
+    {% for product in wish %}
+    
+
+
+    <div class="product-list">
+
+      
+
+
+
+        <div class = "table-wrap">
+        <table>
+          <tbody>
+              <div class = "image-wrap">
+                <div class = "pb-image" >
+                      {% if user.is_authenticated %}
+                        <a style="float:right; width:70px;" href="/products/{{ product.id }}/save">        <!--view-->
+                          {% if product in user.products_saved.all %}
+                            <img class = "bookmark" src = {% static 'bookmark_cancel.png'%} >
+                          {% else %}
+                            <img class = "bookmark" src = {% static 'bookmark.gif'%} style= "opacity:0.8" >
+                          {% endif %}
+                        </a>
+                      {% endif %}
+
+
+                  {% if product.pb_store_code == '1' %}
+                    <img id="pb-img" src="{% static 'cu.png' %}" width="100px"  alt="">
+                  {% elif product.pb_store_code == '2' %}
+                    <img id="pb-img" src="{% static 'gs25.gif' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '3' %}
+                    <img id="pb-img" src="{% static '7eleven.jpeg' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '4' %}
+                    <img id="pb-img" src="{% static 'emart24.png' %}" width="100px" alt="">  
+                  {% elif product.pb_store_code == '5' %}
+                    <img id="pb-img" src="{% static 'ministop.jpeg' %}" width="100px" alt="">  
+                  {% endif %}
+                </div>
+                <div class='product-image'>
+                  {% if product.photo %}
+                    <a href="/products/{{ product.id }}"><img id ="product-img" src = {{ product.photo }}></a>
+                  {% endif %}
+                </div>
+              </div> 
+              <tr style = "font-size: 3.5vw; line-height: 130%;">
+                  <th></th>
+                  <td>{{product.name}}
+                  </td>
+              </tr>
+              <tr style = "font-size: 3vw; line-height: 130%;">
+                  <th></th>
+                  <td>{{product.price}}</td>
+              </tr>
+              {% comment %} <tr class = "rating">
+                  <th></th>
+                  <td style = "font-size: 3vw; font-weight: bold;">
+                  <img src="{{ product.emoticon }}" width = "30" alt=""> 
+                  {{product.rating}} 
+                  </td>
+              </tr> {% endcomment %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+ 
+
+    {% endfor %}
+    </div>
+  </div>
+</div>
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+        onclick="location.href='/reviews/new'">
+  <i class="material-icons">add</i>
+</button>
+
+<script>
+  const saved_tab = document.getElementById("saved-tab")
+  const reviewed = document.getElementById("reviewed-tab")
+
+  const saved_items = document.getElementById("saved-items")
+  const reviewed_items = document.getElementById("reviewed-items")
+
+  function showSaved() {
+    saved_tab.classList.add('showed')
+    reviewed.classList.remove('showed')
+    saved_items.style.display = 'block'
+    reviewed_items.style.display = 'none'
+  }
+
+  function showReviewed() {
+    saved_tab.classList.remove('showed')
+    reviewed.classList.add('showed')
+    saved_items.style.display = 'none'
+    reviewed_items.style.display = 'block'
+  }
+
+  showReviewed()
+</script>
+
+
+{% endblock content %}

@@ -22,12 +22,6 @@ body {
     vertical-align:  top;
 }
 
-.form-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 footer {
     position: fixed;
     left: 0;
@@ -60,71 +54,25 @@ footer {
 
 .page_name {
     height: 60px;
-    width: 100%;
-    text-align: center;
+    /* margin:20px; */
+    /* padding:10px; */
 }
 
 .selecting-product {
-    height: 300px;
+    height: 150px;
 }
 
 .select_reviewproduct {
-    width: 100%;
     font-size: 40px;
     text-align: center;
     margin: 0 auto;
-} 
 
-/*********************************/
-
-.select-rate {
-    height: 260px;
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 40px;
-
-}
-
-.rating {
-    display: none;
-    width: 0px;
-    height: 0px;
-    visibility: collapse;
 }
 
 .ranking {
     font-size: 40px;
-    width: 15%;
-    height: auto;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-bottom: 40px;
-
-    opacity: 0.4;
-    cursor: pointer;
+    text-align: left;
 }
-.ranking:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-.ranking.selected {
-    opacity: 1;
-}
-
-.ranking img {
-    width: 90%;
-    height: auto;
-}
-
-.ranking-text {
-    text-align:center;
-}
-
-/*********************************/
 
 input[type=submit] {
     width: 90%;
@@ -133,14 +81,12 @@ input[type=submit] {
     color: white;
     text-align: center;
     font-size: 50px;
-    border-radius: 30px;
 }
 
 input[name=content] {
-    height: 300px;
+    height: 200px;
     width: 90%;
-    /* background-color: #D6DBDF; */
-    background-color: whitesmoke;
+    background-color: #D6DBDF;
     font-size: 30px;
 }
 
@@ -316,3 +262,6 @@ input[name=content] {
     box-shadow: inset 0 1px 5px rgb(125, 125, 125);
 }
 
+.select-rate {
+    height: 200px;
+}

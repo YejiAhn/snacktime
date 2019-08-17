@@ -1,26 +1,78 @@
-{% extends 'base.html'%}
+{% extends 'base-review.html'%}
 
 {% block content %}
   <div class="page_name">
-    <h2>리뷰 작성하기</h2>
-  </div>
-  <form action="/reviews/" enctype="multipart/form-data" method="POST">
-    {% csrf_token %}
-    <div class="select_reviewproduct">
-      <p>리뷰하실 제품을 선택해주세요</p>
+    <div>
+      <h1 style="font-size:60px;">&nbsp; &nbsp; &nbsp; 리뷰 작성하기</h1>
     </div>
+  </div> 
+  </br> </br>
+
+  <form class="form-box" action="/reviews/" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <div class="selecting-product">
+      <div class="select_reviewproduct">
+        <button class="mdl-button mdl-js-button mdl-button--fab">
+          <i class="material-icons">add</i>
+        </button>
+        <span style="font-size:40px; color:gray">리뷰하실 제품을 선택해주세요</span>
+      </div>
+    </div>
+
     <div class="select-rate">
-      <input type="radio" name="review_rating" value="5" class="ranking">꿀맛😍</input>
-      <input type="radio" name="review_rating" value="4" class="ranking">맛나🙂</input>
-      <input type="radio" name="review_rating" value="3" class="ranking">그닥😐</input>
-      <input type="radio" name="review_rating" value="2" class="ranking">노맛🙁</input>
-      <input type="radio" name="review_rating" value="1" class="ranking">우웩🤮</input>
-    <h1>나만의 간단후기 쓰기</h1>
-    <input name="content" value="제품의 맛, 식감, 가성비 등을 간단하게 표현해보아요!"/> <br />
-    </br>
-    </br>
-    <input name="photo" type="file"/>
-    </br>
-    <input type="submit" value="리뷰 작성 완료!" />
+      <input type="radio" name="review_rating" value="5" class="rating"></input>
+      <input type="radio" name="review_rating" value="4" class="rating"></input>
+      <input type="radio" name="review_rating" value="3" class="rating"></input>
+      <input type="radio" name="review_rating" value="2" class="rating"></input>
+      <input type="radio" name="review_rating" value="1" class="rating"></input>
+
+      <div class="ranking" value="5">
+        <div> <img src="/static/reviewpage/img/003-in-love.png"> </div>
+        <span id="ranking-text"> 꿀맛 </span>
+      </div>
+      <div class="ranking" value="4">
+        <div> <img src="/static/reviewpage/img/002-smile.png"> </div>
+        <div id="ranking-text"> 맛나 </div>
+      </div>
+      <div class="ranking" value="3">
+        <div> <img src="/static/reviewpage/img/001-shock.png"> </div>
+        <div id="ranking-text"> 그닥 </div>
+      </div>
+      <div class="ranking" value="2">
+        <div> <img src="/static/reviewpage/img/004-sad.png"> </div>
+        <div id="ranking-text"> 노맛 </div>
+      </div>
+      <div class="ranking" value="1">
+        <div> <img src="/static/reviewpage/img/005-vomit.png"> </div>
+        <div id="ranking-text"> 우웩 </div>
+      </div>
+      
+    </div>
+
+
+      <p style="font-size:40px; align-self: flex-start; padding-left:5%;">나만의 간단후기 쓰기</p>
+      <input name="content" focus="autofocus" placeholder="제품의 맛, 식감, 가성비 등을 간단하게 표현해보아요!"/> <br />
+      </br>
+      <input name="photo" type="file" style="height:40px;"/>
+      </br>
+      <input type="submit" value="리뷰 작성 완료!" />
   </form>
+
+  <script>
+    const rankings = document.querySelectorAll('.ranking')
+    function selectRanking(event) {
+      const selectedRanking = document.querySelector('.ranking.selected')
+      const selectedRating = document.querySelector('.rating.selected')
+      if (selectedRanking) selectedRanking.classList.remove('selected')
+      if (selectedRating) selectedRanking.classList.remove('selected')
+
+      event.target.classList.add('selected')
+      const temp  = document.querySelector(`.rating[value=${event.target.value}]`)
+      event.target.classList.add('selected')
+    }
+    rankings.forEach(ranking => ranking.addEventListener('click', selectRanking))
+
+  </script>
+
 {% endblock content %}
+

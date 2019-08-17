@@ -1,4 +1,6 @@
-
+body {
+    padding-bottom: 100px;
+}
 .product-info{
     padding: 50px 50px 20px 50px;
     display: block;
@@ -10,13 +12,13 @@
 
 .product-info__texts{
     position: absolute;
-    top: 120px;
+    top: 250px;
     left: 45%;
     width: 50%;
 }
 
 table{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 th{

@@ -1,22 +1,15 @@
+{% extends 'base-product.html' %}
 {% load  staticfiles %}
+
+
+{% block content %}
 
 <head>
     <title> 제품 상세 페이지 </title>
     <link  rel="stylesheet"  href="{% static 'productpage/detail.css' %}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
-<body><style>
-.gray-star{
-    display:inline-block;
-}
-.star{
-    position: relative;
-    top: -60px;
-    display: inline;
-    overflow: hidden;
-    display:block; 
-}
-</style>
+<body>
 
 <section class = "product-info">
     <img src = "http://cdn2.bgfretail.com/bgfbrand/files/product/0FC9FB3FFFDD41CDAAC4701F0AC2B254.jpg" class = "product-info__photo" >
@@ -133,3 +126,5 @@ var myBarChart = new Chart(ctx, {
 });
 </script>
 </body>
+
+{% endblock %}
