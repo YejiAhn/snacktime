@@ -90,6 +90,7 @@ footer {
 } 
 
 
+
 /*********************************/
 
 .select-rate {
@@ -102,12 +103,12 @@ footer {
 
 }
 
-.rating {
+/* .rating {
     display: none;
     width: 0px;
     height: 0px;
     visibility: collapse;
-}
+} */
 
 .ranking {
     font-size: 40px;
