@@ -36,6 +36,11 @@
   </div>
 </div>
 
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+        onclick="location.href='/reviews/new'">
+  <i class="material-icons">add</i>
+</button>
+
 <div class = "filter__wrapper">
   {% for key, value in categories.items %} 
     {% if ct == key %}
