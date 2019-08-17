@@ -207,16 +207,27 @@ def category(request, ct, pb):
     search = request.GET.get('search', '')
 
     for (key, value) in CATEGORY_CODES.items():
-        if key%10 ==0 : 
+
+        if key < 10 : 
             MAIN_CATEGORY[key] = value
 
-        elif key//10 == ct//10: 
+        elif key//10 == ct or key//10 == ct//10: 
             SUB_CATEGORY[key] = value
+    
 
-
+    sorted_sub = sorted(SUB_CATEGORY.items(), key=lambda kv: kv[0], reverse=True)
+   
+    key_ct = ct
     if ct == 0:
         products = Product.objects.all()
+    elif ct < 10 :
+        products = []
+        total = Product.objects.all()
+        for product in total:
+            if( int(product.category_code)//10 == int(ct)):
+                products.append(product)
     else: 
+        key_ct = int(ct / 10)
         products = Product.objects.all().filter(category_code = ct)
     
     if pb != 0: 
@@ -225,11 +236,13 @@ def category(request, ct, pb):
     if search: 
         products = products.filter(name__icontains=search)
 
+
     # elif pb == 0:   
     #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
     # else : 
     #     products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
-    return render(request, 'productpage/category.html', {'search' : search, 'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY,'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb})
+    return render(request, 'productpage/category.html', {'search' : search, 'products': products, 'categories':MAIN_CATEGORY, 'sub_categories': dict(sorted_sub), 'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb, 'key_ct': key_ct})
+
 
 ### 수정: 모델에서 코드를 정했으니 삭제해도 될듯. 단 저장된 이미지 주소를 연동하는 건 고려해봐야 함.
 # def stores(val):

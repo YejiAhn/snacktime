@@ -34,7 +34,7 @@
       </ul>
     </div>
   </div>
-</div>
+</div> 
 
 <a class="my-button"
         href="/reviews/new">
@@ -42,8 +42,11 @@
 </a>
 
 <div class = "filter__wrapper">
+
   {% for key, value in categories.items %} 
     {% if ct == key %}
+    <a style="color:white; background-color: #18bfd9; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
+    {% elif key_ct == key %}
     <a style="color:white; background-color: #18bfd9; font-weight: bold;" id = "filter" href="/products/category/{{ key }}/{{pb}}" >{{ value }}</a>
     {% else %}
     <a id = "filter" href="/products/category/{{ key }}/{{pb}}">{{ value }}</a>
@@ -97,6 +100,9 @@
       
       <h4><img src="{{ product.emoticon }}" width = "30" alt=""> {{product.rating}}</h2>  <!--choose emoticon--> {% endcomment %}
 
+
+   
+      
 
 
 
