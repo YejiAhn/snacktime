@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django import forms
 
 import numpy as np
 # Create your models here.
@@ -173,7 +174,8 @@ class Review(models.Model):
         (4, '맛나'),
         (5, '꿀맛'),
     )
-    review_rating = models.IntegerField(choices=REVIEW_RATINGS)    
+    review_rating = models.IntegerField(choices=REVIEW_RATINGS)  
+    # review_rating = forms.RadioSelect(choices="REVIEW_RATINGS")  
     emoticon = models.ImageField(blank=True, upload_to='products_photos',
         default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
 
