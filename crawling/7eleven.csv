@@ -1,19 +1,19 @@
-id,category,img,title,price,cvs
-1,44,http://www.7-eleven.co.kr/upload/product/8801062/336449.1.jpg,ìš”êµ¬ë¥´íŠ¸ë§›ì ¤ë¦¬50G,"1200ì›",7-eleven
-2,44,http://www.7-eleven.co.kr/upload/product/8801062/336593.1.jpg,ë”¸ê¸°ìš”êµ¬ë¥´íŠ¸ì ¤ë¦¬50G,"1200ì›",7-eleven
-3,30,http://www.7-eleven.co.kr/upload/product/8801728/105099.1.jpg,ê³ ì†Œí•œì¸ì ˆë¯¸ìŠ¤ë‚µ1500,"1500ì›",7-eleven
-4,30,http://www.7-eleven.co.kr/upload/product/8802876/204009.1.jpg,ë§ˆìš”ìƒˆìš°ì¹©1200,"1200ì›",7-eleven
-5,44,http://www.7-eleven.co.kr/upload/product/8809355/827063.1.jpg,ì›ƒê¸°ëŠ”ì ¤ë¦¬ ã…‹ã…‹ã…ã…84G,"2000ì›",7-eleven
-6,30,http://www.7-eleven.co.kr/upload/product/8809027/557007.1.jpg,ì²´ë‹¤ì¹˜ì¦ˆë§›íŒì½˜1200."2000ì›",7-eleven
-7,30,http://www.7-eleven.co.kr/upload/product/8809027/556994.1.jpg,ì‚¬ì›Œí¬ë¦¼ì–´ë‹ˆì–¸íŒì½˜1200,"1200ì›",7-eleven
-8,30,http://www.7-eleven.co.kr/upload/product/8801728/105426.1.jpg,ì§„í•œí’ë¯¸ì¹˜ì¦ˆë³¼1200,"1200ì›",7-eleven
-9,30,http://www.7-eleven.co.kr/upload/product/8802876/204344.1.jpg,ì•„ì´ìŠ¤ì½˜ë°”ë‹ë¼ë§›1200,"1200ì›",7-eleven
-10,20,http://www.7-eleven.co.kr/upload/product/8804985/932118.1.jpg,ìš°ë„ë•…ì½©ë¼ë–¼240ml,"1300ì›",7-eleven
-11,20,http://www.7-eleven.co.kr/upload/product/8804985/931005.1.jpg,í•´ë‚¨ê³ êµ¬ë§ˆë¼ë–¼240ml,"1300ì›",7-eleven
-12,20,http://www.7-eleven.co.kr/upload/product/8804985/843216.1.jpg,ëˆ„ê°€ë°”ì´ˆì½”ë¼ë–¼240ml,"1300ì›",7-eleven
-13,20,http://www.7-eleven.co.kr/upload/product/8804985/832111.1.jpg,ë°”ë°¤ë°”ë¼ë–¼240ml,"1300ì›",7-eleven
-14,10,http://www.7-eleven.co.kr/upload/product/8801062/003259.1.jpg,ì•„ì´ìŠ¤ìš”êµ¬ë¥´íŠ¸ë”¸ê¸°170ml,"1500ì›",7-eleven
-15,50,http://www.7-eleven.co.kr/upload/product/8801284/274024.1.jpg,ë² ì´ì»¨í¬ë¦¼ë¦¬ì¡°ë˜220g,"3800ì›",7-eleven
-16,50,http://www.7-eleven.co.kr/upload/product/8801284/274017.1.jpg,ë§¤ìš´ë‚™ì§€ë³¶ìŒë°¥220g,"3800ì›",7-eleven
-17,10,http://www.7-eleven.co.kr/upload/product/8801118/253928.1.jpg,í­ì‹ í­ì‹ ì†œì‚¬íƒ•íŒŒë¥´í˜300ml,"2000ì›",7-eleven
-18,10,http://www.7-eleven.co.kr/upload/product/8801062/443468.1.jpg,ì•„ì´ìŠ¤ìš”êµ¬ë¥´íŠ¸170ml,"1500ì›",7-eleven
+id,category,img,name,price,PB
+1,44,http://www.7-eleven.co.kr/upload/product/8801062/336449.1.jpg,¿ä±¸¸£Æ®¸ÀÁ©¸®50G,1200¿ø,7-eleven
+2,44,http://www.7-eleven.co.kr/upload/product/8801062/336593.1.jpg,µş±â¿ä±¸¸£Æ®Á©¸®50G,1200¿ø,7-eleven
+3,30,http://www.7-eleven.co.kr/upload/product/8801728/105099.1.jpg,°í¼ÒÇÑÀÎÀı¹Ì½º³¼,1500¿ø,7-eleven
+4,30,http://www.7-eleven.co.kr/upload/product/8802876/204009.1.jpg,¸¶¿ä»õ¿ìÄ¨,1200¿ø,7-eleven
+5,44,http://www.7-eleven.co.kr/upload/product/8809355/827063.1.jpg,¿ô±â´ÂÁ©¸® ¤»¤»¤¾¤¾84G,2000¿ø,7-eleven
+6,30,http://www.7-eleven.co.kr/upload/product/8809027/557007.1.jpg,Ã¼´ÙÄ¡Áî¸ÀÆËÄÜ,2000¿ø,7-eleven
+7,30,http://www.7-eleven.co.kr/upload/product/8809027/556994.1.jpg,»ç¿öÅ©¸²¾î´Ï¾ğÆËÄÜ,1200¿ø,7-eleven
+8,30,http://www.7-eleven.co.kr/upload/product/8801728/105426.1.jpg,ÁøÇÑÇ³¹ÌÄ¡Áîº¼,1200¿ø,7-eleven
+9,30,http://www.7-eleven.co.kr/upload/product/8802876/204344.1.jpg,¾ÆÀÌ½ºÄÜ¹Ù´Ò¶ó¸À,1200¿ø,7-eleven
+10,20,http://www.7-eleven.co.kr/upload/product/8804985/932118.1.jpg,¿ìµµ¶¥Äá¶ó¶¼240ml,1300¿ø,7-eleven
+11,20,http://www.7-eleven.co.kr/upload/product/8804985/931005.1.jpg,ÇØ³²°í±¸¸¶¶ó¶¼240ml,1300¿ø,7-eleven
+12,20,http://www.7-eleven.co.kr/upload/product/8804985/843216.1.jpg,´©°¡¹ÙÃÊÄÚ¶ó¶¼240ml,1300¿ø,7-eleven
+13,20,http://www.7-eleven.co.kr/upload/product/8804985/832111.1.jpg,¹Ù¹ã¹Ù¶ó¶¼240ml,1300¿ø,7-eleven
+14,10,http://www.7-eleven.co.kr/upload/product/8801062/003259.1.jpg,¾ÆÀÌ½º¿ä±¸¸£Æ®µş±â170ml,1500¿ø,7-eleven
+15,50,http://www.7-eleven.co.kr/upload/product/8801284/274024.1.jpg,º£ÀÌÄÁÅ©¸²¸®Á¶¶Ç220g,3800¿ø,7-eleven
+16,50,http://www.7-eleven.co.kr/upload/product/8801284/274017.1.jpg,¸Å¿î³«ÁöººÀ½¹ä220g,3800¿ø,7-eleven
+17,10,http://www.7-eleven.co.kr/upload/product/8801118/253928.1.jpg,Ç«½ÅÇ«½Å¼Ø»çÅÁÆÄ¸£Æä300ml,2000¿ø,7-eleven
+18,10,http://www.7-eleven.co.kr/upload/product/8801062/443468.1.jpg,¾ÆÀÌ½º¿ä±¸¸£Æ®170ml,1500¿ø,7-eleven
