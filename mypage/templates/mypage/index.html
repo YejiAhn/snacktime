@@ -86,14 +86,14 @@
 					</a>
           </span>
 
-					{% comment %} {% if request.user == review.author %}
+				{% if request.user == review.author %}
 						<a  href="/reviews/{{ review.id }}/edit">
 						<i  class="far fa-edit"></i>
 						</a>
 						<a  href="/reviews/{{ review.id }}/delete"  onclick="return confirm('정말 삭제하시겠습니까?')">
 						<i  class="far fa-trash-alt"></i>
 						</a>
-					{% endif %} {% endcomment %}
+					{% endif %} 
 				</div>
 			</div>
 		</div>
