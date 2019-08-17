@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'reviewpage.apps.ReviewpageConfig',
     'productpage.apps.ProductpageConfig',
     'mypage.apps.MypageConfig',
-    'social_django',
+    # 'social_django',
     'accounts.apps.AccountsConfig',
 ]
 
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'request_logging.middleware.LoggingMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'snacktime.urls'
@@ -69,8 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect', # <--
+                # 'social_django.context_processors.backends',  # <--
+                # 'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -155,9 +155,9 @@ LOGGING = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.github.GithubOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.facebook.FacebookOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
 )
