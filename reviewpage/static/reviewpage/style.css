@@ -172,6 +172,11 @@ input[name=content] {
     text-align: left;
 }
 
+.review-text {
+    overflow: auto;
+    height: 70%;
+}
+
 .review_column {
     width: 33.33%;
     padding: 5px;
