@@ -208,23 +208,3 @@ th img {
 } */
 
 
-.my-button {
-    position:  fixed;
-    bottom:  200px;
-    right:  40px;
-    z-index: 4;
-    height: 100px;
-    width: 100px;
-    background-color: hotpink;
-    color: white;
-    border-radius: 100%;
-    font-size: 60px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.my-button span{
-    position: relative;
-    top: 35px;
-    text-decoration: none;
-}

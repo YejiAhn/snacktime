@@ -9,6 +9,8 @@ header {
     text-align: left;
 }
 
+
+
 .search-result{
     display: none;
 }
@@ -87,6 +89,7 @@ footer {
     margin: 0 auto;
 } 
 
+
 /*********************************/
 
 .select-rate {
@@ -115,7 +118,7 @@ footer {
     flex-direction: column;
     justify-content: space-around;
     padding-bottom: 40px;
-
+    
     opacity: 0.4;
     cursor: pointer;
 }
@@ -156,14 +159,14 @@ input[name=content] {
     font-size: 30px;
 }
 
-.review_bigcolumn {
+/* .review_bigcolumn {
     width: 33.33%;
     padding: 5px;
-    height: 150px;
     display: inline-block;
-}
+} */
 
 .review_bigrow {
+    font-size: 30px;
     display: inline;
     text-align: left;
 }
@@ -171,7 +174,6 @@ input[name=content] {
 .review_column {
     width: 33.33%;
     padding: 5px;
-    height: 150px;
     display: inline-block;
 }
 
@@ -181,17 +183,19 @@ input[name=content] {
 }
 
 .review_box {
-    display:  inline-block;
     position: relative;
-    height: 200px;
-	width:  600px;
-	margin:  10px;
+    width:  570px;
+    margin-bottom: 20px;
+
+    padding: 10px;
     vertical-align:  top;
-	background: #c6ecf9;
-	border: 4px solid #f5f3f0;
+  
+    line-height: 130%;
+
+    
 }
 
-.review_box:after, .review_box:before {
+/* .review_box:after, .review_box:before {
 	right: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -213,7 +217,9 @@ input[name=content] {
 	border-right-color: #f5f3f0;
 	border-width: 36px;
 	margin-top: -36px;
-}
+} */
+
+
 
 .like {
     height: 50px;
@@ -221,13 +227,11 @@ input[name=content] {
 }
 
 #product-image {
-    position: relative;
-    top: 100px;
-    left: 10px;
-    right: 10px;
-    width: 80%;
-    margin: 2.5%;
+    width: 300px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     background-color: gray;
+
 }
 
 .product_image {
@@ -239,9 +243,8 @@ input[name=content] {
 }
 
 .review_text {
-    width: 400px;
-    height: 100px;
     margin: 10px;
+    padding: 10px;
     float: left;
 }
 
@@ -270,13 +273,22 @@ input[name=content] {
     width: 100px;
 }
 
-.button-wrapper {
-	padding: 10px;
-    text-align: right;
-    position: absolute;
-    bottom: 0px;
+.text-box{
+    border-radius: 30px;
+    position: relative;
+    left: 330px;
+    background: #c6ecf9;
+    padding: 10px;
+    min-height: 300px;
+   
 }
 
+.button-wrapper{
+    position: absolute;
+    bottom: 0px;
+    margin-left: 20px;
+    padding-bottom: 10px;
+}
 .button-wrapper > a {
     text-decoration: none;
 }
@@ -369,4 +381,15 @@ input[name=content] {
     position: relative;
     top: 35px;
     text-decoration: none;
+}
+
+.button-wrapper span {
+    margin-right: 20px;
+}
+
+.rankings {
+    margin-left: 20px;
+    font-weight: bold;
+
+    text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white;
 }
