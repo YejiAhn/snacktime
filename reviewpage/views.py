@@ -25,7 +25,6 @@ def index(request):
         sort = request.GET.get('sort','')
         if sort == 'likes':
             reviews = Review.objects.all()
-            
             reviews.order_by('-like_count','-updated_at')
             return render(request, 'reviewpage/index.html', {'reviews': reviews})
         elif sort == 'mypost':
@@ -38,12 +37,16 @@ def index(request):
     elif request.method == 'POST': # create
         content = request.POST['content']
         photo = request.FILES.get('photo', False)
-        review_rating = request.POST['review_rating']
+        # review_rating = request.POST['review_rating']
+        review_rating = request.POST.get('review_rating','')
         Review.objects.create(review_rating=review_rating, content=content, author = request.user, photo=photo)
         return redirect('/reviews')
 
 def new(request):
     return render(request, 'reviewpage/new.html')
+
+def newProduct(request):
+    return render(request, 'reviewpage/newProduct.html')
 
 def show(request, id):
     if request.method == 'GET': # show
