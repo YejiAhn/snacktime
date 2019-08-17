@@ -80,10 +80,10 @@
 }
 .pb-image{
     position:relative;
-    margin: 2.5%;
     background-color: white;
     overflow: visible;
     z-index:1;
+
 }
 
 #pb-img{
@@ -190,4 +190,3 @@ th img {
     position: relative;
     
 } */
-

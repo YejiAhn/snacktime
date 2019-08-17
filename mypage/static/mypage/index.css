@@ -7,9 +7,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
-.user .icon{
-  background: red;
-}
+
 .user .user-info{
   padding-left: 50px;
 }
@@ -44,9 +42,8 @@
   border-top-right-radius: 40px;
 }
 
-.content{
+.mycontent{
   font-size: 50px;
-  line-height: 150px;
 }
 
 .mdl-button.mdl-button--colored {
