@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 import pandas as pd
 import numpy as np
 import time
+from collections import OrderedDict
+
 
 # Create your views here.
 
@@ -163,6 +165,7 @@ def category(request, ct, pb):
         23: '탄산',
 
         3: '과자',
+        30: '기타',
 
         4: '달다구리',
         40: '기타',
@@ -178,6 +181,7 @@ def category(request, ct, pb):
         53: '도시락',
 
         6: '라면',
+        60: '기타',
 
         7: '주류',
         70: '기타',
@@ -202,45 +206,57 @@ def category(request, ct, pb):
     
 
     MAIN_CATEGORY = dict()
+    # SUB_CATEGORY = OrderedDict()
     SUB_CATEGORY = dict()
 
     search = request.GET.get('search', '')
 
     for (key, value) in CATEGORY_CODES.items():
-        if key%10 ==0 : 
+        if key < 10 : 
             MAIN_CATEGORY[key] = value
+        else:
+            if ct<10 and key//10==ct: 
+                SUB_CATEGORY[key] = value
+            elif ct>=10 and key//10==ct//10: 
+                SUB_CATEGORY[key] = value
 
-        elif key//10 == ct//10: 
-            SUB_CATEGORY[key] = value
-
+    print(MAIN_CATEGORY)
+    print(SUB_CATEGORY)
 
     if ct == 0:
         products = Product.objects.all()
-    else: 
-        products = Product.objects.all().filter(category_code = ct)
-    
+    elif ct < 10: 
+        products = Product.objects.all()
+        count=0
+        del SUB_CATEGORY[10*ct]
+        SUB_CATEGORY[10*ct]= '기타'
+        
+        for key in SUB_CATEGORY.keys():
+            if count==0:
+                products = products.filter(category_code=key)
+                count=1
+                print(count)
+            else:
+                products = products or Product.objects.all().filter(category_code=key)
+    else:
+        products = Product.objects.all().filter(category_code= ct)
+        del SUB_CATEGORY[10*(ct//10)]
+        SUB_CATEGORY[10*(ct//10)]= '기타'
+
     if pb != 0: 
         products = products.filter(pb_store_code = pb)
     print(search)
     if search: 
         products = products.filter(name__icontains=search)
 
+
     # elif pb == 0:   
     #     products= Product.objects.all().filter(category_code = ct)#[:20] # 보여줄 개수를 정하려면 추가
     # else : 
     #     products= Product.objects.all().filter(category_code = ct).filter(pb_store_code = pb)#[:20] # 보여줄 개수를 정하려면 추가
+    # SUB_CATEGORY=dict(SUB_CATEGORY)
     return render(request, 'productpage/category.html', {'products': products, 'categories':MAIN_CATEGORY, 'sub_categories':SUB_CATEGORY,'pb_stores':PB_STORE_CODES,'ct':ct, 'pb':pb})
 
-### 수정: 모델에서 코드를 정했으니 삭제해도 될듯. 단 저장된 이미지 주소를 연동하는 건 고려해봐야 함.
-# def stores(val):
-#     return {
-#         'cu': 'https://membership.bgfretail.com/membership/pc/images/family_site_02.png',
-#         'gs25': '',
-#         'emart24': 'https://www.emart24.co.kr/images/introduce/img_visual_bi.gif',
-#         'seveneleven': '',
-#         'ministop': '',
-#         '0': ''
-#     }.get(val,'')
 
 
 def detail(request):

@@ -57,7 +57,7 @@
   <div>
   {% for key, value in sub_categories.items %} 
     {% if ct == key %}
-     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #4c84c7;">{{ value }}</a>  <!--view-->
+    <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}" style ="color: white; font-weight: bold; background-color: #4c84c7;">{{ value }}</a>  <!--view-->
     {% else %}
     <a id = "sub-filter" href="/products/category/{{ key }}/{{ pb }}">{{ value }}</a>  <!--view-->
     {% endif %}

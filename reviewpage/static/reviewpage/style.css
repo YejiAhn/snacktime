@@ -316,8 +316,6 @@ input[name=content] {
     box-shadow: inset 0 1px 5px rgb(125, 125, 125);
 }
 
-<<<<<<< HEAD
-=======
 .search-box{
     text-align: center;
 }
@@ -339,4 +337,3 @@ input[name=content] {
 .search-show {
     display: none;
 }
->>>>>>> sangwoo
