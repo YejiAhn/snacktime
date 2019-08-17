@@ -11,8 +11,8 @@
 import pandas as pd
 import numpy as np
 
-all_product = pd.read_csv('/crawling/CU480-614.csv')
-pb_product = pd.read_csv('/crawling/CU500-510csv')
+all_product = pd.read_csv('CU480-614.csv')
+pb_product = pd.read_csv('CU500-510csv')
 i_name = 3
 i_pb = 5
 for i in range(len(pb_product)):
