@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from reviewpage.models import Review, Like
+from reviewpage.models import Review, Like, Product
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -8,10 +8,10 @@ from django.contrib.auth.models import User
 def index(request):
     user = request.user
     user_id = request.user.id
-    reviewed = Review.objects.filter(author_id=user_id)
-    liked = Like.objects.filter(user_id=user_id)
+    reviews = Review.objects.filter(author_id = user_id)
+    saved = Product.objects.filter(saved_users = request.user)
     return render(request, 'mypage/index.html', {
         'user': user,
-        'review_count': len(reviewed),
-        'like_count': len(liked)
+        'eaten': reviews,
+        'wish' : saved
     })
