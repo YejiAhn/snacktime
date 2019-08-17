@@ -9,11 +9,16 @@ header {
     text-align: left;
 }
 
+.search-result{
+    display: none;
+}
+
 .search-hide{
     height: 120px;
 }
 
 .search-show{
+    display: none;
     height: 220px;
 }
 
