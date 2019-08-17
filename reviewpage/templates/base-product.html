@@ -18,7 +18,6 @@
 
   <header>
 
-
     <div class="search-hide">
       <div style="width: 100%; text-align: center;">
       <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
@@ -36,6 +35,21 @@
         <div class="search-box">
           
           <input id="search" type="text" name="search" value="{{search}}" placeholder="먹고싶은 간식을 검색해보세요.">
+        </div>
+          {% comment %} <input type="submit" value="검색"> {% endcomment %}
+        <a href="#" onclick="document.getElementById('searching').submit()"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>
+      </form>
+    </div>
+
+    <div class="search-result">
+      <div style="width: 100%; text-align: center;">
+      <a href="/products/"><img src = {% static 'logo.png'%} style = "margin-top: 10px; height: 95px;"></a>
+      </div>
+      
+      <form action="/products/category/{{ct}}/{{pb}}" method="get" id="searching">
+        <div class="search-box">
+          
+          <input id="search" type="text" name="search" value="{{search}}" placeholder="{{ search }}">
         </div>
           {% comment %} <input type="submit" value="검색"> {% endcomment %}
         <a href="#" onclick="document.getElementById('searching').submit()"><i class="fas fa-search fa-2x" style="position: relative; color:white; top:-85px; left: -30px; float: right;"></i></a>

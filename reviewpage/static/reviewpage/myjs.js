@@ -1,10 +1,4 @@
-$(document).ready(() => {
 
-    $('.button-show').on('click', () => {
-        $('.search-hide').hide();
-        $('.search-show').show();
-    })
-})
 
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -21,4 +15,16 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+$(document).ready(() => {
+    var search = getUrlParameter('search');
+    if(search != undefined && search != ""){
+        $('.search-hide').hide();
+        $('.search-show').hide();
+        $('.search-result').show();
+    }
+    $('.button-show').on('click', () => {
+        $('.search-hide').hide();
+        $('.search-show').show();
+    })
+})
   
