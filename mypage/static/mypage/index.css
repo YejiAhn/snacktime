@@ -1,15 +1,15 @@
 .user {
-  margin-top: 100px;
-  margin-left:50px;
+  margin-top: 60px;
+  margin-left:70px;
   margin-right: 50px;
-  font-size: 50px;
-  line-height: 70px;
+  font-size: 38px;
+  line-height: 50px;
   display: grid;
   grid-template-columns: 1fr 3fr;
 }
 
 .user .user-info{
-  padding-left: 50px;
+  padding-left: 80px;
 }
 
 .tab{
@@ -17,12 +17,16 @@
   grid-template-columns: 1fr 1fr;
   margin-top: 50px;
   font-size: 45px;
-  line-height: 120px;
-  height: 120px;
+  line-height: 100px;
+  height: 100px;
   text-align: center;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   color:#18bfd9;
+}
+
+.review_text {
+  color: black;
 }
 
 .tab .showed{

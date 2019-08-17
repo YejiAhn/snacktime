@@ -63,14 +63,7 @@ class Product(models.Model):
         ('4', 'seveneleven'),
         ('5', 'ministop'),
     )
-    #     PB_STORE_IMGS = (
-    #     ('0', ''),
-    #     ('1', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/cu.png'),
-    #     ('2', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/gs25.gif'),
-    #     ('3', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/7eleven.jpeg'),
-    #     ('4', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/emart24.png'),
-    #     ('5', '/Users/Sangwoo/Desktop/SnackTime/snacktime/productpage/static/ministop.jpeg'),
-    # )
+
     pb_store_code = models.CharField(max_length=1, choices=PB_STORE_CODES)
     # pb_img = models.ImageField(blank=True, upload_to='products_photos')
     emoticon = models.ImageField(blank=True, upload_to='products_photos',
@@ -175,6 +168,7 @@ class Review(models.Model):
         (5, '꿀맛'),
     )
     review_rating = models.IntegerField(choices=REVIEW_RATINGS)  
+    review_rating_word = dict(REVIEW_RATINGS)
     # review_rating = forms.RadioSelect(choices="REVIEW_RATINGS")  
     emoticon = models.ImageField(blank=True, upload_to='products_photos',
         default='https://image.flaticon.com/icons/png/128/1742/1742384.png')
@@ -197,7 +191,7 @@ class Review(models.Model):
 
 
     created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezome.now)
+    updated_at = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     photo = models.ImageField(blank=True, upload_to='review_photos')
     liked_users = models.ManyToManyField(
